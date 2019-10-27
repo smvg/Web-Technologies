@@ -23,6 +23,7 @@ html * {
     align-content: center;
 }
 
+
 .nav a {
     color: white;
 }
@@ -30,7 +31,6 @@ html * {
 .nav a:hover {
     text-decoration: none;
 }
-
 
 .nav p {
     padding: 0.5rem;
@@ -47,4 +47,86 @@ html * {
     height: 100vh;
     flex-direction: column;
     overflow: auto;
+}
+
+.table > tbody > tr > td {
+    vertical-align: middle;
+}
+
+.table > tbody > tr > th {
+    vertical-align: middle;
+}
+
+.content-div {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    flex-direction: row;
+}
+
+#dashboard {
+    visibility: visible;
+}
+
+#accounts, #rooms, #location {
+    visibility: hidden;
+}
+
+.image-expand-content {
+    visibility: inherit;
+    position: relative; 
+    width: 100%;
+}
+
+#room-image-1 {
+    background-image: url('https://www.vajenti.it/wp-content/uploads/2018/03/camera-1800x1200.jpg');
+}
+
+.bg {
+    transition: .3s all;
+    height: 100%;
+    width: 100%;
+    background-size: cover; 
+    background-position: center;
+}
+
+.image-expand-content:hover .bg {
+    filter: blur(1px);
+    -webkit-filter: blur(1px);
+}
+
+.image-expand-content:hover .fullscreen-indicator {
+    opacity: 1;
+}
+
+.fullscreen-indicator {
+    transition: .3s all;
+    position: absolute; 
+    opacity: 0;
+    top: 50%; 
+    left: 50%; 
+    color: white; 
+    font-size: 50px !important;
+    transform: translate(-50%, -50%);
+}
+.room-card {
+    margin: 1rem;
+    display: flex;
+    flex-direction: row;
+    padding: 2rem;
+}
+
+#table-rooms > tr:hover {
+    cursor: pointer;
+}
+
+.input-section {
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 1rem;
+}
+
+.description {
+    margin-left: 1rem;
+    width: 100%;
 }
