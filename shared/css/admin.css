@@ -7,6 +7,7 @@ html * {
     width: 15%;
     padding: 0.5rem;
     background-color: rgb(24, 23, 23);
+    box-shadow: 3px 5px 10px #888888;
 }
 
 
@@ -14,7 +15,6 @@ html * {
     padding: 1rem;
     align-content: center;
     text-align: center;
-    color: white;
 }
 
 .nav {
@@ -62,14 +62,6 @@ html * {
     width: 100%;
     justify-content: space-around;
     flex-direction: row;
-}
-
-#dashboard {
-    visibility: visible;
-}
-
-#accounts, #rooms, #location {
-    visibility: hidden;
 }
 
 .image-expand-content {

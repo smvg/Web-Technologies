@@ -1,5 +1,6 @@
 var content_ids = ['dashboard', 'accounts', 'rooms', 'location'];
 
+/*
 function hide(value) {
     var content = document.getElementById(value);
 
@@ -16,7 +17,12 @@ function make_content_visible(id) {
 
     content.style.visibility = 'visible';
     
-};
+};*/
+
+function change_view(view) {
+    $.redirect("admin.php", { page : view});
+    
+}
 
 
 function swap_on_save(id) {

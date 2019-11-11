@@ -6,7 +6,7 @@
 
     $language = (isset($_COOKIE["language"])) ? $_COOKIE["language"] : parse_language_header($_SERVER['HTTP_ACCEPT_LANGUAGE']);
 
-    redirect_to_url($language, "admin.html");
+    redirect_to_url($language, "admin.php");
 
     exit();
     
