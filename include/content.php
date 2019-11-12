@@ -141,17 +141,21 @@
     ";
 
     $room_edit = "
-      <div id='room_edit' class='content animated fadeInUp'>
-          <h1>Room #1</h1>
-          <hr>
-          <div>
-            Address:<input type='text'>
-            <br>
-            Description:<br><textarea rows='10' cols='40'></textarea>
-            <br>
-            <input type='file' name='pic' accept='image/*'>
-          </div>
-      </div>";
+    <div id='room-edit' class='content animated fadeInUp'>
+    
+    <h1>Room #1</h1>
+    <hr>
+    <div id=\"input-div\">
+      <input type=\"number\" placeholder=\"Capacity\">
+      <textarea class=\"rounded\" placeholder=\"Description\"></textarea>
+    </div>
+    <div>
+    <input type='file' name='pic' style=\"margin: 0.5rem; width: auto;\" accept='image/*'>
+    <br><input style=\"margin-left: 1rem; margin-right: 0.5rem; width: auto;\" type=\"checkbox\" value=\"visible\"> Visible
+    <button class=\"btn btn-primary btn-block text-white\" style=\"margin: 0.5rem; width: auto;\">Save</button>
+    </div>
+    
+</div>";
     $not_found = "
     
     <div class='content animated fadeInUp'>
