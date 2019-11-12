@@ -6,28 +6,28 @@
           <h1>Dashboard</h1>
           <hr>
           <div class='content-div animated fadeInUp'>
-            <div class='card' style='width: 18rem;'>
-                <img src='...' class='card-img-top' alt='...'>
+            <div class='card' style='width: 23rem;'>
+                <img src='../shared/images/accounts.png' style=\"object-fit: cover; height: 30vh\" class='card-img-top' alt='...'>
                 <div class='card-body'>
                   <h5 class='card-title'>Accounts</h5>
                   <p class='card-text'>Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <a href='#' onclick='make_content_visible('accounts')' class='btn btn-primary'>Edit Accounts</a>
+                  <a href=\"javascript:change_view('accounts')\" class='btn btn-primary'>Edit Accounts</a>
                 </div>
             </div>
-            <div class='card' style='width: 18rem;'>
-                <img src='...' class='card-img-top' alt='...'>
+            <div class='card' style='width: 23rem;'>
+                <img src='../shared/images/outside1.jpg' style=\"object-fit: cover; height: 30vh\" class='card-img-top' alt='...'>
                 <div class='card-body'>
                   <h5 class='card-title'>Rooms</h5>
                   <p class='card-text'>Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <a href='#' onclick='make_content_visible('rooms')' class='btn btn-primary'>Edit Rooms</a>
+                  <a href=\"javascript:change_view('rooms')\" class='btn btn-primary'>Edit Rooms</a>
                 </div>
             </div>
-            <div class='card' style='width: 18rem;'>
-                <img src='...' class='card-img-top' alt='...'>
+            <div class='card' style='width: 23rem;'>
+                <img src='https://www.vertical-leap.uk/wp-content/uploads/2017/11/map-1400x800.jpg' style=\"object-fit: cover; height: 30vh\" class='card-img-top' alt='...'>
                 <div class='card-body'>
                   <h5 class='card-title'>Location</h5>
                   <p class='card-text'>Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <a href='#' onclick='make_content_visible('location')' class='btn btn-primary'>Edit Location</a>
+                  <a href=\"javascript:change_view('location')\" class='btn btn-primary'>Edit Location</a>
                 </div>
             </div>
           </div>
@@ -83,15 +83,19 @@
     $location = "
     
     <div id='location' class='content animated fadeInUp'>
+    
         <h1>Location</h1>
         <hr>
-        <div>
-          Address:<input type='text'>
-          <br>
-          Description:<br><textarea rows='10' cols='40'></textarea>
-          <br>
-          <input type='file' name='pic' accept='image/*'>
+        <div id=\"input-div\">
+          <input type=\"text\" placeholder=\"Address\">
+          <input type=\"tel\" placeholder=\"Phone Number\" pattern=\"[0-9]{3}-[0-9]{2}-[0-9]{2}-[0-9]{2}\">
+          <textarea class=\"rounded\" placeholder=\"Description\"></textarea>
         </div>
+        <div>
+        <input type='file' name='pic' style=\"margin: 0.5rem; width: auto;\" accept='image/*'>
+        <button class=\"btn btn-primary btn-block text-white\" style=\"margin: 0.5rem; width: auto;\">Save</button>
+        </div>
+        
     </div>
     ";
 
@@ -147,7 +151,14 @@
             <br>
             <input type='file' name='pic' accept='image/*'>
           </div>
-      </div>
+      </div>";
+    $not_found = "
+    
+    <div class='content animated fadeInUp'>
+    
+        <h1>Page not found :(</h1>
+        
+    </div>
     ";
 
 ?>

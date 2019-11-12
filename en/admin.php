@@ -52,7 +52,7 @@
                       <p>
                         <i class="fa fa-home" aria-hidden="true"></i>
                         &nbsp;
-                        DASHBOARD
+                        <span class="icon-description">DASHBOARD</span>
                       </p>
                   </a>
               </li>
@@ -61,7 +61,7 @@
                       <p>
                         <i class="fa fa-user" aria-hidden="true"></i>
                         &nbsp;
-                        ACCOUNTS
+                        <span class="icon-description">ACCOUNTS</span>
                       </p>
                   </a>
               </li>
@@ -70,7 +70,7 @@
                       <p>
                         <i class="fa fa-key" aria-hidden="true"></i>
                         &nbsp;
-                        ROOMS
+                        <span class="icon-description">ROOMS</span>
                       </p>
                   </a>
               </li>
@@ -79,7 +79,7 @@
                       <p>
                         <i class="fa fa-map" aria-hidden="true"></i>
                         &nbsp;
-                        LOCATION
+                        <span class="icon-description">LOCATION</span>
                       </p>
                   </a>
               </li>
@@ -87,9 +87,9 @@
       </div>
 
       <?php 
-        $view = $_POST['page'];
+        $view = (isset($_POST['page'])) ? $_POST['page'] : '';
 
-        if (!isset($view)) {
+        if (empty($view)) {
           echo $dashboard;
           return;
         }
@@ -111,7 +111,7 @@
             echo $room_edit;
             break;
           default;
-            echo "Page not found :(";
+            echo $not_found;
             break;
         };
       ?>

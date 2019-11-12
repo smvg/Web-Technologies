@@ -17,10 +17,43 @@ html * {
     text-align: center;
 }
 
+#input-div input {
+    margin: 0.5rem; width: 70%; padding: 1rem;
+}
+
+#input-div textarea {
+    margin: 0.5rem; width: 100%; padding: 1rem;
+}
+
 .nav {
     display: flex;
     flex-direction: column;
     align-content: center;
+}
+
+.icon-description {
+    display: none;
+}
+
+.content-div {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+@media only screen and (min-width: 1100px) {
+    .icon-description {
+        display: unset;
+    }
+
+    #input-div input {
+        width: 30%;
+    }
+    
+    #input-div textarea {
+        width: 70%;
+    }
 }
 
 
@@ -57,21 +90,12 @@ html * {
     vertical-align: middle;
 }
 
-.content-div {
-    display: flex;
-    width: 100%;
-    justify-content: space-around;
-    flex-direction: row;
-}
+
 
 .image-expand-content {
     visibility: inherit;
     position: relative; 
     width: 100%;
-}
-
-#room-image-1 {
-    background-image: url('https://www.vajenti.it/wp-content/uploads/2018/03/camera-1800x1200.jpg');
 }
 
 .bg {
@@ -114,7 +138,8 @@ html * {
 
 .input-section {
     display: flex;
-    flex-direction: row;
+    /*flex-direction: row;*/
+    flex-wrap: wrap;
     padding-bottom: 1rem;
 }
 

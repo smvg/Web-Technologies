@@ -21,7 +21,6 @@ function make_content_visible(id) {
 
 function change_view(view) {
     $.redirect("admin.php", { page : view});
-    
 }
 
 
