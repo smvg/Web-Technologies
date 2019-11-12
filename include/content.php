@@ -110,7 +110,7 @@
             </tr>
           </thead>
           <tbody id='table-rooms'>
-            <tr onclick='' id='display-1'>
+            <tr onclick=\"change_view('room-edit');\" id='display-1'>
               <th scope='row'>1</th>
               <td>Incredible room with great views...</td>
               <td>4</td>
@@ -133,6 +133,20 @@
             </tr>
           </tbody>
         </table>
+      </div>
+    ";
+
+    $room_edit = "
+      <div id='room_edit' class='content animated fadeInUp'>
+          <h1>Room #1</h1>
+          <hr>
+          <div>
+            Address:<input type='text'>
+            <br>
+            Description:<br><textarea rows='10' cols='40'></textarea>
+            <br>
+            <input type='file' name='pic' accept='image/*'>
+          </div>
       </div>
     ";
 

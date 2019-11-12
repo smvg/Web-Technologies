@@ -107,6 +107,9 @@
           case 'location':
             echo $location;
             break;
+          case 'room-edit':
+            echo $room_edit;
+            break;
           default;
             echo "Page not found :(";
             break;
