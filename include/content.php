@@ -6,7 +6,7 @@
           <h1>Dashboard</h1>
           <hr>
           <div class='content-div animated fadeInUp'>
-            <div class='card' style='width: 23rem;'>
+            <div class='card' style='width: 15rem;'>
                 <img src='../shared/images/accounts.png' style=\"object-fit: cover; height: 30vh\" class='card-img-top' alt='...'>
                 <div class='card-body'>
                   <h5 class='card-title'>Accounts</h5>
@@ -14,7 +14,7 @@
                   <a href=\"javascript:change_view('accounts')\" class='btn btn-primary'>Edit Accounts</a>
                 </div>
             </div>
-            <div class='card' style='width: 23rem;'>
+            <div class='card' style='width: 15rem;'>
                 <img src='../shared/images/outside1.jpg' style=\"object-fit: cover; height: 30vh\" class='card-img-top' alt='...'>
                 <div class='card-body'>
                   <h5 class='card-title'>Rooms</h5>
@@ -22,7 +22,7 @@
                   <a href=\"javascript:change_view('rooms')\" class='btn btn-primary'>Edit Rooms</a>
                 </div>
             </div>
-            <div class='card' style='width: 23rem;'>
+            <div class='card' style='width: 15rem;'>
                 <img src='https://www.vertical-leap.uk/wp-content/uploads/2017/11/map-1400x800.jpg' style=\"object-fit: cover; height: 30vh\" class='card-img-top' alt='...'>
                 <div class='card-body'>
                   <h5 class='card-title'>Location</h5>
@@ -150,6 +150,9 @@
       <textarea class=\"rounded\" placeholder=\"Description\"></textarea>
     </div>
     <div>
+    <img class='rounded' src=\"../shared/images/outside2.jpeg\" style=\"margin: 0.5rem; width: 50px; height: 50px;\">
+    <img class='rounded' src=\"../shared/images/outside3.jpeg\" style=\"margin: 0.5rem; width: 50px; height: 50px;\">
+    <br>
     <input type='file' name='pic' style=\"margin: 0.5rem; width: auto;\" accept='image/*'>
     <br><input style=\"margin-left: 1rem; margin-right: 0.5rem; width: auto;\" type=\"checkbox\" value=\"visible\"> Visible
     <button class=\"btn btn-primary btn-block text-white\" style=\"margin: 0.5rem; width: auto;\">Save</button>
