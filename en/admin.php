@@ -1,7 +1,66 @@
-<!doctype html>
 <?php
-  require_once("../include/content.php");
+  #require_once("../include/content.php");
+
+  include("../include/new_content.php");
+  include("../include/constants.php");
+
+  session_start();
+
+  function go_back_to_login() {
+    ob_start();
+    header('Location: login.html');
+    ob_end_flush();
+    die();
+  }
+
+  # If session variables are not set
+  if (!(isset($_SESSION['email']) && isset($_SESSION['psswd']))) {
+
+    # If didn't receive information from post
+    if (!(isset($_POST['email']) && isset($_POST['psswd']))){
+      go_back_to_login();
+    }
+
+
+    $email = $_POST['email'];
+    $password = $_POST['psswd'];
+
+    # Are variables empty
+    if (empty($email) || empty($password)) go_back_to_login();
+
+    # Establish connection
+    $connection = new mysqli($mysql_host, $mysql_user, $mysql_password, $mysql_db);
+
+    # What if it doesnt work
+    if ($connection->connect_error){
+        echo "Connection to database failed :(";
+    }
+
+    $query_string = "SELECT * FROM Administrators
+                    where email = '" . $email . "';";
+
+    $result = $connection->query($query_string);
+
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        if ($row['password'] != hash("sha256", $password.$salt)) {
+          go_back_to_login();
+        }
+        $_SESSION['email'] = $email;
+        $_SESSION['psswd'] = $password;
+        $_SESSION['first_name'] = $row['first_name'];
+        $_SESSION['last_name'] = $row['last_name'];
+    }
+    else {
+        go_back_to_login();
+    }
+
+    $connection->close();
+
+  }
+
 ?>
+<!doctype html>
 <html lang="en">
   <head>
     <title>Administrator's Website</title>
@@ -43,7 +102,7 @@
 
       <div class="sidebar">
           <div id="logo-sidebar">
-            <span style="letter-spacing: 10px;"><h1>LOGO</h1></span>
+            <span style="letter-spacing: 10px;"><h1 style="color: white">LOGO</h1></span>
           </div>
           <hr style="border-color: white;">
           <ul class="nav">
@@ -90,13 +149,15 @@
         $view = (isset($_POST['page'])) ? $_POST['page'] : '';
 
         if (empty($view)) {
-          echo $dashboard;
+          //echo $dashboard;
+          get_dashboard();
           return;
         }
 
         switch($view) {
           case 'dashboard':
-            echo $dashboard;
+            //echo $dashboard;
+            get_dashboard();
             break;
           case 'rooms':
             echo $rooms;
