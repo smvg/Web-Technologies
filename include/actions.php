@@ -45,4 +45,24 @@
         $connection->close();
     }
 
+    function delete_account() {
+        
+        include("constants.php");
+
+        $email_to_delete = $_POST['demail'];
+
+        $connection = new mysqli($mysql_host, $mysql_user, $mysql_password, $mysql_db);
+    
+        # What if it doesnt work
+        if ($connection->connect_error){
+            echo "Connection to database failed :(";
+        }
+          
+        $query_string =  "delete from Administrators where email = '" . $email_to_delete  . "';";
+          
+        $result = $connection->query($query_string);
+    
+        $connection->close();
+    }
+
 ?>

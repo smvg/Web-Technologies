@@ -76,10 +76,10 @@
 
         while ($row = mysqli_fetch_assoc($result)) {
           $table .= "<tr>
-                    <th scope='row'><i class='fa fa-times' aria-hidden='true'></i></th>
-                    <td>" . $row['email'] . "</td>
-                    <td>*****</td>
-                    <td><a href='#' class='btn btn-secondary'>Edit</a></td></tr>";
+                    <th scope='row'><i class='fa fa-times delete' aria-hidden='true'></i></th>
+                    <td class='email-table'>" . $row['email'] . "</td>
+                    <td class='psswd-table'>*****</td>
+                    <td><a href='#' class='btn btn-secondary edit-account'>Edit</a></td></tr>";
         }
         /*
             <tr id='display-1'>

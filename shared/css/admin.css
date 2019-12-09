@@ -147,3 +147,7 @@ html * {
     margin-left: 1rem;
     width: 100%;
 }
+
+.delete {
+    cursor: pointer;
+}

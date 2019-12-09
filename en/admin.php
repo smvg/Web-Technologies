@@ -160,6 +160,12 @@
           case 'add-account':
             add_account();
             break;
+          case 'update-account':
+            edit_account();
+            break;
+          case 'delete-account':
+            delete_account();
+            break;
         }
 
         switch($view) {
