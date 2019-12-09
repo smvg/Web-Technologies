@@ -1,7 +1,8 @@
 <?php
   #require_once("../include/content.php");
 
-  include("../include/new_content.php");
+  include("../include/content.php");
+  include("../include/actions.php");
   include("../include/constants.php");
 
   session_start();
@@ -147,11 +148,18 @@
 
       <?php 
         $view = (isset($_POST['page'])) ? $_POST['page'] : '';
+        $action = (isset($_POST['action'])) ? $_POST['action'] : '';
 
         if (empty($view)) {
           //echo $dashboard;
           get_dashboard();
           return;
+        }
+
+        switch($action) {
+          case 'add-account':
+            add_account();
+            break;
         }
 
         switch($view) {
@@ -163,7 +171,8 @@
             echo $rooms;
             break;
           case 'accounts':
-            echo $accounts;
+            //echo $accounts;
+            list_accounts();
             break;
           case 'location':
             echo $location;

@@ -1,9 +1,10 @@
 <?php
 
-    $dashboard = "
-        <div id='dashboard' class='content'>
+
+    function get_dashboard() {
+        echo "<div id='dashboard' class='content'>
         <div>
-          <h1>Dashboard</h1>
+          <h1>Hi " . $_SESSION['first_name'] . " " . $_SESSION['last_name'] . "</h1>
           <hr>
           <div class='content-div animated fadeInUp'>
             <div class='card' style='width: 15rem;'>
@@ -32,140 +33,63 @@
             </div>
           </div>
         </div>
+      </div>";
+    }
+
+    function list_accounts() {
+      include("constants.php");
+
+      $static_code = "<div id='accounts' class='content'>
+      <h1>Accounts</h1>
+      <hr>
+      <div class='input-section animated fadeIn'>
+        <input id='add-email' type='email' placeholder='Email'>
+        <input id='add-psswd' type='password' placeholder='Password'>
+        <button id='add-account' class='btn btn-primary'>Add</button>
       </div>
-    ";
-
-
-    $accounts = "
-    <div id='accounts' class='content'>
-    <h1>Accounts</h1>
-    <hr>
-    <div class='input-section animated fadeIn'>
-      <input type='email' placeholder='Email'>
-      &nbsp;<input type='password' placeholder='Password'>
-      &nbsp;<button class='btn btn-primary'>Add</button>
-    </div>
-    <div class='content-div animated fadeInUp'>
-        <table class='table table-borderless'>
-            <thead class='thead-light'>
+      <div class='content-div animated fadeInUp'>
+          <table class='table table-borderless'>
+              <thead class='thead-light'>
               <tr>
-                <th scope='col'>#</th>
-                <th scope='col'>Email</th>
-                <th scope='col'>Password</th>
-                <th scope='col'></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr id='display-1'>
-                <th scope='row'><i class='fa fa-times' aria-hidden='true'></i></th>
+              <th scope='col'>#</th>
+              <th scope='col'>Email</th>
+              <th scope='col'>Password</th>
+              <th scope='col'></th>
+            </tr>
+          </thead><tbody>";
+      
+          $table = "";
+          $end_code = "</tbody></table></div></div>";
+      
+        $connection = new mysqli($mysql_host, $mysql_user, $mysql_password, $mysql_db);
+
+        # What if it doesnt work
+        if ($connection->connect_error){
+            echo "Connection to database failed :(";
+        }
+      
+        $query_string = "SELECT * FROM Administrators;";
+      
+        $result = $connection->query($query_string);
+
+        $connection->close();
+
+        while ($row = mysqli_fetch_assoc($result)) {
+          $table .= "<tr>
+                    <th scope='row'><i class='fa fa-times' aria-hidden='true'></i></th>
+                    <td>" . $row['email'] . "</td>
+                    <td>*****</td>
+                    <td><a href='#' class='btn btn-secondary'>Edit</a></td></tr>";
+        }
+        /*
+            <tr id='display-1'>
+                <th scope='row'>
                 <td id='email-1'>mark@email.com</td>
                 <td id='password-1'>********</td>
                 <td id='button-1'><a href='#' class='btn btn-secondary' onclick='swap_on_edit(1)'>Edit</a></td>
-              </tr>
-              <tr>
-                <th scope='row'><i class='fa fa-times' aria-hidden='true'></i></th>
-                <td>jacob@gmail.com</td>
-                <td>********</td>
-                <td><a href='#' class='btn btn-secondary'>Edit</a></td>
-              </tr>
-              <tr>
-                <th scope='row'><i class='fa fa-times' aria-hidden='true'></i></th>
-                <td>larry@hotmail.com</td>
-                <td>********</td>
-                <td><a href='#' class='btn btn-secondary'>Edit</a></td>
-              </tr>
-            </tbody>
-          </table>
-    </div>
-  </div>
-    ";
+              </tr>*/
+      echo $static_code . $table . $end_code;
+    }
 
-    $location = "
-    
-    <div id='location' class='content animated fadeInUp'>
-    
-        <h1>Location</h1>
-        <hr>
-        <div id=\"input-div\">
-          <input type=\"text\" placeholder=\"Address\">
-          <input type=\"tel\" placeholder=\"Phone Number\" pattern=\"[0-9]{3}-[0-9]{2}-[0-9]{2}-[0-9]{2}\">
-          <textarea class=\"rounded\" placeholder=\"Description\"></textarea>
-        </div>
-        <div>
-        <input type='file' name='pic' style=\"margin: 0.5rem; width: auto;\" accept='image/*'>
-        <button class=\"btn btn-primary btn-block text-white\" style=\"margin: 0.5rem; width: auto;\">Save</button>
-        </div>
-        
-    </div>
-    ";
-
-    $rooms = "
-        <div id='rooms' class='content animated fadeInUp'>
-        <h1>Rooms</h1>
-        <hr>
-            <table class='table table-hover table-borderless'>
-            <thead class='thead-light'>
-            <tr>
-              <th scope='col'>#</th>
-              <th scope='col'>Description</th>
-              <th scope='col'>Capacity</th>
-              <th scope='col'>Nº Photos</th>
-              <th scope='col'>Visible</th>
-            </tr>
-          </thead>
-          <tbody id='table-rooms'>
-            <tr onclick=\"change_view('room-edit');\" id='display-1'>
-              <th scope='row'>1</th>
-              <td>Incredible room with great views...</td>
-              <td>4</td>
-              <td>3</td>
-              <td><i class='fa fa-check' aria-hidden='true'></i></td>
-            </tr>
-            <tr>
-              <th scope='row'>2</th>
-              <td>Incredible room with great views...</td>
-              <td>2</td>
-              <td>6</td>
-              <td><i class='fa fa-check' aria-hidden='true'></i></td>
-            </tr>
-            <tr>
-              <th scope='row'>3</th>
-              <td>Incredible room with great views...</td>
-              <td>3</td>
-              <td>1</td>
-              <td><i class='fa fa-check' aria-hidden='true'></i></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    ";
-
-    $room_edit = "
-    <div id='room-edit' class='content animated fadeInUp'>
-    
-    <h1>Room #1</h1>
-    <hr>
-    <div id=\"input-div\">
-      <input type=\"number\" placeholder=\"Capacity\">
-      <textarea class=\"rounded\" placeholder=\"Description\"></textarea>
-    </div>
-    <div>
-    <img class='rounded' src=\"../shared/images/outside2.jpeg\" style=\"margin: 0.5rem; width: 50px; height: 50px;\">
-    <img class='rounded' src=\"../shared/images/outside3.jpeg\" style=\"margin: 0.5rem; width: 50px; height: 50px;\">
-    <br>
-    <input type='file' name='pic' style=\"margin: 0.5rem; width: auto;\" accept='image/*'>
-    <br><input style=\"margin-left: 1rem; margin-right: 0.5rem; width: auto;\" type=\"checkbox\" value=\"visible\"> Visible
-    <button class=\"btn btn-primary btn-block text-white\" style=\"margin: 0.5rem; width: auto;\">Save</button>
-    </div>
-    
-</div>";
-    $not_found = "
-    
-    <div class='content animated fadeInUp'>
-    
-        <h1>Page not found :(</h1>
-        
-    </div>
-    ";
 
 ?>

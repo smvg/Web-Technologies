@@ -1,28 +1,17 @@
 var content_ids = ['dashboard', 'accounts', 'rooms', 'location'];
 
-/*
-function hide(value) {
-    var content = document.getElementById(value);
-
-    content.style.visibility = 'hidden';
-};
-
-function make_content_visible(id) {
-
-    console.log("Entro en la funcion");
-
-    var content = document.getElementById(id);
-
-    content_ids.forEach(hide);
-
-    content.style.visibility = 'visible';
-    
-};*/
-
 function change_view(view) {
     $.redirect("admin.php", { page : view});
 }
+$(document).ready(function() {
+    $('#add-account').click(function() {
+        console.log("entro");
+        var email = document.getElementById('add-email').value;
+        var password = document.getElementById('add-psswd').value;
 
+        $.redirect("admin.php", { page : 'accounts', action: 'add-account', 'add-email': email, 'add-psswd': password});
+    });
+});
 
 function swap_on_save(id) {
     var email = document.getElementById('email-' + id);
