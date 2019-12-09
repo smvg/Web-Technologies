@@ -91,5 +91,100 @@
       echo $static_code . $table . $end_code;
     }
 
+    function list_rooms() {
+      include("constants.php");
 
+      $static_code = "<div id='rooms' class='content animated fadeInUp'>
+      <h1>Rooms</h1>
+      <hr>
+          <table class='table table-hover table-borderless'>
+          <thead class='thead-light'>
+          <tr>
+            <th scope='col'>#</th>
+            <th scope='col'>Description</th>
+            <th scope='col'>Capacity</th>
+            <th scope='col'>Nº Photos</th>
+            <th scope='col'>Visible</th>
+          </tr>
+        </thead>
+        <tbody id='table-rooms'>";
+
+      $table = "";
+      $end_code = "</tbody></table></div>";
+
+      $connection = new mysqli($mysql_host, $mysql_user, $mysql_password, $mysql_db);
+
+      # What if it doesnt work
+      if ($connection->connect_error){
+          echo "Connection to database failed :(";
+      }
+      
+      $query_string = "SELECT * FROM Rooms;";
+      
+      $result = $connection->query($query_string);
+
+      $connection->close();
+
+      while ($row = mysqli_fetch_assoc($result)) {
+        $table .= "<tr id='room-" . $row['id_room'] . "' class='room-entry'>
+          <th scope='row'>" . $row['id_room'] . "</th>
+          <td>" . $row['description'] . "</td>
+          <td>" . $row['capacity'] . "</td>
+          <td>1</td>
+          <td><i class='fa fa-check' aria-hidden='true'></i></td>
+        </tr>";
+      }
+
+      echo $static_code . $table . $end_code;
+
+    }
+
+    function view_room($id) {
+      include('constants.php');
+
+      $code = "";
+      $photos_code = "";
+
+      $connection = new mysqli($mysql_host, $mysql_user, $mysql_password, $mysql_db);
+
+      # What if it doesnt work
+      if ($connection->connect_error){
+          echo "Connection to database failed :(";
+      }
+      
+      $query_string = "SELECT * FROM Rooms WHERE id_room = '" . $id . "';";
+      $result = $connection->query($query_string);
+      
+
+      $query_string = "SELECT * FROM Room_Photo WHERE id_room = '" . $id . "';";
+      $photos = $connection->query($query_string);
+
+      $connection->close();
+
+      while ($row = mysqli_fetch_assoc($photos)) {
+        $photos_code .= "<img class='rounded' src=\"../shared/images/" . $row['name'] . "\" style=\"margin: 0.5rem; width: 50px; height: 50px;\">";
+      }
+
+      if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $code = "
+        <div id='room-edit' class='content animated fadeInUp'>
+          <h1>Room #" . $row['id_room'] . "</h1>
+          <hr>
+          <div id=\"input-div\">
+            <input type=\"number\" value='" . $row['capacity'] . "' placeholder=\"Capacity\">
+            <textarea class=\"rounded\" placeholder=\"Description\">" . $row['description'] . "</textarea>
+          </div>
+          <div>" . $photos_code . 
+          "<br>
+          <input type='file' name='pic' style=\"margin: 0.5rem; width: auto;\" accept='image/*'>
+          <br><input style=\"margin-left: 1rem; margin-right: 0.5rem; width: auto;\" type=\"checkbox\" value=\"visible\"> Visible
+          <button class=\"btn btn-primary btn-block text-white\" style=\"margin: 0.5rem; width: auto;\">Save</button>
+          </div>
+        </div>
+        ";
+      }
+
+      echo $code;
+    }
 ?>

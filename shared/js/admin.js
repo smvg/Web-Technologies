@@ -5,6 +5,16 @@ function change_view(view) {
     $.redirect("admin.php", { page : view});
 }
 
+$(document).on('click', '.room-entry', function() {
+
+    var room_id = $(this).attr('id').split('room-')[1];
+
+    $.redirect("admin.php", { 
+        page : 'room-edit', 
+        id_room: room_id
+    });
+});
+
 $(document).on('click', '.edit-account', function() {
     old_email = $(this).parent().siblings('.email-table').text();
     $(this).parent().siblings('.email-table').html("<input class='input-email' type='email'>")

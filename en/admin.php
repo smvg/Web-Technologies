@@ -174,17 +174,16 @@
             get_dashboard();
             break;
           case 'rooms':
-            echo $rooms;
+            list_rooms();
             break;
           case 'accounts':
-            //echo $accounts;
             list_accounts();
             break;
           case 'location':
             echo $location;
             break;
           case 'room-edit':
-            echo $room_edit;
+            view_room($_POST['id_room']);
             break;
           default;
             echo $not_found;
