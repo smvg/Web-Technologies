@@ -11,13 +11,13 @@ create Table Administrators(
     password varchar(64) NOT NULL
 );
 
-/* SALT: yMQ1zIByHN; SHA-256 */
+/* SALT: VjHnacnSDfHPQ7Y; SHA-256 */
 
-/* Passwords: onetwothree */
-insert into Administrators values('email@gmail.com', 'User', 'One', 'c943a189d630657aba381ff817dbc30fd9be8517031f29f46114fb8d2e9b2cd3');
-insert into Administrators values('email@hotmail.com', 'User', 'Two', 'c943a189d630657aba381ff817dbc30fd9be8517031f29f46114fb8d2e9b2cd3');
-insert into Administrators values('email@zoho.com', 'User', 'Three', 'c943a189d630657aba381ff817dbc30fd9be8517031f29f46114fb8d2e9b2cd3');
-insert into Administrators values('email@yahoo.com', 'User', 'Four', 'c943a189d630657aba381ff817dbc30fd9be8517031f29f46114fb8d2e9b2cd3');
+/* Passwords: password */
+insert into Administrators values('email@gmail.com', 'User', 'One', '1af08fe7693e407dafc124f1821b7c7de433c62ef7b3141d60383a352e14c2a6');
+insert into Administrators values('email@hotmail.com', 'User', 'Two', '1af08fe7693e407dafc124f1821b7c7de433c62ef7b3141d60383a352e14c2a6');
+insert into Administrators values('email@zoho.com', 'User', 'Three', '1af08fe7693e407dafc124f1821b7c7de433c62ef7b3141d60383a352e14c2a6');
+insert into Administrators values('email@yahoo.com', 'User', 'Four', '1af08fe7693e407dafc124f1821b7c7de433c62ef7b3141d60383a352e14c2a6');
 
 create Table Photos(
     name varchar(50) NOT NULL,
@@ -25,9 +25,12 @@ create Table Photos(
     PRIMARY KEY(name)
 );
 
-insert into Photos values('photo-1.png', 'A cool photo');
-insert into Photos values('photo-2.png', 'Another photo');
-insert into Photos values('photo-3.png', 'This is not a cool photo');
+insert into Photos values('room1.1.jpeg', 'Photo of Room 1');
+insert into Photos values('room2.1.jpeg', 'Photo of Room 2');
+insert into Photos values('room2.2.jpeg', 'Photo of Room 2');
+insert into Photos values('room2.3.jpeg', 'Photo of Room 2');
+insert into Photos values('room3.1.jpg', 'Photo of Room 3');
+insert into Photos values('outside1.jpg', 'Photo of outside');
 
 create Table Location(
     id_location int NOT NULL AUTO_INCREMENT,
@@ -47,7 +50,7 @@ create Table Location_Photo(
     FOREIGN KEY(name) REFERENCES Photos(name) ON DELETE CASCADE
 );
 
-insert into Location_Photo values(1, 'photo-1.png');
+insert into Location_Photo values(1, 'outside1.jpg');
 
 create Table Rooms(
     id_room int NOT NULL AUTO_INCREMENT,
@@ -70,5 +73,8 @@ create Table Room_Photo(
     FOREIGN KEY(name) REFERENCES Photos(name) ON DELETE CASCADE
 );
 
-insert into Room_Photo values(1, 'photo-1.png');
-insert into Room_Photo values(1, 'photo-2.png');
+insert into Room_Photo values(1, 'room1.1.jpeg');
+insert into Room_Photo values(2, 'room2.1.jpeg');
+insert into Room_Photo values(2, 'room2.2.jpeg');
+insert into Room_Photo values(2, 'room2.3.jpeg');
+insert into Room_Photo values(3, 'room3.1.jpg');
