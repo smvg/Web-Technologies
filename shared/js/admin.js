@@ -15,6 +15,19 @@ $(document).on('click', '.room-entry', function() {
     });
 });
 
+$(document).on('click', '.photo-entry', function() {
+
+    var image = $(this)[0].attributes.src.nodeValue.replace("../shared/images/", "");
+    
+    $.redirect("admin.php", { 
+        page : 'room-edit',
+        id_room: window.current_room,
+        action: 'delete-photo',
+        photo: image
+    });
+
+});
+
 $(document).on('click', '.edit-account', function() {
     old_email = $(this).parent().siblings('.email-table').text();
     $(this).parent().siblings('.email-table').html("<input class='input-email' type='email'>")

@@ -81,13 +81,7 @@
                     <td class='psswd-table'>*****</td>
                     <td><a href='#' class='btn btn-secondary edit-account'>Edit</a></td></tr>";
         }
-        /*
-            <tr id='display-1'>
-                <th scope='row'>
-                <td id='email-1'>mark@email.com</td>
-                <td id='password-1'>********</td>
-                <td id='button-1'><a href='#' class='btn btn-secondary' onclick='swap_on_edit(1)'>Edit</a></td>
-              </tr>*/
+
       echo $static_code . $table . $end_code;
     }
 
@@ -162,7 +156,7 @@
       $connection->close();
 
       while ($row = mysqli_fetch_assoc($photos)) {
-        $photos_code .= "<img class='rounded' src=\"../shared/images/" . $row['name'] . "\" style=\"margin: 0.5rem; width: 50px; height: 50px;\">";
+        $photos_code .= "<img class='rounded photo-entry' src=\"../shared/images/" . $row['name'] . "\" style=\"margin: 0.5rem; width: 50px; height: 50px;\">";
       }
 
       if ($result->num_rows > 0) {

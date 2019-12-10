@@ -166,6 +166,9 @@
           case 'delete-account':
             delete_account();
             break;
+          case 'delete-photo':
+            delete_photo();
+            break;
         }
 
         switch($view) {
@@ -184,6 +187,7 @@
             break;
           case 'room-edit':
             view_room($_POST['id_room']);
+            echo "<script>window.current_room = " . $_POST['id_room'] . ";</script>";
             break;
           default;
             echo $not_found;

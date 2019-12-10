@@ -65,4 +65,24 @@
         $connection->close();
     }
 
+    function delete_photo() {
+        include("constants.php");
+
+        $photo_to_delete = $_POST['photo'];
+        $from_room = $_POST['id_room'];
+
+        $connection = new mysqli($mysql_host, $mysql_user, $mysql_password, $mysql_db);
+    
+        # What if it doesnt work
+        if ($connection->connect_error){
+            echo "Connection to database failed :(";
+        }
+        
+        $query_string =  "delete from Room_Photo where id_room = " .  $from_room . " and name = '" . $photo_to_delete  . "';";
+        
+        $result = $connection->query($query_string);
+    
+        $connection->close();
+    }
+
 ?>
