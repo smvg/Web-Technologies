@@ -5,6 +5,7 @@ create Table Rooms(
     id_location int NOT NULL,
     description varchar(100),
     capacity int,
+    price int,
     FOREIGN KEY(id_location) REFERENCES Location(id_location) ON DELETE CASCADE,
     PRIMARY KEY(id_room)
 );

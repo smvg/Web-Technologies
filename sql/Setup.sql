@@ -36,11 +36,13 @@ create Table Location(
     id_location int NOT NULL AUTO_INCREMENT,
     address_location varchar(255),
     phone_location varchar(20),
-    description_location varchar(255),
+    email_location varchar(255),
+    facebook_link varchar(100),
+    booking_link varchar(100),
     PRIMARY KEY(id_location)
 );
 
-insert into Location (address_location, phone_location, description_location) values('This is an address', '6487348754', 'This is a wonderful place!');
+insert into Location (address_location, phone_location, email_location, facebook_link, booking_link) values('This is an address', '6487348754', 'email@email.com', '#', '#');
 
 create Table Location_Photo(
     id_location int NOT NULL,
@@ -57,13 +59,14 @@ create Table Rooms(
     id_location int NOT NULL,
     description varchar(100),
     capacity int,
+    price int,
     FOREIGN KEY(id_location) REFERENCES Location(id_location) ON DELETE CASCADE,
     PRIMARY KEY(id_room)
 );
 
-insert into Rooms (id_location, description, capacity) values(1, 'A cozy room', 4);
-insert into Rooms (id_location, description, capacity) values(1, 'Another cozy room', 2);
-insert into Rooms (id_location, description, capacity) values(1, 'This is cozy but doesnt have wifi', 3);
+insert into Rooms (id_location, description, capacity, price) values(1, 'A cozy room', 4, 90);
+insert into Rooms (id_location, description, capacity, price) values(1, 'Another cozy room', 2, 100);
+insert into Rooms (id_location, description, capacity, price) values(1, 'This is cozy but doesnt have wifi', 3, 110);
 
 create Table Room_Photo(
     id_room int NOT NULL,
