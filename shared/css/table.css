@@ -1,0 +1,29 @@
+.content-table {
+    display: flex;
+    flex-direction: column;
+}
+
+.header-cell, .cell {
+    width: 81.5vw;
+    display: flex;
+    flex-direction: row;
+}
+
+.header-cell {
+    padding-top: 1rem; 
+    padding-bottom: 1rem;
+    background-color: #e9ecef
+}
+
+.cell {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.clickable:hover {
+    background-color: #e9ecef;
+}

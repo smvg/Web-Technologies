@@ -90,13 +90,16 @@
     <link rel="stylesheet" href="../shared/css/style.css">
 
     <link rel="stylesheet" href="../shared/css/admin.css">
+    <link rel="stylesheet" href="../shared/css/table.css">
+    <link rel="stylesheet" href="../shared/css/accounts.css">
+    <link rel="stylesheet" href="../shared/css/rooms.css">
+    <link rel='stylesheet' href="../shared/css/forms.css">
 
     <script src="../shared/js/jquery-3.3.1.min.js"></script>
 
     <script src="../shared/js/jquery-redirect.js"></script>
 
     <script src="../shared/js/admin.js"></script>
-
 
   </head>
   <body>
@@ -150,12 +153,6 @@
         $view = (isset($_POST['page'])) ? $_POST['page'] : '';
         $action = (isset($_POST['action'])) ? $_POST['action'] : '';
 
-        if (empty($view)) {
-          //echo $dashboard;
-          get_dashboard();
-          return;
-        }
-
         switch($action) {
           case 'add-account':
             add_account();
@@ -169,6 +166,13 @@
           case 'delete-photo':
             delete_photo();
             break;
+          case 'update-room':
+            $view = "rooms";
+            echo "entro";
+            edit_room();
+            break;
+          default:
+            echo "entro";
         }
 
         switch($view) {
@@ -190,7 +194,7 @@
             echo "<script>window.current_room = " . $_POST['id_room'] . ";</script>";
             break;
           default;
-            echo $not_found;
+            get_dashboard();
             break;
         };
       ?>
