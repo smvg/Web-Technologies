@@ -36,11 +36,11 @@ create Table Location(
     id_location int NOT NULL AUTO_INCREMENT,
     address_location varchar(255),
     phone_location varchar(20),
-    description_location varchar(255),
+    email_location varchar(255),
     PRIMARY KEY(id_location)
 );
 
-insert into Location (address_location, phone_location, description_location) values('This is an address', '6487348754', 'This is a wonderful place!');
+insert into Location (address_location, phone_location, email_location) values('This is an address', '6487348754', 'email@gmail.com');
 
 create Table Location_Photo(
     id_location int NOT NULL,
