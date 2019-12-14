@@ -17,7 +17,7 @@ $(document).on('click', '.room-entry', function() {
 
 $(document).on('click', '.photo-entry', function() {
 
-    var image = $(this)[0].attributes.src.nodeValue.replace("../shared/images/", "");
+    var image = $(this)[0].style.backgroundImage.split(/[\/\"]+/)[4];
     
     $.redirect("admin.php", { 
         page : 'room-edit',
@@ -29,12 +29,15 @@ $(document).on('click', '.photo-entry', function() {
 });
 
 $(document).on('click', '.edit-account', function() {
-    old_email = $(this).parent().siblings('.email-table').text();
-    $(this).parent().siblings('.email-table').html("<input class='input-email' type='email'>")
-    $(this).parent().siblings('.psswd-table').html("<input class='input-password' type='password'>")
-    $(this).removeClass('btn-secondary edit-account');
-    $(this).addClass('btn-success update-account');
-    $(this).html("Save")
+    old_email = $(this).parent().siblings('.row-data-email').text();
+
+    var save_btn = "<a href='#' style='margin:auto; display:inline-block;' class='btn btn-success update-account'>Save</a>"
+    var cancel_btn = "<a href='#' style='margin-left:10px; display:inline-block;' class='btn btn-secondary cancel-edit'>Cancel</a>"
+
+    $(this).parent().siblings('.row-data-email').html("<input style='width: match-parent' class='input-email' type='email' value='" + old_email + "'>")
+    $(this).parent().siblings('.row-data-password').html("<input style='width: match-parent' class='input-password' type='password'>")
+
+    $(this).parent().html(save_btn + cancel_btn)
     
 });
 
@@ -53,8 +56,8 @@ $(document).on('click', '.delete', function() {
 });
 
 $(document).on('click', '.update-account', function() {
-    var email = $(this).parent().siblings('.email-table').find('.input-email')[0].value;
-    var password = $(this).parent().siblings('.psswd-table').find('.input-password')[0].value;
+    var email = $(this).parent().siblings('.row-data-email').find('.input-email')[0].value;
+    var password = $(this).parent().siblings('.row-data-password').find('.input-password')[0].value;
 
     $.redirect("admin.php", { 
         page : 'accounts', 
@@ -63,6 +66,16 @@ $(document).on('click', '.update-account', function() {
         'update-email': email,
         'update-psswd': password
     });
+
+});
+
+$(document).on('click', '.cancel-edit', function() {
+
+    var email = $(this).parent().siblings('.row-data-email').find('.input-email')[0].attributes.value.nodeValue
+    $(this).parent().siblings('.row-data-email').html(email)
+    $(this).parent().siblings('.row-data-password').html("*****")
+
+    $(this).parent().html("<a href='#' style='margin:auto; display:inline-block;' class='btn btn-secondary edit-account'>Edit</a>")
 
 });
 
@@ -75,26 +88,3 @@ $(document).ready(function() {
         $.redirect("admin.php", { page : 'accounts', action: 'add-account', 'add-email': email, 'add-psswd': password});
     });
 });
-
-function swap_on_save(id) {
-    var email = document.getElementById('email-' + id);
-    var password = document.getElementById('password-' + id);
-    var button = document.getElementById('button-' + id);
-
-    email.innerHTML = "mark@email.com"
-    password.innerHTML = "********"
-    button.innerHTML = "<a href='#' class='btn btn-secondary''>Edit</a>"
-
-    alert('Account has been succesfully updated!');
-};
-
-function swap_on_edit(id) {
-    
-    var email = document.getElementById('email-' + id);
-    var password = document.getElementById('password-' + id);
-    var button = document.getElementById('button-' + id);
-
-    email.innerHTML = "<input type='email'>"
-    password.innerHTML = "<input type='password'>"
-    button.innerHTML = "<a href='#' class='btn btn-success' onclick='swap_on_save(" + id + ")'>Save</a>"
-};
