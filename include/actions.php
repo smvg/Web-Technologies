@@ -65,7 +65,7 @@
         $connection->close();
     }
 
-    function delete_photo() {
+    function delete_photo_room() {
         include("constants.php");
 
         $photo_to_delete = $_POST['photo'];

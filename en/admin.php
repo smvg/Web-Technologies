@@ -167,7 +167,7 @@
             delete_account();
             break;
           case 'delete-photo':
-            delete_photo();
+            delete_photo_room();
             break;
         }
 
@@ -183,11 +183,13 @@
             list_accounts();
             break;
           case 'location':
-            echo $location;
+            get_location();
             break;
           case 'room-edit':
             view_room($_POST['id_room']);
             echo "<script>window.current_room = " . $_POST['id_room'] . ";</script>";
+            break;
+          case 'links':
             break;
           default;
             echo $not_found;

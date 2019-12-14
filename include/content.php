@@ -36,6 +36,59 @@
       </div>";
     }
 
+    function get_location() {
+      include("constants.php");
+
+      $code = "";
+      $photos_code = "";
+
+      $connection = new mysqli($mysql_host, $mysql_user, $mysql_password, $mysql_db);
+
+      # What if it doesnt work
+      if ($connection->connect_error){
+          echo "Connection to database failed :(";
+      }
+      
+      $query_string = "SELECT * FROM Location WHERE id_location = 1;";
+      $result = $connection->query($query_string);
+      
+
+      $query_string = "SELECT * FROM Location_Photo WHERE id_location = 1;";
+      $photos = $connection->query($query_string);
+
+      $connection->close();
+
+      while ($row = mysqli_fetch_assoc($photos)) {
+        $photos_code .= "<img class='rounded photo-entry' src=\"../shared/images/" . $row['name'] . "\" style=\"margin: 0.5rem; width: 50px; height: 50px;\">";
+      }
+
+      if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $code = "
+        <div id='location' class='content animated fadeInUp'>
+    
+        <h1>Location</h1>
+        <hr>
+        <div id=\"input-div\">
+          <input type=\"text\" placeholder=\"Address\" value='" . $row['address_location'] . "'\>
+          <input type=\"tel\" placeholder=\"Phone Number\" value='" . $row['phone_location'] . "' pattern=\"[0-9]{3}-[0-9]{2}-[0-9]{2}-[0-9]{2}\">
+          <input type=\"text\" placeholder=\"Facebook Link\" value='" . $row['facebook_link'] . "'\>
+          <input type=\"text\" placeholder=\"Booking Link\" value='" . $row['booking_link'] . "'\>
+        </div>
+        <div>
+        <input type='file' name='pic' style=\"margin: 0.5rem; width: auto;\" accept='image/*'>"
+        . $photos_code . "
+        <button class=\"btn btn-primary btn-block text-white\" style=\"margin: 0.5rem; width: auto;\">Save</button>
+        </div>
+      
+        </div>
+        ";
+      }
+
+      echo $code;
+
+    }
+
     function list_accounts() {
       include("constants.php");
 
@@ -167,6 +220,7 @@
           <hr>
           <div id=\"input-div\">
             <input type=\"number\" value='" . $row['capacity'] . "' placeholder=\"Capacity\">
+            <input type=\"number\" value='" . $row['price'] . "' placeholder=\"Price\">
             <textarea class=\"rounded\" placeholder=\"Description\">" . $row['description'] . "</textarea>
           </div>
           <div>" . $photos_code . 
