@@ -110,7 +110,7 @@
         $result = $connection->multi_query($query_string);
 
         // Here we delete photos that we are not using anymore
-        $query_string = "SELECT Photos.name FROM Photos WHERE Photos.name NOT IN (SELECT NAME FROM Location_Photo UNION SELECT NAME FROM  Room_Photo);";
+        $query_string = "SELECT Photos.name FROM Photos WHERE Photos.name NOT IN (SELECT NAME FROM Location_Photo UNION SELECT NAME FROM Room_Photo);";
         $result = $connection->query($query_string);
         $query_string = "";
         while ($row = mysqli_fetch_assoc($result)) {
@@ -223,14 +223,14 @@
         $result = $connection->multi_query($query_string);
 
         // Here we delete photos that we are not using anymore
-        $query_string = "SELECT Photos.name FROM Photos WHERE Photos.name NOT IN (SELECT NAME FROM Location_Photo UNION SELECT NAME FROM  Room_Photo);";
+        $query_string = "SELECT Photos.name FROM Photos WHERE Photos.name NOT IN (SELECT NAME FROM Location_Photo UNION SELECT NAME FROM Room_Photo);";
         $result = $connection->query($query_string);
         $query_string = "";
         while ($row = mysqli_fetch_assoc($result)) {
-            $query_string .= "DELETE FROM Photos where name = '" . $row['name'] . "';";
-            unlink("../shared/images/" . $row['name']);
-        }
-        $result = $connection->multi_query($query_string);
+                $query_string .= "DELETE FROM Photos where name = '" . $row['name'] . "';";
+                unlink("../shared/images/" . $row['name']);
+            }
+            $result = $connection->multi_query($query_string);
 
         $target_dir = "../shared/images/";
         $query_string = "";
