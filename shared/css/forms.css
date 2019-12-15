@@ -6,22 +6,6 @@
 
 .photo-entry {
     position: relative;
+    cursor: pointer;
     margin: 0.5rem; width: 50px; height: 50px;
-}
-
-.photo-entry > .icon-background {
-    visibility: hidden;
-}
-
-.photo-entry:hover > .icon-background {
-    visibility: visible;
-}
-
-.photo-entry > .delete {
-    color: white;
-    visibility: hidden;
-}
-
-.photo-entry:hover > .delete {
-    visibility: visible;
 }

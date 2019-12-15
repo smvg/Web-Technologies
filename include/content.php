@@ -58,10 +58,13 @@
 
       $connection->close();
 
+      $index = 0;
+
       while ($row = mysqli_fetch_assoc($photos)) {
-        $photos_code .= "<div class='rounded photo-entry photo-entry-location' style='background-image: url(\"../shared/images/" . $row['name'] . "\"); background-size: cover'>
-        <i class='fa fa-circle fa-stack-2x icon-background' style='position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);'></i>
-        <i class='fa fa-times delete rounded' aria-hidden='true' style='position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);'></i>
+        $photos_code .= "<div class='rounded photo-entry' style='background-image: url(\"../shared/images/" . $row['name'] . "\"); background-size: cover'>
+        <i class='fa fa-circle fa-stack-2x icon-background' style='position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); visibility: hidden'></i>
+        <i class='fa fa-times delete rounded' aria-hidden='true' style='position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); visibility: hidden; color: white'></i>
+        <input name='existing-photo[" . $row['name'] . "]' style='display: none' type='checkbox'>
       </div>";
       }
 
@@ -84,7 +87,7 @@
           <br>
         
         <div class='photo-div'>" . $photos_code . "</div>
-        <input type='file' name='pic' style=\"margin: 0.5rem; width: auto;\" accept='image/*'>
+        <input type='file' name='pics[]' style=\"margin: 0.5rem; width: auto;\" accept='image/*' multiple>
         <input type='text' name='action' value='update-location' style='display:none'>
             <input type='submit' value='Save' class=\"btn btn-primary btn-block text-white\" style=\"margin: 0.5rem; width: auto; padding-left: 1.5rem; padding-right: 1.5rem\">
         </form>
@@ -242,16 +245,16 @@
       $query_string = "SELECT * FROM Rooms WHERE id_room = '" . $id . "';";
       $result = $connection->query($query_string);
       
-
       $query_string = "SELECT * FROM Room_Photo WHERE id_room = '" . $id . "';";
       $photos = $connection->query($query_string);
 
       $connection->close();
 
       while ($row = mysqli_fetch_assoc($photos)) {
-        $photos_code .= "<div class='rounded photo-entry photo-entry-room' style='background-image: url(\"../shared/images/" . $row['name'] . "\"); background-size: cover'>
-        <i class='fa fa-circle fa-stack-2x icon-background' style='position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);'></i>
-          <i class='fa fa-times delete' aria-hidden='true' style='position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%)'></i>
+        $photos_code .= "<div class='rounded photo-entry' style='background-image: url(\"../shared/images/" . $row['name'] . "\"); background-size: cover'>
+          <i class='fa fa-circle fa-stack-2x icon-background' style='position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); visibility: hidden'></i>
+          <i class='fa fa-times delete' style='position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); visibility: hidden; color: white'></i>
+          <input name='existing-photo[" . $row['name'] . "]' style='display: none' type='checkbox'>
         </div>";
       }
 
@@ -269,7 +272,7 @@
             <textarea name='description' class=\"rounded\" placeholder=\"Description\">" . $row['description'] . "</textarea>
             <br>
             <div class='photo-div'>" . $photos_code . "</div>
-            <input id='fileInput' type='file' name='pic' style=\"width: auto;\" accept='image/*'>
+            <input id='fileInput' type='file' name='pics[]' style=\"width: auto;\" accept='image/*' multiple>
             <br>
             <input type='number' name='id_room' value='" . $row['id_room'] . "' style='display:none'>
             <input type='text' name='action' value='update-room' style='display:none'>

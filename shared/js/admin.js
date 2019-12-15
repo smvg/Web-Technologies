@@ -15,27 +15,18 @@ $(document).on('click', '.room-entry', function() {
     });
 });
 
-$(document).on('click', '.photo-entry-room', function() {
+$(document).on('click', '.photo-entry', function() {
 
-    var image = $(this)[0].style.backgroundImage.split(/[\/\"]+/)[4];
-    
-    $.redirect("admin.php", { 
-        page : 'room-edit',
-        id_room: window.current_room,
-        action: 'delete-photo-room',
-        photo: image
-    });
+    var attr = $(this).find('input').attr('checked')
 
-});
-
-$(document).on('click', '.photo-entry-location', function() {
-
-    var image = $(this)[0].style.backgroundImage.split(/[\/\"]+/)[4];
-    
-    $.redirect("admin.php", {
-        action: 'delete-photo-location',
-        photo: image
-    });
+    if (typeof attr !== typeof undefined && attr !== false) {
+        $(this).find('.icon-background, .delete').css("visibility", "hidden");
+        $(this).find('input').removeAttr('checked');
+    }
+    else {
+        $(this).find('.icon-background, .delete').css("visibility", "visible");
+        $(this).find('input').attr('checked', '');
+    }
 
 });
 
