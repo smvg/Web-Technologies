@@ -106,7 +106,7 @@
 
       <div class="sidebar">
           <div id="logo-sidebar">
-            <span style="letter-spacing: 10px;"><h1 style="color: white">LOGO</h1></span>
+            <span style="letter-spacing: 10px;"><h1 style="color: white">NM</h1></span>
           </div>
           <hr style="border-color: white;">
           <ul class="nav">
@@ -140,9 +140,9 @@
               <li>
                   <a href="javascript:change_view('location')">
                       <p>
-                        <i class="fa fa-map" aria-hidden="true"></i>
+                        <i class="fa fa-info-circle"></i></i>
                         &nbsp;
-                        <span class="icon-description">LOCATION</span>
+                        <span class="icon-description">INFO & LINKS</span>
                       </p>
                   </a>
               </li>

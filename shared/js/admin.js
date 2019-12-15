@@ -43,8 +43,8 @@ $(document).on('click', '.photo-entry-location', function() {
 $(document).on('click', '.edit-account', function() {
     old_email = $(this).parent().siblings('.row-data-email').text();
 
-    var save_btn = "<a href='#' style='margin:auto; display:inline-block;' class='btn btn-success update-account'>Save</a>"
-    var cancel_btn = "<a href='#' style='margin-left:10px; display:inline-block;' class='btn btn-secondary cancel-edit'>Cancel</a>"
+    var save_btn = "<a href='#' style='margin:auto; display:inline-block; color: inherit' class='update-account'><i class='fa fa-floppy-o'></i></a>"
+    var cancel_btn = "<a href='#' style='margin-left:10px; display:inline-block; color: inherit' class='cancel-edit'><i class='fa fa-undo'></i></a>"
 
     $(this).parent().siblings('.row-data-email').html("<input autocomplete='off' style='width: match-parent' class='input-email' type='email' value='" + old_email + "'>")
     $(this).parent().siblings('.row-data-password').html("<input autocomplete='off' style='width: match-parent' class='input-password' type='password'>")
@@ -71,6 +71,10 @@ $(document).on('click', '.update-account', function() {
     var email = $(this).parent().siblings('.row-data-email').find('.input-email')[0].value;
     var password = $(this).parent().siblings('.row-data-password').find('.input-password')[0].value;
 
+    var old_email = $(this).parent().siblings('.row-data-email').find('.input-email')[0].attributes.value.nodeValue.trim();
+
+    console.log(email + "-" + password)
+
     $.redirect("admin.php", { 
         page : 'accounts', 
         action: 'update-account', 
@@ -87,8 +91,12 @@ $(document).on('click', '.cancel-edit', function() {
     $(this).parent().siblings('.row-data-email').html(email)
     $(this).parent().siblings('.row-data-password').html("*****")
 
-    $(this).parent().html("<a href='#' style='margin:auto; display:inline-block;' class='btn btn-secondary edit-account'>Edit</a>")
+    $(this).parent().html("<a href='#' style='margin:auto; display:inline-block; color: inherit' class='edit-account'><i class='fa fa-pencil'></i></a>")
 
+});
+
+$(document).on('click', '.go-back-rooms', function() {
+    $.redirect("admin.php", { page : 'rooms'});
 });
 
 $(document).ready(function() {

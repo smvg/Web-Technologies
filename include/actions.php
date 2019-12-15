@@ -29,7 +29,7 @@
         $email_to_update = $_POST['update-email'];
         $password_to_update = $_POST['update-psswd'];
     
-        $password_to_update = hash("sha256", $password_to_add.$salt);
+        $password_to_update = hash("sha256", $password_to_update.$salt);
     
         $connection = new mysqli($mysql_host, $mysql_user, $mysql_password, $mysql_db);
     
@@ -114,6 +114,7 @@
         $capacity = $_POST['capacity'];
         $description = $_POST['description'];
         $id_room = $_POST['id_room'];
+        $price = $_POST['price'];
 
         $connection = new mysqli($mysql_host, $mysql_user, $mysql_password, $mysql_db);
 
@@ -121,7 +122,7 @@
             echo "Connection to database failed :(";
         }
 
-        $query_string = "UPDATE Rooms SET capacity = " . $capacity . ", description = '" . $description . "' WHERE id_room = " . $id_room .  ";";
+        $query_string = "UPDATE Rooms SET capacity = " . $capacity . ", description = '" . $description . "', price = " .  $price . " WHERE id_room = " . $id_room .  ";";
         $result = $connection->query($query_string);
 
         $target_dir = "../shared/images/";

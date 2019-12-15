@@ -4,31 +4,31 @@
     function get_dashboard() {
         echo "<div id='dashboard' class='content'>
         <div>
-          <h1>Hi " . $_SESSION['first_name'] . " " . $_SESSION['last_name'] . "</h1>
+          <h1>Dashboard</h1>
           <hr>
           <div class='content-div animated fadeInUp'>
             <div class='card' style='width: 15rem;'>
                 <img src='../shared/images/accounts.png' style=\"object-fit: cover; height: 30vh\" class='card-img-top' alt='...'>
                 <div class='card-body'>
                   <h5 class='card-title'>Accounts</h5>
-                  <p class='card-text'>Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <p class='card-text'>Manage administrators accounts. <span style='font-weight: bold'>Add new</span> accounts, <span style='font-weight: bold'>edit</span> existing ones and <span style='font-weight: bold'>delete</span> the ones you don't use anymore.</p>
                   <a href=\"javascript:change_view('accounts')\" class='btn btn-primary'>Edit Accounts</a>
                 </div>
             </div>
             <div class='card' style='width: 15rem;'>
-                <img src='../shared/images/outside1.jpg' style=\"object-fit: cover; height: 30vh\" class='card-img-top' alt='...'>
+                <img src='../shared/images/outside-default.jpg' style=\"object-fit: cover; height: 30vh\" class='card-img-top' alt='...'>
                 <div class='card-body'>
                   <h5 class='card-title'>Rooms</h5>
-                  <p class='card-text'>Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <p class='card-text'>Manage existing rooms. Edit the capacity, price and description. You can also upload new photos and delete existing ones.</p>
                   <a href=\"javascript:change_view('rooms')\" class='btn btn-primary'>Edit Rooms</a>
                 </div>
             </div>
             <div class='card' style='width: 15rem;'>
                 <img src='https://www.vertical-leap.uk/wp-content/uploads/2017/11/map-1400x800.jpg' style=\"object-fit: cover; height: 30vh\" class='card-img-top' alt='...'>
                 <div class='card-body'>
-                  <h5 class='card-title'>Location</h5>
-                  <p class='card-text'>Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <a href=\"javascript:change_view('location')\" class='btn btn-primary'>Edit Location</a>
+                  <h5 class='card-title'>Info & Links</h5>
+                  <p class='card-text'>Edit all the information & links that appear in the main website: Email, the Address, Phone and Facebook and Booking links.</p>
+                  <a href=\"javascript:change_view('location')\" class='btn btn-primary'>Edit Info & Links</a>
                 </div>
             </div>
           </div>
@@ -70,7 +70,7 @@
         $code = "
         <div id='location' class='content animated fadeInUp'>
     
-        <h1>Location</h1>
+        <h1>Info & Links</h1>
         <hr style='width:100%'>
         <form id='input-div' enctype='multipart/form-data' action='admin.php' method='post'>
           <h5>Address & Phone</h5>
@@ -102,8 +102,8 @@
       <h1>Accounts</h1>
       <hr style='width:100%'>
       <div class='input-section animated fadeIn'>
-        <input id='add-email' autocomplete='off' type='email' placeholder='Email'>&nbsp;
-        <input id='add-psswd' autocomplete='off' type='password' placeholder='Password'>&nbsp;
+        <input id='add-email' autocomplete='nope' type='email' placeholder='Email'>&nbsp;
+        <input id='add-psswd' autocomplete='nope' type='password' placeholder='Password'>&nbsp;
         <button id='add-account' class='btn btn-primary'>Add</button>
       </div>
       <div id='account-table' class='content-table'>
@@ -150,7 +150,7 @@
               *****
           </div>
           <div class='row-data-operation'>
-              <a href='#' style='margin:auto; display:inline-block;' class='btn btn-secondary edit-account'>Edit</a>
+              <a href='#' style='margin:auto; display:inline-block; color: black' class='edit-account'><i class='fa fa-pencil'></i></a>
           </div>
           </div>";
         }
@@ -179,6 +179,9 @@
       <div class='row-header-photos'>
           Nº Photos
       </div>
+      <div class='row-header-price'>
+        zł
+      </div>
       </div>";
 
       $table = "";
@@ -191,13 +194,14 @@
           echo "Connection to database failed :(";
       }
       
-      $query_string = "SELECT * FROM Rooms;";
+      $query_string = "select Rooms.id_room, id_location, description, capacity, price, Count(name) as num_photos from Rooms left join Room_Photo on Rooms.id_room = Room_Photo.id_room group by id_room;";
       
       $result = $connection->query($query_string);
 
       $connection->close();
 
       while ($row = mysqli_fetch_assoc($result)) {
+
         $table .= "
         <div id='room-" . $row['id_room'] . "' class='cell clickable room-entry'>
       <div class='row-data-num'>"
@@ -209,9 +213,12 @@
       <div class='row-data-capacity'>"
       . $row['capacity'] . 
       "</div>
-      <div class='row-data-photos'>
-      1
-      </div></div>
+      <div class='row-data-photos'>"
+      . $row['num_photos'] .
+      "</div>
+      <div class='row-data-price'>"
+      . $row['price'] .
+      "</div></div>
         ";
       }
 
@@ -252,18 +259,18 @@
         $row = $result->fetch_assoc();
         $code = "
         <div id='room-edit' class='content animated fadeInUp'>
-          <h1>Room #" . $row['id_room'] . "</h1>
+          <h1><i class='fa fa-angle-left go-back-rooms' style='margin-right: 2rem' aria-hidden='true'></i>Room #" . $row['id_room'] . "</h1>
           <hr>
 
           <form id='input-div' enctype='multipart/form-data' action='admin.php' method='post'>
             <input name='capacity' type=\"number\" value='" . $row['capacity'] . "' placeholder=\"Capacity\">
+            <input name='price' type=\"number\" value='" . $row['price'] . "' placeholder=\"Price\">
             <br>
             <textarea name='description' class=\"rounded\" placeholder=\"Description\">" . $row['description'] . "</textarea>
             <br>
             <div class='photo-div'>" . $photos_code . "</div>
             <input id='fileInput' type='file' name='pic' style=\"width: auto;\" accept='image/*'>
             <br>
-            <input name='visible' style=\"margin-left: 1rem; margin-right: 0.5rem; width: auto;\" type=\"checkbox\" value=\"visible\" checked> Visible
             <input type='number' name='id_room' value='" . $row['id_room'] . "' style='display:none'>
             <input type='text' name='action' value='update-room' style='display:none'>
             <input type='submit' value='Save' class=\"btn btn-primary btn-block text-white\" style=\"margin: 0.5rem; width: auto; padding-left: 1.5rem; padding-right: 1.5rem\">
