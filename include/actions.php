@@ -272,7 +272,7 @@
                 // Does the photo already exist?
                 if ($result->num_rows > 0) {
                     $row = mysqli_fetch_assoc($result);
-                    $query_string .= "insert into Location_Photo values(1, " . $row['name'] . "');";
+                    $query_string .= "insert into Location_Photo values(1, '" . $row['name'] . "');";
                 }
                 else {
                     // Check file size (no bigger than 10MB)
