@@ -163,12 +163,6 @@
           case 'delete-account':
             delete_account();
             break;
-          case 'delete-photo-location':
-            delete_photo_location();
-            break;
-          case 'delete-photo-room':
-            delete_photo_room();
-            break;
           case 'update-room':
             $view = "rooms";
             edit_room();
