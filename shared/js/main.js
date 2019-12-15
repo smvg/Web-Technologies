@@ -1,10 +1,23 @@
 $("#check-availabilty-btn").click(function() {
 
-  var checkin = document.getElementById("checkin_date").value;
-  var checkout = document.getElementById("checkout_date").value;
-  var persons = document.getElementById("adults").value;
+  var base_url = "https://www.booking.com/hotel/pl/pokoje-do-wynajecia-nowogrodziec.en-gb.html?dest_id=-518979;dest_type=city;dist=0;group_children=0;hapos=1;hp_group_set=0;hpos=1;no_rooms=1;sb_price_type=total;"
 
-  console.log("Customer wants to be from " + checkin + " to " + checkout);
+  var checkin = new Date(document.getElementById("checkin_date").value);
+  var checkout = new Date(document.getElementById("checkout_date").value);
+  var persons = $('#adults option').filter(':selected').text();
+
+  base_url += "checkin=" + checkin.getFullYear() + "-" + (checkin.getMonth()+1) + "-" + checkin.getDate() + ";";
+  base_url += "checkout=" + checkout.getFullYear() + "-" + (checkout.getMonth()+1) + "-" + checkout.getDate() + ";";
+  base_url += "room1=A"
+
+  for (var x = 1; x < persons; x++) {
+    base_url += "%2CA";
+  }
+
+  base_url += "group_adults=" + persons + ";req_adults=" + persons + ";"
+
+  window.open(base_url);
+  
 });
 
 (function($) {
