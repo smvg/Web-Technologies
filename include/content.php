@@ -59,7 +59,10 @@
       $connection->close();
 
       while ($row = mysqli_fetch_assoc($photos)) {
-        $photos_code .= "<img class='rounded photo-entry' src=\"../shared/images/" . $row['name'] . "\" style=\"margin: 0.5rem; width: 50px; height: 50px;\">";
+        $photos_code .= "<div class='rounded photo-entry photo-entry-location' style='background-image: url(\"../shared/images/" . $row['name'] . "\"); background-size: cover'>
+        <i class='fa fa-circle fa-stack-2x icon-background' style='position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);'></i>
+        <i class='fa fa-times delete rounded' aria-hidden='true' style='position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);'></i>
+      </div>";
       }
 
       if ($result->num_rows > 0) {
@@ -68,20 +71,23 @@
         <div id='location' class='content animated fadeInUp'>
     
         <h1>Location</h1>
-        <hr>
-        <div id=\"input-div\">
-          <input type=\"text\" placeholder=\"Address\" value='" . $row['address_location'] . "'\>
-          <input type=\"tel\" placeholder=\"Phone Number\" value='" . $row['phone_location'] . "' pattern=\"[0-9]{3}-[0-9]{2}-[0-9]{2}-[0-9]{2}\">
-          <input type=\"text\" placeholder=\"Facebook Link\" value='" . $row['facebook_link'] . "'\>
-          <input type=\"text\" placeholder=\"Booking Link\" value='" . $row['booking_link'] . "'\>
-        </div>
-        <div>
-        <input type='file' name='pic' style=\"margin: 0.5rem; width: auto;\" accept='image/*'>"
-        . $photos_code . "
-        <button class=\"btn btn-primary btn-block text-white\" style=\"margin: 0.5rem; width: auto;\">Save</button>
-        </div>
-      
-        </div>
+        <hr style='width:100%'>
+        <form id='input-div' enctype='multipart/form-data' action='admin.php' method='post'>
+          <h5>Address & Phone</h5>
+          <input name='address' type=\"text\" placeholder=\"Address\" value='" . $row['address_location'] . "'\>
+          <input name='tel' type=\"tel\" placeholder=\"Phone Number\" value='" . $row['phone_location'] . "' pattern=\"[0-9]{3}-[0-9]{2}-[0-9]{2}-[0-9]{2}\">
+          <br><br>
+          <h5>Email & Links</h5>
+          <input name='email' type=\"text\" placeholder=\"Email Address\" value='" . $row['email_location'] . "'\>
+          <input name='flink' type=\"text\" placeholder=\"Facebook Link\" value='" . $row['facebook_link'] . "'\>
+          <input name='blink' type=\"text\" placeholder=\"Booking Link\" value='" . $row['booking_link'] . "'\>
+          <br>
+        
+        <div class='photo-div'>" . $photos_code . "</div>
+        <input type='file' name='pic' style=\"margin: 0.5rem; width: auto;\" accept='image/*'>
+        <input type='text' name='action' value='update-location' style='display:none'>
+            <input type='submit' value='Save' class=\"btn btn-primary btn-block text-white\" style=\"margin: 0.5rem; width: auto; padding-left: 1.5rem; padding-right: 1.5rem\">
+        </form>
         ";
       }
 
@@ -95,6 +101,11 @@
       $static_code = "<div id='accounts' class='content animated fadeInUp'>
       <h1>Accounts</h1>
       <hr style='width:100%'>
+      <div class='input-section animated fadeIn'>
+        <input id='add-email' autocomplete='off' type='email' placeholder='Email'>&nbsp;
+        <input id='add-psswd' autocomplete='off' type='password' placeholder='Password'>&nbsp;
+        <button id='add-account' class='btn btn-primary'>Add</button>
+      </div>
       <div id='account-table' class='content-table'>
       <div class='header-cell'>
       <div class='row-header-del'>
@@ -130,7 +141,7 @@
         while ($row = mysqli_fetch_assoc($result)) {
           $table .= "<div class='cell'>
           <div class='row-data-del'>
-            <i class='fa fa-times delete' aria-hidden='true'></i>
+            <i class='fa fa-times delete delete-account' aria-hidden='true'></i>
           </div>
           <div class='row-data-email'>
               ". $row['email'] . "
@@ -168,9 +179,7 @@
       <div class='row-header-photos'>
           Nº Photos
       </div>
-      <div class='row-header-visible'>
-          Visible
-      </div></div>";
+      </div>";
 
       $table = "";
       $end_code = "</tbody></table></div>";
@@ -202,9 +211,6 @@
       "</div>
       <div class='row-data-photos'>
       1
-      </div>
-      <div class='row-data-visible'>
-      <i class='fa fa-check' aria-hidden='true'></i>
       </div></div>
         ";
       }
@@ -236,7 +242,8 @@
       $connection->close();
 
       while ($row = mysqli_fetch_assoc($photos)) {
-        $photos_code .= "<div class='rounded photo-entry' style='background-image: url(\"../shared/images/" . $row['name'] . "\"); background-size: cover'>
+        $photos_code .= "<div class='rounded photo-entry photo-entry-room' style='background-image: url(\"../shared/images/" . $row['name'] . "\"); background-size: cover'>
+        <i class='fa fa-circle fa-stack-2x icon-background' style='position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);'></i>
           <i class='fa fa-times delete' aria-hidden='true' style='position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%)'></i>
         </div>";
       }

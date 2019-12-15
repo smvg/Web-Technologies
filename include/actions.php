@@ -85,13 +85,56 @@
         $connection->close();
     }
 
+    function delete_photo_location() {
+        include("constants.php");
+
+        $photo_to_delete = $_POST['photo'];
+
+        echo $photo_to_delete;
+
+        $connection = new mysqli($mysql_host, $mysql_user, $mysql_password, $mysql_db);
+    
+        # What if it doesnt work
+        if ($connection->connect_error){
+            echo "Connection to database failed :(";
+        }
+        
+        $query_string =  "delete from Location_Photo where id_location = 1 and name = '" . $photo_to_delete  . "';";
+
+        echo $query_string;
+        
+        $result = $connection->query($query_string);
+    
+        $connection->close();
+    }
+
     function edit_room() {
         include("constants.php");
 
+        $capacity = $_POST['capacity'];
+        $description = $_POST['description'];
+        $id_room = $_POST['id_room'];
+
+        $connection = new mysqli($mysql_host, $mysql_user, $mysql_password, $mysql_db);
+
+        if ($connection->connect_error){
+            echo "Connection to database failed :(";
+        }
+
+        $query_string = "UPDATE Rooms SET capacity = " . $capacity . ", description = '" . $description . "' WHERE id_room = " . $id_room .  ";";
+        $result = $connection->query($query_string);
+
         $target_dir = "../shared/images/";
-        $target_file = $target_dir . basename($_FILES["pic"]["name"]);
+
+        // Create a random name for the file
+        $bytes = random_bytes(5);
+        $random_name = bin2hex($bytes);
+
+        $imageFileType = strtolower(pathinfo($target_dir . basename($_FILES["pic"]["name"]),PATHINFO_EXTENSION));
+        $target_file = $target_dir . $random_name . "." . $imageFileType;
+
         $uploadOk = 1;
-        $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+        
         // Check if image file is a actual image or fake image
         if(isset($_POST["submit"])) {
             $check = getimagesize($_FILES["pic"]["tmp_name"]);
@@ -101,10 +144,12 @@
                 $uploadOk = 0;
             }
         }
-        // Check if file already exists
-        if (file_exists($target_file)) {
-            $bytes = random_bytes(10);
-            $target_file = $target_dir . bin2hex($bytes) . "." . $imageFileType;
+
+        // Check if file already exists and if so create another random name
+        while (file_exists($target_file)) {
+            $bytes = random_bytes(5);
+            $random_name = bin2hex($bytes);
+            $target_file = $target_dir . $random_name . "." . $imageFileType;
         }
         // Check file size
         if ($_FILES["pic"]["size"] > 500000) {
@@ -121,12 +166,41 @@
         // if everything is ok, try to upload file
         } else {
             if (move_uploaded_file($_FILES["pic"]["tmp_name"], $target_file)) {
-               
+                $query_string = "insert into Photos values('" . $random_name . "." . $imageFileType . "', 'something'); insert into Room_Photo values(" . $id_room . ", '" . $random_name . "." . $imageFileType . "');";
+                echo $query_string;
+                $result = $connection->multi_query($query_string);
+                echo $result;
             } else {
-
+                
             }
         }
 
+        $connection->close();
+
+    }
+
+    function edit_location() {
+        include("constants.php");
+
+        $address = $_POST['address'];
+        $tel = $_POST['tel'];
+        $email = $_POST['email'];
+        $flink = $_POST['flink'];
+        $blink = $_POST['blink'];
+
+        $connection = new mysqli($mysql_host, $mysql_user, $mysql_password, $mysql_db);
+
+        if ($connection->connect_error){
+            echo "Connection to database failed :(";
+        }
+
+        $query_string = "UPDATE Location SET address_location = '" . $address . "', phone_location = '" . $tel . "', email_location = '" . $email . "',
+            facebook_link = '" . $flink . "', booking_link = '" . $blink . "' WHERE id_location = 1;";
+        $result = $connection->query($query_string);
+
+        echo $query_string;
+
+        $connection->close();
     }
 
 ?>

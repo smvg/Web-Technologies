@@ -1,9 +1,9 @@
-.row-header-num, .row-header-description, .row-header-capacity, .row-header-photos, .row-header-visible {
+.row-header-num, .row-header-description, .row-header-capacity, .row-header-photos {
     font-weight: bold
 }
 
-.row-data-num, .row-header-num, .row-header-visible, .row-data-visible, .row-header-capacity, .row-data-capacity, .row-header-photos, .row-data-photos {
-    width: 10%; text-align: center;
+.row-data-num, .row-header-num, .row-header-capacity, .row-data-capacity, .row-header-photos, .row-data-photos {
+    width: 15%; text-align: center;
 }
 
 .row-data-description, .row-header-description {
