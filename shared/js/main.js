@@ -1,3 +1,12 @@
+$("#check-availabilty-btn").click(function() {
+
+  var checkin = document.getElementById("checkin_date").value;
+  var checkout = document.getElementById("checkout_date").value;
+  var persons = document.getElementById("adults").value;
+
+  console.log("Customer wants to be from " + checkin + " to " + checkout);
+});
+
 (function($) {
 
 	'use strict';

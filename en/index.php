@@ -18,7 +18,21 @@
 
     $address = $row['address_location'];
     $phone = $row['phone_location'];
-    $description = $row['description_location'];
+    $email = $row['email_location'];
+    $flink = $row['facebook_link'];
+    $blink = $row['booking_link'];
+
+
+    $query_string = "SELECT price FROM Rooms;";
+    
+    $result = $connection->query($query_string);
+    $prices = [];
+    $index = 0;
+
+    while ($row = $result->fetch_assoc()) {
+      $prices[$index++] = $row['price'];
+    }
+
 ?>
 
 <!DOCTYPE HTML>
@@ -167,7 +181,7 @@
                   </div>
                 </div>
                 <div class="col-md-6 col-lg-3 align-self-end">
-                  <button class="btn btn-primary btn-block text-white">Check Availabilty</button>
+                  <button id="check-availabilty-btn" class="btn btn-primary btn-block text-white">Check Availabilty</button>
                 </div>
               </div>
             </form>
@@ -210,7 +224,7 @@
               </figure>
               <div class="p-3 text-center room-info">
                 <h2>Room 1</h2>
-                <span class="text-uppercase letter-spacing-1">90$ / per night</span>
+                <span class="text-uppercase letter-spacing-1"><?php echo $prices[0] ?> zł / per night</span>
               </div>
             </a>
           </div>
@@ -222,7 +236,7 @@
               </figure>
               <div class="p-3 text-center room-info">
                 <h2>Room 2</h2>
-                <span class="text-uppercase letter-spacing-1">120$ / per night</span>
+                <span class="text-uppercase letter-spacing-1"><?php echo $prices[1] ?> zł / per night</span>
               </div>
             </a>
           </div>
@@ -234,7 +248,7 @@
               </figure>
               <div class="p-3 text-center room-info">
                 <h2>Room 3</h2>
-                <span class="text-uppercase letter-spacing-1">100$ / per night</span>
+                <span class="text-uppercase letter-spacing-1"><?php echo $prices[2] ?> zł / per night</span>
               </div>
             </a>
           </div>
@@ -289,68 +303,6 @@
             </div>
     </section>
 
-  <section class="section testimonial-section">
-      <div class="container">
-        <div class="row justify-content-center text-center mb-5">
-          <div class="col-md-7">
-            <h2 class="heading" data-aos="fade-up">Reviews</h2>
-          </div>
-        </div>
-        <div class="row">
-          <div class="js-carousel-2 owl-carousel mb-5" data-aos="fade-up" data-aos-delay="200">
-            
-            <div class="testimonial text-center slider-item">
-              <div class="author-image mb-3">
-                <img src="../shared/images/person_1.jpg" alt="Image placeholder" class="rounded-circle mx-auto">
-              </div>
-              <blockquote>
-
-                <p>&ldquo;A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.&rdquo;</p>
-              </blockquote>
-              <p><em>&mdash; Jean Smith</em></p>
-            </div> 
-
-            <div class="testimonial text-center slider-item">
-              <div class="author-image mb-3">
-                <img src="../shared/images/person_2.jpg" alt="Image placeholder" class="rounded-circle mx-auto">
-              </div>
-              <blockquote>
-                <p>&ldquo;Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.&rdquo;</p>
-              </blockquote>
-              <p><em>&mdash; John Doe</em></p>
-            </div>
-
-            <div class="testimonial text-center slider-item">
-              <div class="author-image mb-3">
-                <img src="../shared/images/person_3.jpg" alt="Image placeholder" class="rounded-circle mx-auto">
-              </div>
-              <blockquote>
-
-                <p>&ldquo;When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane.&rdquo;</p>
-              </blockquote>
-              <p><em>&mdash; John Doe</em></p>
-            </div>
-
-
-
-            <div class="testimonial text-center slider-item">
-              <div class="author-image mb-3">
-                <img src="../shared/images/person_3.jpg" alt="Image placeholder" class="rounded-circle mx-auto">
-              </div>
-              <blockquote>
-
-                <p>&ldquo;When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane.&rdquo;</p>
-              </blockquote>
-              <p><em>&mdash; John Doe</em></p>
-            </div>
-
-          </div>
-            <!-- END slider -->
-        </div>
-
-      </div>
-    </section>
-
     <footer class="section footer-section">
       <div class="container">
         <div class="row mb-4">
@@ -363,9 +315,9 @@
           <div class="col-md-3 mb-5 pr-md-5 contact-info">
             <p><span class="d-block"><span class="ion-ios-location h5 mr-3 text-primary"></span>Address:</span> <span> <br> <?php echo $address ?></span></p>
             <p><span class="d-block"><span class="ion-ios-telephone h5 mr-3 text-primary"></span>Phone:</span> <span><?php echo $phone ?></span></p>
-            <p><span class="d-block"><span class="ion-ios-email h5 mr-3 text-primary"></span>Email:</span> <span> info@domain.com</span></p>
-			      <p><span class="d-block"><span class="fa-fa-facebook h5 mr-3 text-primary"></span>Facebook:</span> <span> Noclegi Mudrak</span></p>
-			      <p><span class="d-block"><span class="fa-fa-tripadvisor h5 mr-3 text-primary"></span>Tripadvisor:</span> <span> Noclegi Mudrak</span></p>
+            <p><span class="d-block"><span class="ion-ios-email h5 mr-3 text-primary"></span>Email:</span> <span><?php echo $email ?></span></p>
+			      <p><span class="d-block"><span class="fa-fa-facebook h5 mr-3 text-primary"></span>Facebook:</span> <span> <?php echo $flink ?></span></p>
+			      <p><span class="d-block"><span class="fa-fa-tripadvisor h5 mr-3 text-primary"></span>Booking:</span> <span> <?php echo $blink ?></span></p>
           </div>
           <div class="col-md-5 mb-5 pr-md-5 contact-info">
             <input type="text" style="margin: 0.5rem; width: 100%; padding: 1rem;" placeholder="Name">
