@@ -14,6 +14,11 @@
     die();
   }
 
+  if (isset($_GET['logout']) && $_GET['logout'] == true) {
+    session_destroy();
+    go_back_to_login();
+  }
+
   # If session variables are not set
   if (!(isset($_SESSION['email']) && isset($_SESSION['psswd']))) {
 
@@ -59,6 +64,17 @@
     $connection->close();
 
   }
+/*
+  if (!(isset($_SESSION['last_activity']))) {
+    $_SESSION['last_activity'] = time();
+  }
+
+  if ($_SESSION['last_activity'] < time()-(5*60)) {
+    session_destroy();
+    go_back_to_login();
+  }
+
+  $_SESSION['last_activity'] = time();*/
 
 ?>
 <!doctype html>
@@ -106,7 +122,10 @@
 
       <div class="sidebar">
           <div id="logo-sidebar">
-            <span style="letter-spacing: 10px;"><h1 style="color: white">NM</h1></span>
+            <span><h1 style="color: white">NM</h1></span>
+          </div>
+          <div style='align-content: center; text-align: center; color: white'>
+            <span><a href='admin.php?logout=true' style="color: white"><i class="fa fa-sign-out"></i> Log out</a></span>
           </div>
           <hr style="border-color: white;">
           <ul class="nav">

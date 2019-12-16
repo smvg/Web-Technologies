@@ -99,3 +99,25 @@ $(document).ready(function() {
         $.redirect("admin.php", { page : 'accounts', action: 'add-account', 'add-email': email, 'add-psswd': password});
     });
 });
+
+var inactivityTime = function () {
+    var time;
+    window.onload = resetTimer;
+    // DOM Events
+    document.onmousemove = resetTimer;
+    document.onkeypress = resetTimer;
+
+    function logout() {
+        location.href = 'admin.php?logout=true';
+    }
+
+    function resetTimer() {
+        clearTimeout(time);
+        time = setTimeout(logout, 5*60000)
+        // 1000 milliseconds = 1 second
+    }
+};
+
+window.onload = function() {
+    inactivityTime();
+}
