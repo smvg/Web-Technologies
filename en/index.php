@@ -33,6 +33,17 @@
       $prices[$index++] = $row['price'];
     }
 
+    $query_string = "SELECT name FROM Location_Photo;";
+    $result = $connection->query($query_string);
+
+    $photos = array();
+
+    while ($row = $result->fetch_assoc()) {
+      array_push($photos, $row['name']);
+    }
+
+    $connection->close();
+
 ?>
 
 <!DOCTYPE HTML>
@@ -110,18 +121,17 @@
 
   <!-- The slideshow -->
   <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="../shared/images/outside10.jpg" alt="Room 1" width=100% >
-    </div>
-    <div class="carousel-item">
-      <img src="../shared/images/room2.3.jpeg" alt="Room 2" width=100%>
-    </div>
-    <div class="carousel-item">
-      <img src="../shared/images/room3.3.jpeg" alt="Room 3" width=100%>
-    </div>
-	    <div class="carousel-item">
-      <img src="../shared/images/outside1.jpg" alt="Room 4" width=100%>
-    </div>
+    <?php
+
+      for ($index = 0; $index < count($photos); $index++) {
+        echo "
+          <div class='carousel-item " . (($index == 0) ? "active" : "") . "'>
+            <img src='../shared/images/" . $photos[$index] . "' style='height: 90vh; width: 100%; object-fit: cover' >
+          </div>
+        ";
+      }
+
+    ?>
   </div>
 
   <!-- Left and right controls -->
