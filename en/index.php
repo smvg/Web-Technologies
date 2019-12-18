@@ -75,7 +75,7 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav text-uppercase ml-auto">
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#home">Home</a>
+            <a class="nav-link js-scroll-trigger" href="#">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="rooms.html">Our Rooms</a>
@@ -257,7 +257,7 @@
         </div>
       </div>
     </section>
-    <section class="section blog-post-entry bg-light">
+    <section id="information" class="section blog-post-entry bg-light">
       <div class="container">
         <div class="row justify-content-center text-center mb-5">
           <div class="col-md-7">
@@ -303,7 +303,7 @@
             </div>
     </section>
 
-    <footer class="section footer-section">
+    <footer id="contact" class="section footer-section">
       <div class="container">
         <div class="row mb-4">
            <div class="col-md-3 mb-5">
