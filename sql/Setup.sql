@@ -22,25 +22,28 @@ insert into Administrators values('email@yahoo.com', 'User', 'Four', '1af08fe769
 create Table Photos(
     name varchar(50) NOT NULL,
     description varchar(50),
+    md5_hash varchar(32),
     PRIMARY KEY(name)
 );
 
-insert into Photos values('room1.1.jpeg', 'Photo of Room 1');
-insert into Photos values('room2.1.jpeg', 'Photo of Room 2');
-insert into Photos values('room2.2.jpeg', 'Photo of Room 2');
-insert into Photos values('room2.3.jpeg', 'Photo of Room 2');
-insert into Photos values('room3.1.jpg', 'Photo of Room 3');
-insert into Photos values('outside1.jpg', 'Photo of outside');
+insert into Photos values('room1.1.jpeg', 'Photo of Room 1', '49fec71cc5c37bb8412baee4db648ded');
+insert into Photos values('room2.1.jpeg', 'Photo of Room 2', 'eb51e36eca2c626b0e7833719aa13779');
+insert into Photos values('room2.2.jpeg', 'Photo of Room 2', '8d873df26b2b38e4b831d87918522d30');
+insert into Photos values('room2.3.jpeg', 'Photo of Room 2', '124c71355a8e552e4785a21383b30ade');
+insert into Photos values('room3.1.jpg', 'Photo of Room 3', '45421338f2eca2ff29c383f8edab3703');
+insert into Photos values('outside1.jpg', 'Photo of outside', '12e57f753c308db030ad1bdc806054ad');
 
 create Table Location(
     id_location int NOT NULL AUTO_INCREMENT,
     address_location varchar(255),
     phone_location varchar(20),
     email_location varchar(255),
+    facebook_link varchar(100),
+    booking_link varchar(100),
     PRIMARY KEY(id_location)
 );
 
-insert into Location (address_location, phone_location, email_location) values('This is an address', '6487348754', 'email@gmail.com');
+insert into Location (address_location, phone_location, email_location, facebook_link, booking_link) values('This is an address', '648-73-48-75', 'email@email.com', '#', '#');
 
 create Table Location_Photo(
     id_location int NOT NULL,
@@ -57,13 +60,14 @@ create Table Rooms(
     id_location int NOT NULL,
     description varchar(100),
     capacity int,
+    price int,
     FOREIGN KEY(id_location) REFERENCES Location(id_location) ON DELETE CASCADE,
     PRIMARY KEY(id_room)
 );
 
-insert into Rooms (id_location, description, capacity) values(1, 'A cozy room', 4);
-insert into Rooms (id_location, description, capacity) values(1, 'Another cozy room', 2);
-insert into Rooms (id_location, description, capacity) values(1, 'This is cozy but doesnt have wifi', 3);
+insert into Rooms (id_location, description, capacity, price) values(1, 'A cozy room', 4, 90);
+insert into Rooms (id_location, description, capacity, price) values(1, 'Another cozy room', 2, 100);
+insert into Rooms (id_location, description, capacity, price) values(1, 'This is cozy but doesnt have wifi', 3, 110);
 
 create Table Room_Photo(
     id_room int NOT NULL,

@@ -1,39 +1,50 @@
-
 <?php
+    include("../include/constants.php");
 
-$host = "localhost";
-$user = "root";
-$password = "";
-$db = "Website";
+    $connection = new mysqli($mysql_host, $mysql_user, $mysql_password, $mysql_db);
 
-
-$db = new mysqli($host, $user, $password, $db) or die("Unable to connect");
-
-if ($db->connect_error) {
-    die("Connection failed: " . $db->connect_error);
-}
-
-$sql = "SELECT * FROM Location" ;
-$result = $db->query($sql);
-
-if ($result->num_rows > 0) {
-    // output data of each row
-    while($row = $result->fetch_assoc()) 
-	{
-			$address = $row["address_location"];
-			
-			$phone = $row["phone_location"];	
-			
-			$email = $row["email_location"];	 
+    # What if it doesnt work
+    if ($connection->connect_error){
+        echo "Connection to database failed :(";
     }
-    } else
-		{
-          echo "0 results";
-        }
-$db->close();
+
+    $query_string = "SELECT * FROM Location;";
+
+    $result = $connection->query($query_string);
+
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+    }
+
+    $address = $row['address_location'];
+    $phone = $row['phone_location'];
+    $email = $row['email_location'];
+    $flink = $row['facebook_link'];
+    $blink = $row['booking_link'];
+
+
+    $query_string = "SELECT price FROM Rooms;";
+    
+    $result = $connection->query($query_string);
+    $prices = [];
+    $index = 0;
+
+    while ($row = $result->fetch_assoc()) {
+      $prices[$index++] = $row['price'];
+    }
+
+    $query_string = "SELECT name FROM Location_Photo;";
+    $result = $connection->query($query_string);
+
+    $photos = array();
+
+    while ($row = $result->fetch_assoc()) {
+      array_push($photos, $row['name']);
+    }
+
+    $connection->close();
 
 ?>
-
 
 <!DOCTYPE HTML>
 <html>
@@ -75,10 +86,10 @@ $db->close();
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav text-uppercase ml-auto">
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#home">Home</a>
+            <a class="nav-link js-scroll-trigger" href="#">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="rooms.html">Our Rooms</a>
+            <a class="nav-link js-scroll-trigger" href="#rooms">Our Rooms</a>
           </li>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#information">Information</a>
@@ -110,18 +121,17 @@ $db->close();
 
   <!-- The slideshow -->
   <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="../shared/images/outside10.jpg" alt="Room 1" width=100% >
-    </div>
-    <div class="carousel-item">
-      <img src="../shared/images/room2.3.jpeg" alt="Room 2" width=100%>
-    </div>
-    <div class="carousel-item">
-      <img src="../shared/images/room3.3.jpeg" alt="Room 3" width=100%>
-    </div>
-	    <div class="carousel-item">
-      <img src="../shared/images/outside1.jpg" alt="Room 4" width=100%>
-    </div>
+    <?php
+
+      for ($index = 0; $index < count($photos); $index++) {
+        echo "
+          <div class='carousel-item " . (($index == 0) ? "active" : "") . "'>
+            <img src='../shared/images/" . $photos[$index] . "' style='height: 90vh; width: 100%; object-fit: cover' >
+          </div>
+        ";
+      }
+
+    ?>
   </div>
 
   <!-- Left and right controls -->
@@ -181,7 +191,7 @@ $db->close();
                   </div>
                 </div>
                 <div class="col-md-6 col-lg-3 align-self-end">
-                  <button class="btn btn-primary btn-block text-white">Check Availabilty</button>
+                  <button id="check-availabilty-btn" class="btn btn-primary btn-block text-white">Check Availabilty</button>
                 </div>
               </div>
             </form>
@@ -208,7 +218,7 @@ $db->close();
       </div>
     </section>
 
-    <section class="section">
+    <section id="rooms" class="section">
       <div class="container">
         <div class="row justify-content-center text-center mb-5">
           <div class="col-md-7">
@@ -224,7 +234,7 @@ $db->close();
               </figure>
               <div class="p-3 text-center room-info">
                 <h2>Room 1</h2>
-                <span class="text-uppercase letter-spacing-1">90$ / per night</span>
+                <span class="text-uppercase letter-spacing-1"><?php echo $prices[0] ?> zł / per night</span>
               </div>
             </a>
           </div>
@@ -236,7 +246,7 @@ $db->close();
               </figure>
               <div class="p-3 text-center room-info">
                 <h2>Room 2</h2>
-                <span class="text-uppercase letter-spacing-1">120$ / per night</span>
+                <span class="text-uppercase letter-spacing-1"><?php echo $prices[1] ?> zł / per night</span>
               </div>
             </a>
           </div>
@@ -248,7 +258,7 @@ $db->close();
               </figure>
               <div class="p-3 text-center room-info">
                 <h2>Room 3</h2>
-                <span class="text-uppercase letter-spacing-1">100$ / per night</span>
+                <span class="text-uppercase letter-spacing-1"><?php echo $prices[2] ?> zł / per night</span>
               </div>
             </a>
           </div>
@@ -257,9 +267,7 @@ $db->close();
         </div>
       </div>
     </section>
-  
-	
-    <section class="section blog-post-entry bg-light">
+    <section id="information" class="section blog-post-entry bg-light">
       <div class="container">
         <div class="row justify-content-center text-center mb-5">
           <div class="col-md-7">
@@ -313,73 +321,12 @@ $db->close();
                 
             </div>
             <div id="map-container-google-1" class=" rounded z-depth-1-half map-container">
-              <iframe frameborder="0" style="border:0" src="https://maps.google.com/maps?q=almeria&t=&z=13&ie=UTF8&iwloc=&output=embed" allowfullscreen></iframe> 
+              <!--<iframe frameborder="0" style="border: 0;" src="https://maps.googleapis.com/maps/api/staticmap?key=AIzaSyDRIG7EyuooxjDO8fz7IygRR2EJ22qeGtc&center=47.64919455026912,-122.34805830535075&zoom=12&format=png&maptype=roadmap&size=480x360" allowfullscreen></iframe> -->
+              <iframe frameborder="0" style="border:0" src="https://maps.google.com/maps?q=almeria&t=&z=13&ie=UTF8&iwloc=&output=embed" allowfullscreen></iframe>
             </div>
     </section>
 
-  <section class="section testimonial-section">
-      <div class="container">
-        <div class="row justify-content-center text-center mb-5">
-          <div class="col-md-7">
-            <h2 class="heading" data-aos="fade-up">Reviews</h2>
-          </div>
-        </div>
-        <div class="row">
-          <div class="js-carousel-2 owl-carousel mb-5" data-aos="fade-up" data-aos-delay="200">
-            
-            <div class="testimonial text-center slider-item">
-              <div class="author-image mb-3">
-                <img src="../shared/images/person_1.jpg" alt="Image placeholder" class="rounded-circle mx-auto">
-              </div>
-              <blockquote>
-
-                <p>&ldquo;A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.&rdquo;</p>
-              </blockquote>
-              <p><em>&mdash; Jean Smith</em></p>
-            </div> 
-
-            <div class="testimonial text-center slider-item">
-              <div class="author-image mb-3">
-                <img src="../shared/images/person_2.jpg" alt="Image placeholder" class="rounded-circle mx-auto">
-              </div>
-              <blockquote>
-                <p>&ldquo;Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.&rdquo;</p>
-              </blockquote>
-              <p><em>&mdash; John Doe</em></p>
-            </div>
-
-            <div class="testimonial text-center slider-item">
-              <div class="author-image mb-3">
-                <img src="../shared/images/person_3.jpg" alt="Image placeholder" class="rounded-circle mx-auto">
-              </div>
-              <blockquote>
-
-                <p>&ldquo;When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane.&rdquo;</p>
-              </blockquote>
-              <p><em>&mdash; John Doe</em></p>
-            </div>
-
-
-
-            <div class="testimonial text-center slider-item">
-              <div class="author-image mb-3">
-                <img src="../shared/images/person_3.jpg" alt="Image placeholder" class="rounded-circle mx-auto">
-              </div>
-              <blockquote>
-
-                <p>&ldquo;When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane.&rdquo;</p>
-              </blockquote>
-              <p><em>&mdash; John Doe</em></p>
-            </div>
-
-          </div>
-            <!-- END slider -->
-        </div>
-
-      </div>
-    </section>
-
-    <footer class="section footer-section">
+    <footer id="contact" class="section footer-section">
       <div class="container">
         <div class="row mb-4">
            <div class="col-md-3 mb-5">
@@ -389,18 +336,18 @@ $db->close();
             </ul>
           </div>
           <div class="col-md-3 mb-5 pr-md-5 contact-info">
-            <p><span class="d-block"><span class="ion-ios-location h5 mr-3 text-primary"></span>Address:</span> <span><?php echo $address; ?></span></p>
-            <p><span class="d-block"><span class="ion-ios-telephone h5 mr-3 text-primary"></span>Phone:</span> <span><?php echo $phone; ?></span></p>
-           <p><span class="d-block"><span class="ion-ios-email h5 mr-3 text-primary"></span>Email:</span> <span><?php echo $email; ?></span></p>
-			      <p><span class="d-block"><span class="fa-fa-facebook h5 mr-3 text-primary"></span>Facebook:</span> <span> Noclegi Mudrak</span></p>
-			      <p><span class="d-block"><span class="fa-fa-tripadvisor h5 mr-3 text-primary"></span>Tripadvisor:</span> <span> Noclegi Mudrak</span></p>
+            <p><span class="d-block"><span class="ion-ios-location h5 mr-3 text-primary"></span>Address:</span> <span> <br> <?php echo $address ?></span></p>
+            <p><span class="d-block"><span class="ion-ios-telephone h5 mr-3 text-primary"></span>Phone:</span> <span><?php echo $phone ?></span></p>
+            <p><span class="d-block"><span class="ion-ios-email h5 mr-3 text-primary"></span>Email:</span> <span><?php echo $email ?></span></p>
+			      <p><span class="d-block"><span class="fa-fa-facebook h5 mr-3 text-primary"></span>Facebook:</span> <span> <?php echo $flink ?></span></p>
+			      <p><span class="d-block"><span class="fa-fa-tripadvisor h5 mr-3 text-primary"></span>Booking:</span> <span> <?php echo $blink ?></span></p>
           </div>
-          <div class="col-md-5 mb-5 pr-md-5 contact-info">
-            <input type="text" style="margin: 0.5rem; width: 100%; padding: 1rem;" placeholder="Name">
-            <input type="email" style="margin: 0.5rem; width: 100%; padding: 1rem;" placeholder="Email">
-            <textarea class="rounded" style="margin: 0.5rem; width: 100%; padding: 1rem;" placeholder="Type here"></textarea>
-            <button class="btn btn-primary btn-block text-white" style="margin: 0.5rem;">Send</button>
-          </div>
+          <form class="col-md-5 mb-5 pr-md-5 contact-info" action="../include/send_mail.php" method="post">
+            <input name="name" type="text" style="margin: 0.5rem; width: 100%; padding: 1rem;" placeholder="Name">
+            <input name="email" type="email" style="margin: 0.5rem; width: 100%; padding: 1rem;" placeholder="Email">
+            <textarea name="text" class="rounded" style="margin: 0.5rem; width: 100%; padding: 1rem;" placeholder="Type here"></textarea>
+            <input type="submit" value="send" class="btn btn-primary btn-block text-white" style="margin: 0.5rem;">
+          </form>
         </div>
       </div>
     </footer>
@@ -420,7 +367,5 @@ $db->close();
     <script src="../shared/js/jquery.timepicker.min.js"></script> 
 
 
-	<script src="../shared/js/main.js"></script>
-	
-	</body>
+	<script src="../shared/js/main.js"></script></body>
 </html>

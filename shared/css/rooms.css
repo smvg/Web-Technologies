@@ -1,0 +1,15 @@
+.row-header-num, .row-header-description, .row-header-capacity, .row-header-photos, .row-header-price {
+    font-weight: bold
+}
+
+.row-data-num, .row-header-num, .row-header-capacity, .row-data-capacity, .row-header-photos, .row-data-photos, .row-header-price, .row-data-price {
+    width: 10%; text-align: center;
+}
+
+.row-data-description, .row-header-description {
+    width: 60%; text-align: center;
+}
+
+.go-back-rooms {
+    cursor: pointer;
+}

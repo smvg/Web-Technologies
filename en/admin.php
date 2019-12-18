@@ -14,6 +14,11 @@
     die();
   }
 
+  if (isset($_GET['logout']) && $_GET['logout'] == true) {
+    session_destroy();
+    go_back_to_login();
+  }
+
   # If session variables are not set
   if (!(isset($_SESSION['email']) && isset($_SESSION['psswd']))) {
 
@@ -59,6 +64,17 @@
     $connection->close();
 
   }
+/*
+  if (!(isset($_SESSION['last_activity']))) {
+    $_SESSION['last_activity'] = time();
+  }
+
+  if ($_SESSION['last_activity'] < time()-(5*60)) {
+    session_destroy();
+    go_back_to_login();
+  }
+
+  $_SESSION['last_activity'] = time();*/
 
 ?>
 <!doctype html>
@@ -90,6 +106,10 @@
     <link rel="stylesheet" href="../shared/css/style.css">
 
     <link rel="stylesheet" href="../shared/css/admin.css">
+    <link rel="stylesheet" href="../shared/css/table.css">
+    <link rel="stylesheet" href="../shared/css/accounts.css">
+    <link rel="stylesheet" href="../shared/css/rooms.css">
+    <link rel='stylesheet' href="../shared/css/forms.css">
 
     <script src="../shared/js/jquery-3.3.1.min.js"></script>
 
@@ -97,13 +117,15 @@
 
     <script src="../shared/js/admin.js"></script>
 
-
   </head>
   <body>
 
       <div class="sidebar">
           <div id="logo-sidebar">
-            <span style="letter-spacing: 10px;"><h1 style="color: white">LOGO</h1></span>
+            <span><h1 style="color: white">NM</h1></span>
+          </div>
+          <div style='align-content: center; text-align: center; color: white'>
+            <span><a href='admin.php?logout=true' style="color: white"><i class="fa fa-sign-out"></i> Log out</a></span>
           </div>
           <hr style="border-color: white;">
           <ul class="nav">
@@ -137,9 +159,9 @@
               <li>
                   <a href="javascript:change_view('location')">
                       <p>
-                        <i class="fa fa-map" aria-hidden="true"></i>
+                        <i class="fa fa-info-circle"></i></i>
                         &nbsp;
-                        <span class="icon-description">LOCATION</span>
+                        <span class="icon-description">INFO & LINKS</span>
                       </p>
                   </a>
               </li>
@@ -149,12 +171,6 @@
       <?php 
         $view = (isset($_POST['page'])) ? $_POST['page'] : '';
         $action = (isset($_POST['action'])) ? $_POST['action'] : '';
-
-        if (empty($view)) {
-          //echo $dashboard;
-          get_dashboard();
-          return;
-        }
 
         switch($action) {
           case 'add-account':
@@ -166,8 +182,12 @@
           case 'delete-account':
             delete_account();
             break;
-          case 'delete-photo':
-            delete_photo();
+          case 'update-room':
+            $view = "rooms";
+            edit_room();
+            break;
+          case 'update-location':
+            edit_location();
             break;
         }
 
@@ -183,14 +203,16 @@
             list_accounts();
             break;
           case 'location':
-            echo $location;
+            get_location();
             break;
           case 'room-edit':
             view_room($_POST['id_room']);
             echo "<script>window.current_room = " . $_POST['id_room'] . ";</script>";
             break;
+          case 'links':
+            break;
           default;
-            echo $not_found;
+            get_dashboard();
             break;
         };
       ?>
