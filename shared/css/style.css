@@ -1254,5 +1254,8 @@ textarea.form-control {
         background: #ffba5a;
         color: #fff;
         border-radius: 50%; }
-
+.loc{
+	font-family: "Roboto";
+	color: #000;
+}
 

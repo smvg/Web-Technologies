@@ -92,7 +92,7 @@
             <a class="nav-link js-scroll-trigger" href="#rooms">Our Rooms</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#information">Information</a>
+            <a class="nav-link js-scroll-trigger" href="#information">Location</a>
           </li>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
@@ -286,7 +286,7 @@
                         <div class="col-md-8">
                             <div class="card-body">
                                 <a href="culture.html" class="mb-4 d-block"><h5 class="card-title">Culture</h5>
-                                <p class="card-text">There are a couple of cultural activities close by</p></a>
+                                <p class="loc">There are a couple of cultural activities close by</p></a>
                             </div>
                         </div>
                     </div>
@@ -299,7 +299,7 @@
                         <div class="col-md-8">
                             <div class="card-body">
                                 <a href="nature.html" class="mb-4 d-block"><h5 class="card-title">Nature</h5>
-                                <p class="card-text">See here the beautiful nature close by</p></a>
+                                <p class="loc">See here the beautiful nature close by</p></a>
                             </div>
                         </div>
                     </div>
@@ -312,7 +312,7 @@
                             <div class="col-md-8">
                                 <div class="card-body">
                                     <a href="shops.html" class="mb-4 d-block"><h5 class="card-title">Shops</h5>
-                                    <p class="card-text">Meet local handicrafts</p></a>
+                                    <p class="loc">Meet local handicrafts</p></a>
                                     <!--<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>-->
                                 </div>
                             </div>
