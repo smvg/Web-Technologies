@@ -78,7 +78,7 @@
             <a class="nav-link js-scroll-trigger" href="#">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="rooms.html">Our Rooms</a>
+            <a class="nav-link js-scroll-trigger" href="#rooms">Our Rooms</a>
           </li>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#information">Information</a>
@@ -208,7 +208,7 @@
       </div>
     </section>
 
-    <section class="section">
+    <section id="rooms" class="section">
       <div class="container">
         <div class="row justify-content-center text-center mb-5">
           <div class="col-md-7">
@@ -319,12 +319,12 @@
 			      <p><span class="d-block"><span class="fa-fa-facebook h5 mr-3 text-primary"></span>Facebook:</span> <span> <?php echo $flink ?></span></p>
 			      <p><span class="d-block"><span class="fa-fa-tripadvisor h5 mr-3 text-primary"></span>Booking:</span> <span> <?php echo $blink ?></span></p>
           </div>
-          <div class="col-md-5 mb-5 pr-md-5 contact-info">
-            <input type="text" style="margin: 0.5rem; width: 100%; padding: 1rem;" placeholder="Name">
-            <input type="email" style="margin: 0.5rem; width: 100%; padding: 1rem;" placeholder="Email">
-            <textarea class="rounded" style="margin: 0.5rem; width: 100%; padding: 1rem;" placeholder="Type here"></textarea>
-            <button class="btn btn-primary btn-block text-white" style="margin: 0.5rem;">Send</button>
-          </div>
+          <form class="col-md-5 mb-5 pr-md-5 contact-info" action="../include/send_mail.php" method="post">
+            <input name="name" type="text" style="margin: 0.5rem; width: 100%; padding: 1rem;" placeholder="Name">
+            <input name="email" type="email" style="margin: 0.5rem; width: 100%; padding: 1rem;" placeholder="Email">
+            <textarea name="text" class="rounded" style="margin: 0.5rem; width: 100%; padding: 1rem;" placeholder="Type here"></textarea>
+            <input type="submit" value="send" class="btn btn-primary btn-block text-white" style="margin: 0.5rem;">
+          </form>
         </div>
       </div>
     </footer>
