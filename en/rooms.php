@@ -119,37 +119,27 @@
           
 <div id="photos" class="carousel slide" data-ride="carousel">
 
-  <!-- Indicators -->
-  <ul class="carousel-indicators">
-    <li data-target="#photos" data-slide-to="0" class="active"></li>
-    <li data-target="#photos" data-slide-to="1"></li>
-    <li data-target="#photos" data-slide-to="2"></li>
-    <li data-target="#photos" data-slide-to="3"></li>
-  </ul>
-
-  <!-- Indicators -->
-
   <!-- The slideshow -->
-  <div class="carousel-inner">
+  <div id="photos" class="carousel-inner">
     <div class="carousel-item active">
-      <img src="../shared/images/outside10.jpg" alt="Room 1" width=100% >
+      <img src="../shared/images/outside10.jpg" class="carousel-image" alt="Room 1">
     </div>
     <div class="carousel-item">
-      <img src="../shared/images/room2.3.jpeg" alt="Room 2" width=100%>
+      <img src="../shared/images/room2.3.jpeg" class="carousel-image" alt="Room 2">
     </div>
     <div class="carousel-item">
-      <img src="../shared/images/room3.3.jpeg" alt="Room 3" width=100%>
+      <img src="../shared/images/room3.3.jpeg" class="carousel-image" alt="Room 3">
     </div>
       <div class="carousel-item">
-      <img src="../shared/images/outside1.jpg" alt="Room 4" width=100%>
+      <img src="../shared/images/outside1.jpg" class="carousel-image" alt="Room 4">
     </div>
   </div>
 
   <!-- Left and right controls -->
-  <a class="carousel-control-prev" href="#demo" data-slide="prev">
+  <a class="carousel-control-prev" href="#photos" data-slide="prev">
     <span class="carousel-control-prev-icon"></span>
   </a>
-  <a class="carousel-control-next" href="#demo" data-slide="next">
+  <a class="carousel-control-next" href="#photos" data-slide="next">
     <span class="carousel-control-next-icon"></span>
   </a>
     </div>
@@ -234,6 +224,7 @@
       </div>
 
         <!-- room2-->
+      <div class="container">
          <div class="p-3 text-center room-info">
            <h2>3 Beds Room</h2>
            <span class="text-uppercase letter-spacing-1" style="display: block"><?php echo $prices[1]?> zl / per night</span>
@@ -254,6 +245,7 @@
             ?>
 
       </div>
+</div>
 
 
 <!-- room3-->

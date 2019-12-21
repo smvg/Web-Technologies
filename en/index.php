@@ -117,7 +117,7 @@
       for ($index = 0; $index < count($photos); $index++) {
         echo "
           <div class='carousel-item " . (($index == 0) ? "active" : "") . "'>
-            <img src='../shared/images/" . $photos[$index] . "' style='height: 90vh; width: 100%; object-fit: cover' >
+            <img src='../shared/images/" . $photos[$index] . "' class='carousel-image' >
           </div>
         ";
       }
@@ -214,7 +214,7 @@
         </div>
         <div class="row">
           <div class="col-md-6 col-lg-4" data-aos="fade-up">
-            <a href="rooms.html" class="room">
+            <a href="rooms.php" class="room">
               <figure class="img-wrap">
                 <img src="../shared/images/room1.1.jpeg" alt="Free website template" class="img-fluid mb-3">
               </figure>
@@ -226,7 +226,7 @@
           </div>
 
           <div class="col-md-6 col-lg-4" data-aos="fade-up">
-            <a href="rooms.html" class="room">
+            <a href="rooms.php" class="room">
               <figure class="img-wrap">
                 <img src="../shared/images/room2.2.jpeg" alt="Free website template" class="img-fluid mb-3">
               </figure>
@@ -238,7 +238,7 @@
           </div>
 
           <div class="col-md-6 col-lg-4" data-aos="fade-up">
-            <a href="rooms.html" class="room">
+		    <a href="rooms.php" class="room">
               <figure class="img-wrap">
                 <img src="../shared/images/room3.1.jpg" alt="Free website template" class="img-fluid mb-3">
               </figure>

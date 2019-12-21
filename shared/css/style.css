@@ -1259,3 +1259,8 @@ textarea.form-control {
 	color: #000;
 }
 
+.carousel-image {
+	height: 90vh;
+	width: 100%;
+	object-fit: cover;
+}
