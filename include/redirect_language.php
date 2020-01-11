@@ -3,7 +3,7 @@
     include "constants.php";
 
     function parse_language_header($header) {
-        return preg_split( "/(,|;)/", $header)[1];
+        return preg_split( "/(,|;)/", $header)[0];
     };
 
     function redirect_to_url($language, $target) {
