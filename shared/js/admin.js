@@ -1,5 +1,6 @@
 let old_email;
 var content_ids = ['dashboard', 'accounts', 'rooms', 'location'];
+var collapsed = false;
 
 function change_view(view) {
     $.redirect("admin.php", { page : view});
@@ -14,6 +15,35 @@ $(document).on('click', '.room-entry', function() {
         id_room: room_id
     });
 });
+
+$(document).on('click', '#collapse', function() {
+
+    if (collapsed) {
+
+        var sidebar = document.getElementById("sidebar-admin");
+        sidebar.style.transform = "translate(0%, 0%)";
+
+        var toggle = document.getElementById("collapse");
+        toggle.style.left = "12%";
+
+        var content = document.getElementsByClassName("content");
+        content[0].style.left = "15%";
+        content[0].style.width = "85%";
+    }
+    else {
+        var sidebar = document.getElementById("sidebar-admin");
+        sidebar.style.transform = "translate(-100%, 0%)";
+
+        var toggle = document.getElementById("collapse");
+        toggle.style.left = "-0.5%";
+
+        var content = document.getElementsByClassName("content");
+        content[0].style.left = "0%";
+        content[0].style.width = "100%";
+    }
+
+    collapsed = !collapsed;
+})
 
 $(document).on('click', '.photo-entry', function() {
 

@@ -20,6 +20,16 @@ $("#check-availabilty-btn").click(function() {
   
 });
 
+$("#select-en").click(function() {
+  document.cookie="language=en;path=/";
+  window.location.href = "../index.php";
+});
+
+$("#select-pl").click(function() {
+  document.cookie="language=pl;path=/";
+  window.location.href = "../index.php";
+});
+
 (function($) {
 
 	'use strict';

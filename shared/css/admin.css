@@ -8,6 +8,7 @@ html * {
     padding: 0.5rem;
     background-color: rgb(24, 23, 23);
     box-shadow: 3px 5px 10px #888888;
+    transition: all 0.5s;
 }
 
 
@@ -80,6 +81,7 @@ html * {
     height: 100vh;
     flex-direction: column;
     overflow: auto;
+    transition: all 0.5s;
 }
 
 .table > tbody > tr > td {
