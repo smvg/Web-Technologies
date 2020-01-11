@@ -68,6 +68,9 @@
     <link rel="stylesheet" href="../shared/css/_custom.css">
     <link rel="stylesheet" href="../shared/fonts/ionicons/css/ionicons.min.css">
     <link rel="stylesheet" href="../shared/fonts/fontawesome/css/font-awesome.min.css">
+    
+    <!-- Flags -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/0.8.2/css/flag-icon.min.css">
 
     <!-- Make sure you put this AFTER Leaflet's CSS -->
     <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js" integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA==" crossorigin=""></script>
@@ -97,8 +100,11 @@
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
           </li>
-			 <li class="nav-item">
-				 <a class="nav-link js-scroll-trigger" href="#contact"><i class="fa fa-globe"></i></a>
+          <li class="nav-item">
+            <a class="nav-link" href="#" id="select-en"><i class="flag-icon flag-icon-us"></i></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" id="select-pl"><i class="flag-icon flag-icon-pl"></i></a>
           </li>
         </ul>
       </div>
@@ -332,7 +338,7 @@
             <input name="name" type="text" style="margin: 0.5rem; width: 100%; padding: 1rem;" placeholder="Name">
             <input name="email" type="email" style="margin: 0.5rem; width: 100%; padding: 1rem;" placeholder="Email">
             <textarea name="text" class="rounded" style="margin: 0.5rem; width: 100%; padding: 1rem;" placeholder="Type here"></textarea>
-            <input type="submit" value="send" class="btn btn-primary btn-block text-white" style="margin: 0.5rem;">
+            <input type="submit" value="Send" class="btn btn-primary btn-block text-white" style="margin: 0.5rem;">
           </form>
         </div>
       </div>

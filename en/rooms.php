@@ -204,14 +204,14 @@
                 <span class="text-uppercase letter-spacing-1">Capacity: <?php echo $capacity[0] ?> guest</span>
          </div>
 
-         <div class='row'>
+         <div class='row room-gallery'>
          <?php
 
             for ($index = 0; $index < count($photos[0]); $index++) {
                 echo "
                 <div class='col-md-6 col-lg-4 mb-5' data-aos='fade-up'>
                   <figure class='img-wrap'>
-                   <a href='#'> <img src='../shared/images/" . $photos[0][$index] . "' class='img-fluid mb-3 hover-shadow cursor' style='width: 100%' onclick='openModal();currentSlide(1)' class='hover-shadow' ></a>
+                   <a href='#'> <img src='../shared/images/" . $photos[0][$index] . "' class='img-fluid mb-3 hover-shadow cursor' style='width: 25rem; height: 20rem; object-fit: cover;' onclick='openModal();currentSlide(1)' class='hover-shadow' ></a>
                   </figure>
                        </div>
                      
@@ -230,14 +230,14 @@
            <span class="text-uppercase letter-spacing-1" style="display: block"><?php echo $prices[1]?> zl / per night</span>
            <span class="text-uppercase letter-spacing-1">Capacity: <?php echo $capacity[1] ?> guests</span>
         </div>
-        <div class="row">
+        <div class="row room-gallery">
           <?php
 
             for ($index = 0; $index < count($photos[1]); $index++) {
                 echo "
                 <div class='col-md-6 col-lg-4 mb-5' data-aos='fade-up'>
                   <figure class='img-wrap'>
-                   <a href='#'> <img src='../shared/images/" . $photos[1][$index] . "' class='img-fluid mb-3 hover-shadow cursor' style='width: 100%' onclick='openModal();currentSlide(1)' class='hover-shadow' ></a>
+                   <a href='#'> <img src='../shared/images/" . $photos[1][$index] . "' class='img-fluid mb-3 hover-shadow cursor' style='width: 25rem; height: 20rem; object-fit: cover;' onclick='openModal();currentSlide(1)' class='hover-shadow' ></a>
                   </figure>
                        </div>";
             }
@@ -258,7 +258,7 @@
 
 
 
-        <div class="row">
+        <div class="row room-gallery">
 
 
         <?php
@@ -267,7 +267,7 @@
                 echo "
                 <div class='col-md-6 col-lg-4 mb-5' data-aos='fade-up'>
                   <figure class='img-wrap'>
-                   <a href='#'> <img src='../shared/images/" . $photos[2][$index] . "' class='img-fluid mb-3 hover-shadow cursor' style='width: 100%' onclick='openModal();currentSlide(1)' class='hover-shadow' ></a>
+                   <a href='#'> <img src='../shared/images/" . $photos[2][$index] . "' class='img-fluid mb-3 hover-shadow cursor' style='width: 25rem; height: 20rem; object-fit: cover;' onclick='openModal();currentSlide(1)' class='hover-shadow' ></a>
                   </figure>
                        </div>";
             }
@@ -313,49 +313,19 @@
   <span class="close cursor" onclick="closeModal()">&times;</span>
   <div class="modal-content">
 
-    <div class="mySlides">
-      <img src="../shared/images/room1.1.jpeg" style="width:100%">
-    </div>
+  <?php
 
-    <div class="mySlides">
-      <img src="../shared/images/room2.1.jpeg" style="width:100%; transform:rotate(90deg); min-height: 80vh; object-fit: cover">
-    </div>
+    for ($index = 0; $index < 3; $index++) {
+      for ($x = 0; $x < count($photos[$index]); $x++) {
+        echo "
+          <div class='mySlides'>
+            <img src='../shared/images/" . $photos[$index][$x] . "' style='width:100%; object-fit: cover;'>
+          </div>
+        ";
+      }
+    }
 
-    <div class="mySlides">
-      <img src="../shared/images/room2.2.jpeg" style="width:100%">
-    </div>
-
-    <div class="mySlides">
-      <img src="../shared/images/room2.3.jpeg" style="width:100%; min-height: 80vh; object-fit: cover">
-    </div>
-
-    <div class="mySlides">
-      <img src="../shared/images/room3.1.jpg" style="width:100%;  ">
-    </div>
-
-    <div class="mySlides">
-      <img src="../shared/images/room3.2.jpeg" style="width:100%">
-    </div>
-
-    <div class="mySlides">
-      <img src="../shared/images/room3.3.jpeg" style="width:100%; min-height: 80vh; object-fit: cover">
-    </div>
-   
-   <div class="mySlides">
-      <img src="../shared/images/room3.4.jpeg" style="width:100%; ">
-    </div>
-
-    <div class="mySlides">
-      <img src="../shared/images/room3.5.jpeg" style="width:auto; max-height: 80vh; margin-left: 50%; transform: translate(-50%,0%);">
-    </div>
-
-    <div class="mySlides">
-      <img src="../shared/images/room3.6.jpeg" style="width:100%; ">
-    </div>
-
-    <div class="mySlides">
-      <img src="../shared/images/room3.7.jpg" style="width:100%; ">
-    </div>
+  ?>
 
 
     <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
