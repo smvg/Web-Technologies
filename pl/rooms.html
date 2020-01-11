@@ -1,0 +1,606 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Noclegi Mudrak - Rooms</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="" />
+
+
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=|Roboto+Sans:400,700|Playfair+Display:400,700">
+
+    <link rel="stylesheet" href="../shared/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../shared/css/animate.css">
+    <link rel="stylesheet" href="../shared/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="../shared/css/aos.css">
+    <link rel="stylesheet" href="../shared/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="../shared/css/jquery.timepicker.css">
+    <link rel="stylesheet" href="../shared/css/fancybox.min.css">
+    
+    <link rel="stylesheet" href="../shared/fonts/ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" href="../shared/fonts/fontawesome/css/font-awesome.min.css">
+
+
+
+<style>
+      .row > .column {
+  padding: 0 8px;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Create four equal columns that floats next to eachother */
+.column {
+  float: left;
+  width: 100%;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: black;
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background-color: inherit;
+  margin: auto;
+  padding: 0;
+  width: 50%;
+  max-width: 1200px;
+}
+
+/* The Close Button */
+.close {
+  color: white;
+  position: absolute;
+  top: 10%;
+  right: 25px;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: gray;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Hide the slides by default */
+.mySlides {
+  display: none;
+}
+
+/* Next & previous buttons */
+.prev,
+.next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -50px;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover,
+.next:hover {
+  background-color: rgb(60, 60, 60);
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* Caption text */
+.caption-container {
+  text-align: center;
+  background-color: black;
+  padding: 2px 16px;
+  color: white;
+}
+
+img.demo {
+  opacity: 0.6;
+}
+
+.active,
+.demo:hover {
+  opacity: 1;
+}
+
+img.hover-shadow {
+  transition: 0.3s;
+}
+
+
+.hover-shadow:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+    </style>
+      <!-- Make sure you put this AFTER Leaflet's CSS -->
+     
+        
+        <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"
+   integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
+   crossorigin=""></script>
+  
+    <!-- Theme Style -->
+    <link rel="stylesheet" href="../shared/css/style.css">
+      </head>
+      <body>
+      <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+        <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">Noclegi Mudrak</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav text-uppercase ml-auto">
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#home">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="rooms.html">Our Rooms</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#information">Information</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+            </li>
+           <li class="nav-item">
+             <a class="nav-link js-scroll-trigger" href="#contact">    <i class="fa fa-globe"></i></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    </nav>
+  
+  
+  
+    
+    <!-- END head -->
+ 
+          
+<div id="photos" class="carousel slide" data-ride="carousel">
+
+  <!-- Indicators -->
+  <ul class="carousel-indicators">
+    <li data-target="#photos" data-slide-to="0" class="active"></li>
+    <li data-target="#photos" data-slide-to="1"></li>
+    <li data-target="#photos" data-slide-to="2"></li>
+    <li data-target="#photos" data-slide-to="3"></li>
+  </ul>
+
+  <!-- Indicators -->
+
+  <!-- The slideshow -->
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="../shared/images/outside10.jpg" alt="Room 1" width=100% >
+    </div>
+    <div class="carousel-item">
+      <img src="../shared/images/room2.3.jpeg" alt="Room 2" width=100%>
+    </div>
+    <div class="carousel-item">
+      <img src="../shared/images/room3.3.jpeg" alt="Room 3" width=100%>
+    </div>
+      <div class="carousel-item">
+      <img src="../shared/images/outside1.jpg" alt="Room 4" width=100%>
+    </div>
+  </div>
+
+  <!-- Left and right controls -->
+  <a class="carousel-control-prev" href="#demo" data-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </a>
+  <a class="carousel-control-next" href="#demo" data-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </a>
+   
+        
+    </div>
+       
+      <a class="mouse smoothscroll" href="#next">
+        <div class="mouse-icon">
+          <span class="mouse-wheel"></span>
+        </div>
+    </a>
+    <!-- END section -->
+
+    <section class="section bg-light pb-0"  >
+      <div class="container">
+       
+        <div class="row check-availabilty" id="next">
+          <div class="block-32" data-aos="fade-up" data-aos-offset="-200">
+
+            <form action="#">
+              <div class="row">
+                <div class="col-md-6 mb-3 mb-lg-0 col-lg-3">
+                  <label for="checkin_date" class="font-weight-bold text-black">Check In</label>
+                  <div class="field-icon-wrap">
+                    <div class="icon"><span class="icon-calendar"></span></div>
+                    <input type="text" id="checkin_date" class="form-control">
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3 mb-lg-0 col-lg-3">
+                  <label for="checkout_date" class="font-weight-bold text-black">Check Out</label>
+                  <div class="field-icon-wrap">
+                    <div class="icon"><span class="icon-calendar"></span></div>
+                    <input type="text" id="checkout_date" class="form-control">
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3 mb-md-0 col-lg-3">
+                  <div class="row">
+                    <div class="col-md-6 mb-3 mb-md-0">
+                      <label for="adults" class="font-weight-bold text-black">Persons</label>
+                      <div class="field-icon-wrap">
+                        <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+                        <select name="" id="adults" class="form-control">
+                          <option value="">1</option>
+                          <option value="">2</option>
+                          <option value="">3</option>
+                          <option value="">4</option>
+                        </select>
+                      </div>
+            </div>
+                  </div>
+                </div>
+                <div class="col-md-6 col-lg-3 align-self-end">
+                  <button class="btn btn-primary btn-block text-white">Check Availabilty</button>
+                </div>
+              </div>
+            </form>
+          </div>
+
+
+        </div>
+      </div>
+    </section>
+
+	  
+	  
+	   
+		 <!-- room1-->
+
+    
+    <section class="section">
+      <div class="container">
+         <div class="p-3 text-center room-info">
+                <h2>Single Room</h2>
+                <span class="text-uppercase letter-spacing-1" style="display: block">90$ / per night</span>
+                <span class="text-uppercase letter-spacing-1">Capacity: 1 guest</span>
+         </div>
+
+      <div class="row">
+      <div class="col-md-6 col-lg-4 mb-5" data-aos="fade-up">
+            <div class = "column">
+        <figure class="img-wrap">
+         <a href="#"> <img src="../shared/images/room1.1.jpeg" class="img-fluid mb-3 hover-shadow cursor" style="width: 100%" onclick="openModal();currentSlide(1)" class="hover-shadow" ></a>
+        </figure>
+             </div>
+           
+      </div>
+
+      </div>
+
+        <!-- room2-->
+         <div class="p-3 text-center room-info">
+           <h2>3 Beds Room</h2>
+           <span class="text-uppercase letter-spacing-1" style="display: block">90$ / per night</span>
+           <span class="text-uppercase letter-spacing-1">Capacity: 3 guests</span>
+        </div>
+        <div class="row">
+          <div class="col-md-6 col-lg-4 mb-5" data-aos="fade-up">
+           <div class = "column">
+              <figure class="img-wrap">
+             <a href="#">   <img src="../shared/images/room2.1.jpeg" class="img-fluid mb-3 hover-shadow" style="transform:rotate(90deg)" onclick="openModal();currentSlide(2)" class="hover-shadow"> </a>
+              </figure>
+             </div>
+          </div>
+
+       <div class="col-md-6 col-lg-4 mb-5" data-aos="fade-up">
+           <div class = "column">
+              <figure class="img-wrap">
+                <a href="#">
+                <img src="../shared/images/room2.2.jpeg" class="img-fluid mb-3 hover-shadow" onclick="openModal();currentSlide(3)" class="hover-shadow" ></a>
+              </figure>
+           </div>
+          </div>
+
+
+    <div class="col-md-6 col-lg-4 mb-5" data-aos="fade-up">
+           <div class = "column">
+              <figure class="img-wrap">
+                <a href="#">
+                <img src="../shared/images/room2.3.jpeg" class="img-fluid mb-3 hover-shadow" onclick="openModal();currentSlide(4)" class="hover-shadow" style="transform: translate(0%,20%);"></a>
+              </figure>
+             </div>
+          </div>
+        </div>
+
+      </div>
+
+
+<!-- room3-->
+     <div class="container">
+         <div class="p-3 text-center room-info">
+                <h2>Family Room</h2>
+                <span class="text-uppercase letter-spacing-1" style="display: block;">90$ / per night </span>
+                <span class="text-uppercase letter-spacing-1">Capacity: 4 guests</span>
+              </div>
+
+
+
+        <div class="row">
+          <div class="col-md-6 col-lg-4 mb-5" data-aos="fade-up">
+              <figure class="img-wrap">
+                <a href="#">
+                <img src="../shared/images/room3.1.jpg" class="img-fluid mb-3" onclick="openModal();currentSlide(5)" class="hover-shadow" >
+              </a>
+              </figure>        
+          </div>
+
+          <div class="col-md-6 col-lg-4 mb-5" data-aos="fade-up">
+              <figure class="img-wrap">
+                <a href="#">
+                <img src="../shared/images/room3.2.jpeg" class="img-fluid mb-3" onclick="openModal();currentSlide(6)" class="hover-shadow">
+               </a>
+              </figure>        
+          </div>
+
+          <div class="col-md-6 col-lg-4 mb-5" data-aos="fade-up">
+              <figure class="img-wrap">
+                <a href="#">
+                <img src="../shared/images/room3.3.jpeg" class="img-fluid mb-3 "onclick="openModal();currentSlide(7)" class="hover-shadow" style=" min-height: 31vh">
+               </a>
+              </figure>        
+          </div>
+
+          <div class="col-md-6 col-lg-4 mb-5" data-aos="fade-up">
+              <figure class="img-wrap">
+                <a href="#">
+                <img src="../shared/images/room3.4.jpeg" class="img-fluid mb-3" onclick="openModal();currentSlide(8)" class="hover-shadow">
+                </a>
+              </figure>        
+          </div>
+
+          
+          <div class="col-md-6 col-lg-4 mb-5" data-aos="fade-up">
+              <figure class="img-wrap">
+                <a href="#">
+                <img src="../shared/images/room3.5.jpeg" class="img-fluid mb-3" onclick="openModal();currentSlide(9)" class="hover-shadow" style="max-height: 35vh; margin-left: 50%; transform: translate(-50%,0%);" >
+               </a>
+              </figure>        
+          </div>
+
+           <div class="col-md-6 col-lg-4 mb-5" data-aos="fade-up">
+              <figure class="img-wrap">
+                <a href="#">
+                <img src="../shared/images/room3.6.jpeg" class="img-fluid mb-3" onclick="openModal();currentSlide(10)" class="hover-shadow">
+                </a>
+              </figure>        
+          </div>
+
+           <div class="col-md-6 col-lg-4 mb-5" data-aos="fade-up">
+              <figure class="img-wrap">
+                <a href="#">
+                <img src="../shared/images/room3.7.jpg" class="img-fluid mb-3" onclick="openModal();currentSlide(11)" class="hover-shadow">
+                </a>
+              </figure>        
+          </div>
+
+    </div>
+
+    </section>
+
+    
+    
+    <footer class="section footer-section">
+      <div class="container">
+        <div class="row mb-4">
+          <div class="col-md-3 mb-5">
+            <ul class="list-unstyled link">
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Terms &amp; Conditions</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+             <li><a href="#">Rooms</a></li>
+            </ul>
+          </div>
+          <div class="col-md-3 mb-5">
+            <ul class="list-unstyled link">
+              <li><a href="#">The Rooms &amp; Suites</a></li>
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Contact Us</a></li>
+              <li><a href="#">Restaurant</a></li>
+            </ul>
+          </div>
+          <div class="col-md-3 mb-5 pr-md-5 contact-info">
+            <!-- <li>198 West 21th Street, <br> Suite 721 New York NY 10016</li> -->
+            <p><span class="d-block"><span class="ion-ios-location h5 mr-3 text-primary"></span>Address:</span> <span> 198 West 21th Street, <br> Suite 721 New York NY 10016</span></p>
+            <p><span class="d-block"><span class="ion-ios-telephone h5 mr-3 text-primary"></span>Phone:</span> <span> (+1) 435 3533</span></p>
+            <p><span class="d-block"><span class="ion-ios-email h5 mr-3 text-primary"></span>Email:</span> <span> info@domain.com</span></p>
+          </div>
+          <div class="col-md-3 mb-5">
+            <p>Sign up for our newsletter</p>
+            <form action="#" class="footer-newsletter">
+              <div class="form-group">
+                <input type="email" class="form-control" placeholder="Email...">
+                <button type="submit" class="btn"><span class="fa fa-paper-plane"></span></button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="row pt-5">
+          <p class="col-md-6 text-left">
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a>
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+          </p>
+            
+          <p class="col-md-6 text-right social">
+            <a href="#"><span class="fa fa-tripadvisor"></span></a>
+            <a href="#"><span class="fa fa-facebook"></span></a>
+            <a href="#"><span class="fa fa-twitter"></span></a>
+            <a href="#"><span class="fa fa-linkedin"></span></a>
+            <a href="#"><span class="fa fa-vimeo"></span></a>
+          </p>
+        </div>
+      </div>
+    </footer>
+    
+    <!-- lightbox gallery -->
+
+
+<div id="myModal" class="modal">
+  <span class="close cursor" onclick="closeModal()">&times;</span>
+  <div class="modal-content">
+
+    <div class="mySlides">
+      <img src="../shared/images/room1.1.jpeg" style="width:100%">
+    </div>
+
+    <div class="mySlides">
+      <img src="../shared/images/room2.1.jpeg" style="width:100%; transform:rotate(90deg); min-height: 80vh; object-fit: cover">
+    </div>
+
+    <div class="mySlides">
+      <img src="../shared/images/room2.2.jpeg" style="width:100%">
+    </div>
+
+    <div class="mySlides">
+      <img src="../shared/images/room2.3.jpeg" style="width:100%; min-height: 80vh; object-fit: cover">
+    </div>
+
+    <div class="mySlides">
+      <img src="../shared/images/room3.1.jpg" style="width:100%;  ">
+    </div>
+
+    <div class="mySlides">
+      <img src="../shared/images/room3.2.jpeg" style="width:100%">
+    </div>
+
+    <div class="mySlides">
+      <img src="../shared/images/room3.3.jpeg" style="width:100%; min-height: 80vh; object-fit: cover">
+    </div>
+   
+   <div class="mySlides">
+      <img src="../shared/images/room3.4.jpeg" style="width:100%; ">
+    </div>
+
+    <div class="mySlides">
+      <img src="../shared/images/room3.5.jpeg" style="width:auto; max-height: 80vh; margin-left: 50%; transform: translate(-50%,0%);">
+    </div>
+
+    <div class="mySlides">
+      <img src="../shared/images/room3.6.jpeg" style="width:100%; ">
+    </div>
+
+    <div class="mySlides">
+      <img src="../shared/images/room3.7.jpg" style="width:100%; ">
+    </div>
+
+
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    <div class="caption-container">
+      <p id="caption"></p>
+    </div>
+
+
+<!-- end of gallery-->
+    <script src="../shared/js/jquery-3.3.1.min.js"></script>
+    <script src="../shared/js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="../shared/js/popper.min.js"></script>
+    <script src="../shared/js/bootstrap.min.js"></script>
+    <script src="../shared/js/owl.carousel.min.js"></script>
+    <script src="../shared/js/jquery.stellar.min.js"></script>
+    <script src="../shared/js/jquery.fancybox.min.js"></script>
+    
+    
+    <script src="../shared/js/aos.js"></script>
+    
+    <script src="../shared/js/bootstrap-datepicker.js"></script> 
+    <script src="../shared/js/jquery.timepicker.min.js"></script> 
+    <script src="../shared/js/main.js"></script>
+    <script>
+// Open the Modal
+function openModal() {
+  document.getElementById("myModal").style.display = "block";
+}
+
+// Close the Modal
+function closeModal() {
+  document.getElementById("myModal").style.display = "none";
+}
+
+var slideIndex = 1;
+showSlides(slideIndex);
+
+// Next/previous controls
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+// Thumbnail image controls
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("demo");
+  var captionText = document.getElementById("caption");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " active";
+  captionText.innerHTML = dots[slideIndex-1].alt;
+}
+</script>
+  </body>
+</html>
