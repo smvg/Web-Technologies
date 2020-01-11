@@ -3,9 +3,8 @@
 
     function get_dashboard() {
         echo "<div id='dashboard' class='content'>
-        <div>
           <h1>Dashboard</h1>
-          <hr>
+          <hr style='width:100%'>
           <div class='content-div animated fadeInUp'>
             <div class='card' style='width: 15rem;'>
                 <img src='../shared/images/accounts.png' style=\"object-fit: cover; height: 30vh\" class='card-img-top' alt='...'>
@@ -32,7 +31,6 @@
                 </div>
             </div>
           </div>
-        </div>
       </div>";
     }
 
@@ -105,8 +103,8 @@
       <h1>Accounts</h1>
       <hr style='width:100%'>
       <div class='input-section animated fadeIn'>
-        <input id='add-email' autocomplete='nope' type='email' placeholder='Email'>&nbsp;
-        <input id='add-psswd' autocomplete='nope' type='password' placeholder='Password'>&nbsp;
+        <input id='add-email' autocomplete='new-password' type='email' placeholder='Email'>&nbsp;
+        <input id='add-psswd' autocomplete='new-password' type='password' placeholder='Password'>&nbsp;
         <button id='add-account' class='btn btn-primary'>Add</button>
       </div>
       <div id='account-table' class='content-table'>
@@ -122,7 +120,7 @@
       </div>
       <div class='row-header-operation'>
           
-      </div></div>  
+      </div></div>
           ";
       
           $table = "";
