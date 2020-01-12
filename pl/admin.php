@@ -112,22 +112,26 @@
     <link rel='stylesheet' href="../shared/css/forms.css">
 
     <script src="../shared/js/jquery-3.3.1.min.js"></script>
+    
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
     <script src="../shared/js/jquery-redirect.js"></script>
+
+    <script src="../shared/js/hammer.js"></script>
 
     <script src="../shared/js/admin.js"></script>
 
   </head>
   <body>
-      <div id="collapse" style="position:fixed;background-color:rgb(24, 23, 23); z-index: 1; top: 1rem; left: 12%;transition: all 0.5s; padding: 7px" class="rounded">
+      <div id="collapse" class="rounded">
         <i class="fa fa-bars" aria-hidden="true"></i>
       </div>
       <div id="sidebar-admin" class="sidebar">
           <div id="logo-sidebar">
-            <span><h1 style="color: white">NM</h1></span>
+            <span id='title'><h1>NM</h1></span>
           </div>
           <div style='align-content: center; text-align: center; color: white'>
-            <span><a href='admin.php?logout=true' style="color: white"><i class="fa fa-sign-out"></i> Log out</a></span>
+            <span><a href='admin.php?logout=true' style="color: white"><i class="fa fa-sign-out"></i><span class='icon-description'>&nbsp;Log out</span></a></span>
           </div>
           <hr style="border-color: white;">
           <ul class="nav">
@@ -135,8 +139,7 @@
                   <a href="javascript:change_view('dashboard')" onclick="make_content_visible('dashboard')">
                       <p>
                         <i class="fa fa-home" aria-hidden="true"></i>
-                        &nbsp;
-                        <span class="icon-description">DASHBOARD</span>
+                        <span class="icon-description">&nbsp;DASHBOARD</span>
                       </p>
                   </a>
               </li>
@@ -144,17 +147,15 @@
                   <a href="javascript:change_view('accounts')">
                       <p>
                         <i class="fa fa-user" aria-hidden="true"></i>
-                        &nbsp;
-                        <span class="icon-description">ACCOUNTS</span>
+                        <span class="icon-description">&nbsp;ACCOUNTS</span>
                       </p>
                   </a>
               </li>
               <li>
                   <a href="javascript:change_view('rooms')">
                       <p>
-                        <i class="fa fa-key" aria-hidden="true"></i>
-                        &nbsp;
-                        <span class="icon-description">ROOMS</span>
+                        <i class="fa fa-th-large" aria-hidden="true"></i>
+                        <span class="icon-description">&nbsp;ROOMS</span>
                       </p>
                   </a>
               </li>
@@ -162,13 +163,42 @@
                   <a href="javascript:change_view('location')">
                       <p>
                         <i class="fa fa-info-circle"></i></i>
-                        &nbsp;
-                        <span class="icon-description">INFO & LINKS</span>
+                        <span class="icon-description">&nbsp;INFO & LINKS</span>
                       </p>
                   </a>
               </li>
           </ul>
       </div>
+          
+      <!-- Modal -->
+<div id='myModal' class="modal" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Edit Account</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <div id='input-div' class='animated fadeIn' style='display: flex; flex-wrap: wrap;'>
+        <div>
+          <i class='fa fa-envelope-o input-description' aria-hidden='true'></i>
+          <input id='edit-email-modal' style='width: 80%' autocomplete='new-password' type='email' placeholder='Email'>
+        </div>
+        <div>
+          <i class='fa fa-key' aria-hidden='true'></i>
+          <input id='edit-psswd-modal' style='width: 80%' autocomplete='new-password' type='password' placeholder='Password'>
+        </div>
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 
       <?php 
         $view = (isset($_POST['page'])) ? $_POST['page'] : '';
@@ -218,5 +248,6 @@
             break;
         };
       ?>
+      </div>
   </body>
 </html>

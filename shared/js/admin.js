@@ -2,29 +2,16 @@ let old_email;
 var content_ids = ['dashboard', 'accounts', 'rooms', 'location'];
 var collapsed = false;
 
-function change_view(view) {
-    $.redirect("admin.php", { page : view});
-}
+function collapse_menu(arg) {
 
-$(document).on('click', '.room-entry', function() {
+    var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
 
-    var room_id = $(this).attr('id').split('room-')[1];
-
-    $.redirect("admin.php", { 
-        page : 'room-edit',
-        id_room: room_id
-    });
-});
-
-$(document).on('click', '#collapse', function() {
-
-    if (collapsed) {
-
+    if (arg) {
         var sidebar = document.getElementById("sidebar-admin");
         sidebar.style.transform = "translate(0%, 0%)";
 
         var toggle = document.getElementById("collapse");
-        toggle.style.left = "12%";
+        toggle.style.left = (width < 1100) ? "6%" : "12%";
 
         var content = document.getElementsByClassName("content");
         content[0].style.left = "15%";
@@ -41,6 +28,43 @@ $(document).on('click', '#collapse', function() {
         content[0].style.left = "0%";
         content[0].style.width = "100%";
     }
+}
+
+document.addEventListener("DOMContentLoaded", function(){
+
+    var dashboard = document.getElementsByClassName('content')[0];
+    var mc = new Hammer(dashboard);
+    mc.on("swipeleft swiperight", function(ev) {
+        if (ev.type === "swiperight") {
+            collapse_menu(true)
+            collapsed = true;
+        }
+        else {
+            collapse_menu(false)
+            collapsed = false;
+        }
+    });
+});
+
+
+function change_view(view) {
+    $.redirect("admin.php", { page : view});
+}
+
+$(document).on('click', '.room-entry', function() {
+
+    var room_id = $(this).attr('id').split('room-')[1];
+
+    $.redirect("admin.php", { 
+        page : 'room-edit',
+        id_room: room_id
+    });
+});
+
+$(document).on('click', '#collapse', function() {
+
+    if (collapsed) collapse_menu(false)
+    else collapse_menu(true)
 
     collapsed = !collapsed;
 })
@@ -62,15 +86,23 @@ $(document).on('click', '.photo-entry', function() {
 
 
 $(document).on('click', '.edit-account', function() {
+    var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+
     old_email = $(this).parent().siblings('.row-data-email').text();
 
-    var save_btn = "<a href='#' style='margin:auto; display:inline-block; color: inherit' class='update-account'><i class='fa fa-floppy-o'></i></a>"
-    var cancel_btn = "<a href='#' style='margin-left:10px; display:inline-block; color: inherit' class='cancel-edit'><i class='fa fa-undo'></i></a>"
+    if (width < 1000) {
+        document.getElementById('edit-email-modal').value = old_email;
+        $('#myModal').modal('show')
+    }
+    else {
+        var save_btn = "<a href='#' style='margin:auto; display:inline-block; color: inherit' class='update-account'><i class='fa fa-floppy-o'></i></a>"
+        var cancel_btn = "<a href='#' style='margin-left:10px; display:inline-block; color: inherit' class='cancel-edit'><i class='fa fa-undo'></i></a>"
 
-    $(this).parent().siblings('.row-data-email').html("<input autocomplete='off' style='width: match-parent' class='input-email' type='email' value='" + old_email + "'>")
-    $(this).parent().siblings('.row-data-password').html("<input autocomplete='off' style='width: match-parent' class='input-password' type='password'>")
+        $(this).parent().siblings('.row-data-email').html("<input autocomplete='off' style='width: match-parent' class='input-email' type='email' value='" + old_email + "'>")
+        $(this).parent().siblings('.row-data-password').html("<input autocomplete='off' style='width: match-parent' class='input-password' type='password'>")
 
-    $(this).parent().html(save_btn + cancel_btn)
+        $(this).parent().html(save_btn + cancel_btn)
+    }
     
 });
 
@@ -94,7 +126,9 @@ $(document).on('click', '.update-account', function() {
 
     var old_email = $(this).parent().siblings('.row-data-email').find('.input-email')[0].attributes.value.nodeValue.trim();
 
-    console.log(email + "-" + password)
+    if (email === '' || password === '') {
+        return;
+    }
 
     $.redirect("admin.php", { 
         page : 'accounts', 

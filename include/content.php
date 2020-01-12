@@ -75,13 +75,32 @@
         <hr style='width:100%'>
         <form id='input-div' enctype='multipart/form-data' action='admin.php' method='post'>
           <h5>Address & Phone</h5>
-          <input name='address' type=\"text\" placeholder=\"Address\" value='" . $row['address_location'] . "'\>
-          <input name='tel' type=\"tel\" placeholder=\"Phone Number\" value='" . $row['phone_location'] . "' pattern=\"[0-9]{3}-[0-9]{2}-[0-9]{2}-[0-9]{2}\">
+          <div style='display: flex; flex-wrap: wrap'>
+            <div style='width: 25rem'>
+              <i class='fa fa-map-marker input-description' aria-hidden='true'></i>
+              <input name='address' style='width: 80%' type=\"text\" placeholder=\"Address\" value='" . $row['address_location'] . "'\>
+            </div>
+            <div>
+              <i class='fa fa-phone input-description' aria-hidden='true'></i>
+              <input name='tel' type=\"tel\"  placeholder=\"Phone Number\" value='" . $row['phone_location'] . "' pattern=\"[0-9]{3}-[0-9]{2}-[0-9]{2}-[0-9]{2}\">
+            </div>
+          </div>
           <br><br>
           <h5>Email & Links</h5>
-          <input name='email' type=\"text\" placeholder=\"Email Address\" value='" . $row['email_location'] . "'\>
-          <input name='flink' type=\"text\" placeholder=\"Facebook Link\" value='" . $row['facebook_link'] . "'\>
-          <input name='blink' type=\"text\" placeholder=\"Booking Link\" value='" . $row['booking_link'] . "'\>
+          <div style='display: flex; flex-wrap: wrap'>
+            <div style='width: 25rem'>
+              <i class='fa fa-envelope-o input-description' aria-hidden='true'></i>
+              <input name='email' style='width: 80%' type=\"text\" placeholder=\"Email Address\" value='" . $row['email_location'] . "'\>
+            </div>
+            <div>
+              <i class='fa fa-facebook input-description' aria-hidden='true'></i>
+              <input name='flink' type=\"text\" placeholder=\"Facebook Link\" value='" . $row['facebook_link'] . "'\>
+            </div>
+            <div>
+              <i class='fa fa-link input-description' aria-hidden='true'></i>
+              <input name='blink' type=\"text\" placeholder=\"Booking Link\" value='" . $row['booking_link'] . "'\>
+            </div>
+          </div>
           <br>
         
         <div class='photo-div'>" . $photos_code . "</div>
@@ -102,10 +121,18 @@
       $static_code = "<div id='accounts' class='content animated fadeInUp'>
       <h1>Accounts</h1>
       <hr style='width:100%'>
-      <div class='input-section animated fadeIn'>
-        <input id='add-email' autocomplete='new-password' type='email' placeholder='Email'>&nbsp;
-        <input id='add-psswd' autocomplete='new-password' type='password' placeholder='Password'>&nbsp;
-        <button id='add-account' class='btn btn-primary'>Add</button>
+      <div id='input-div' class='animated fadeIn' style='display: flex; flex-wrap: wrap;'>
+        <div>
+          <i class='fa fa-envelope-o input-description' aria-hidden='true'></i>
+          <input id='add-email' style='width: 80%' autocomplete='new-password' type='email' placeholder='Email'>
+        </div>
+        <div>
+          <i class='fa fa-key' aria-hidden='true'></i>
+          <input id='add-psswd' style='width: 80%' autocomplete='new-password' type='password' placeholder='Password'>
+        </div>
+        <div style='position: relative'>
+          <button id='add-account' class='btn btn-primary'>Add</button>
+        </div>
       </div>
       <div id='account-table' class='content-table'>
       <div class='header-cell'>
@@ -195,7 +222,7 @@
           echo "Connection to database failed :(";
       }
       
-      $query_string = "select Rooms.id_room, id_location, description, capacity, price, Count(name) as num_photos from Rooms left join Room_Photo on Rooms.id_room = Room_Photo.id_room group by id_room;";
+      $query_string = "select Rooms.id_room, id_location, description_pl, capacity, price, Count(name) as num_photos from Rooms left join Room_Photo on Rooms.id_room = Room_Photo.id_room group by id_room;";
       
       $result = $connection->query($query_string);
 
@@ -209,7 +236,7 @@
       . $row['id_room'] .
       "</div>
       <div class='row-data-description'>"
-      . $row['description'] .
+      . $row['description_pl'] .
       "</div>
       <div class='row-data-capacity'>"
       . $row['capacity'] . 
@@ -264,10 +291,22 @@
           <hr>
 
           <form id='input-div' enctype='multipart/form-data' action='admin.php' method='post'>
-            <input name='capacity' type=\"number\" value='" . $row['capacity'] . "' placeholder=\"Capacity\">
-            <input name='price' type=\"number\" value='" . $row['price'] . "' placeholder=\"Price\">
+            <h5>Capacity & Price</h5>
+            <div style='display: flex; flex-wrap: wrap'>
+              <div>
+                <i class='fa fa-users input-description' aria-hidden='true'></i>
+                <input name='capacity' type=\"number\" value='" . $row['capacity'] . "' placeholder=\"Capacity\">
+              </div>
+              <div>
+                <i class='fa fa-money input-description' aria-hidden='true'></i>
+                <input name='price' type=\"number\" value='" . $row['price'] . "' placeholder=\"Price\">
+              </div>
+            </div>
             <br>
-            <textarea name='description' class=\"rounded\" placeholder=\"Description\">" . $row['description'] . "</textarea>
+            <h5>Descriptions (Polish & English)</h5>
+            <textarea name='description_pl' class=\"rounded\" placeholder=\"Polish Description\">" . $row['description_pl'] . "</textarea>
+            <br>
+            <textarea name='description_en' class=\"rounded\" placeholder=\"English Description\">" . $row['description_en'] . "</textarea>
             <br>
             <div class='photo-div'>" . $photos_code . "</div>
             <input id='fileInput' type='file' name='pics[]' style=\"width: auto;\" accept='image/*' multiple>

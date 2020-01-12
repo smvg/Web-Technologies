@@ -13,3 +13,14 @@
 .go-back-rooms {
     cursor: pointer;
 }
+
+@media only screen and (max-width: 1000px) {
+    .row-header-description, .row-data-description {
+        display: none;
+    }
+
+    .row-header-capacity, .row-data-capacity, .row-header-photos, .row-data-photos, .row-header-price, .row-data-price {
+        width: 30%; text-align: center;
+    }
+
+}

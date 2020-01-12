@@ -9,3 +9,27 @@
 .row-data-email, .row-header-email, .row-data-password, .row-header-password, .row-data-operation, .row-header-operation {
     min-width: 30%; text-align: center;
 }
+
+#account-table {
+    margin-top: 1rem;
+}
+
+#add-account {
+    /*
+    position: absolute;
+    top: 50%;
+    transform: translate(0%, -50%);*/
+    margin: 0.5rem;
+    padding: 1rem;
+    width: 6rem;
+}
+
+@media only screen and (max-width: 1000px) {
+    .row-header-password, .row-data-password {
+        display: none;
+    }
+
+    .row-header-email, .row-data-email {
+        width: 60%;
+    }
+}
