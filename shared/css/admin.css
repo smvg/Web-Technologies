@@ -11,6 +11,10 @@ html * {
     transition: all 0.5s;
 }
 
+#collapse:hover {
+    cursor: pointer;
+}
+
 
 #logo-sidebar {
     padding: 1rem;
