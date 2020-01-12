@@ -119,8 +119,10 @@
 
   </head>
   <body>
-
-      <div class="sidebar">
+      <div id="collapse" style="position:fixed;background-color:rgb(24, 23, 23); z-index: 1; top: 1rem; left: 12%;transition: all 0.5s; padding: 7px" class="rounded">
+        <i class="fa fa-bars" aria-hidden="true"></i>
+      </div>
+      <div id="sidebar-admin" class="sidebar">
           <div id="logo-sidebar">
             <span><h1 style="color: white">NM</h1></span>
           </div>
