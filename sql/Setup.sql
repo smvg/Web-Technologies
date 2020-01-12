@@ -58,16 +58,17 @@ insert into Location_Photo values(1, 'outside1.jpg');
 create Table Rooms(
     id_room int NOT NULL AUTO_INCREMENT,
     id_location int NOT NULL,
-    description varchar(100),
+    description_pl varchar(100),
+    description_en varchar(100),
     capacity int,
     price int,
     FOREIGN KEY(id_location) REFERENCES Location(id_location) ON DELETE CASCADE,
     PRIMARY KEY(id_room)
 );
 
-insert into Rooms (id_location, description, capacity, price) values(1, 'A cozy room', 4, 90);
-insert into Rooms (id_location, description, capacity, price) values(1, 'Another cozy room', 2, 100);
-insert into Rooms (id_location, description, capacity, price) values(1, 'This is cozy but doesnt have wifi', 3, 110);
+insert into Rooms (id_location, description_pl, description_en, capacity, price) values(1,'Polish description', 'A cozy room', 4, 90);
+insert into Rooms (id_location, description_pl, description_en, capacity, price) values(1,'Polish description', 'Another cozy room', 2, 100);
+insert into Rooms (id_location, description_pl, description_en, capacity, price) values(1,'Polish description', 'This is cozy but doesnt have wifi', 3, 110);
 
 create Table Room_Photo(
     id_room int NOT NULL,
