@@ -63,6 +63,10 @@
         $result = $connection->query($query_string);
     
         $connection->close();
+
+        if (isset($_SESSION['email'])) {
+            session_destroy();
+        }
     }
 
     function upload_photos($connection, $photos, $id, $table) {
@@ -172,7 +176,8 @@
         include("constants.php");
 
         $capacity = $_POST['capacity'];
-        $description = $_POST['description'];
+        $description_pl = $_POST['description_pl'];
+        $description_en = $_POST['description_en'];
         $id_room = $_POST['id_room'];
         $price = $_POST['price'];
         $photos_to_delete = isset($_POST['existing-photo']) ? $_POST['existing-photo'] : [];
@@ -183,7 +188,7 @@
             echo "Connection to database failed :(";
         }
 
-        $query_string = "UPDATE Rooms SET capacity = " . $capacity . ", description = '" . $description . "', price = " .  $price . " WHERE id_room = " . $id_room .  ";";
+        $query_string = "UPDATE Rooms SET capacity = " . $capacity . ", description_pl = '" . $description_pl . "', description_en = '" . $description_en . "', price = " .  $price . " WHERE id_room = " . $id_room .  ";";
         $result = $connection->query($query_string);
 
         $query_string = "";
