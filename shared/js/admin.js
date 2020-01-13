@@ -84,6 +84,27 @@ $(document).on('click', '.photo-entry', function() {
 
 });
 
+$(document).on('click', '#update-account-modal', function() {
+
+    var email = $('#edit-email-modal')[0].value;
+    var password = $('#edit-psswd-modal')[0].value;
+
+    if (email === '' || password === '') {
+        return;
+    }
+
+    old_email = old_email.trim();
+
+    $.redirect("admin.php", { 
+        page : 'accounts', 
+        action: 'update-account', 
+        'old-email': old_email,
+        'update-email': email,
+        'update-psswd': password
+    });
+
+});
+
 
 $(document).on('click', '.edit-account', function() {
     var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
@@ -92,7 +113,7 @@ $(document).on('click', '.edit-account', function() {
 
     if (width < 1000) {
         document.getElementById('edit-email-modal').value = old_email;
-        $('#myModal').modal('show')
+        $('#modal-edit').modal('show')
     }
     else {
         var save_btn = "<a href='#' style='margin:auto; display:inline-block; color: inherit' class='update-account'><i class='fa fa-floppy-o'></i></a>"
