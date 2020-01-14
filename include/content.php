@@ -14,8 +14,8 @@
             <p><span class=\"d-block\"><span class=\"ion-ios-location h5 mr-3 text-primary\"></span>Address:</span> <span>" . $address . "</span></p>
             <p><span class=\"d-block\"><span class=\"ion-ios-telephone h5 mr-3 text-primary\"></span>Phone:</span> <span>" . $phone . "</span></p>
             <p><span class=\"d-block\"><span class=\"ion-ios-email h5 mr-3 text-primary\"></span>Email:</span> <span>" . $email . "</span></p>
-                  <p><span class=\"d-block\"><span class=\"fa-fa-facebook h5 mr-3 text-primary\"></span>Facebook:</span> <span>" . $flink . "</span></p>
-                  <p><span class=\"d-block\"><span class=\"fa-fa-tripadvisor h5 mr-3 text-primary\"></span>Booking:</span> <span>" . $blink . "</span></p>
+                  <p><span class=\"d-block\"><span class=\"fa fa-facebook h5 mr-3 text-primary\"></span>Facebook:</span> <span>" . $flink . "</span></p>
+                  <p><span class=\"d-block\"><span class=\"fa fa-link h5 mr-3 text-primary\"></span>Booking:</span> <span>" . $blink . "</span></p>
           </div>
           <form class=\"col-md-5 mb-5 pr-md-5 contact-info\" action=\"../include/send_mail.php\" method=\"post\">
             <input name=\"name\" type=\"text\" style=\"margin: 0.5rem; width: 100%; padding: 1rem;\" placeholder=\"Name\">
@@ -23,6 +23,9 @@
             <textarea name=\"text\" class=\"rounded\" style=\"margin: 0.5rem; width: 100%; padding: 1rem;\" placeholder=\"Type here\"></textarea>
             <input type=\"submit\" value=\"Send\" class=\"btn btn-primary btn-block text-white\" style=\"margin: 0.5rem;\">
           </form>
+        </div>
+        <div id='copyright'>
+          Copyright © 1996–2020 Noclegi Mudrak. All rights reserved.
         </div>
       </div>
     </footer>";
@@ -53,7 +56,7 @@
           </form>
         </div>
         <div id='copyright'>
-          Copyright © 1996–2020 Martyna Mudrak. All rights reserved.
+          Copyright © 1996–2020 Noclegi Mudrak. All rights reserved.
         </div>
       </div>
     
