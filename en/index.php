@@ -267,7 +267,7 @@ $connection->close();
         </div>
         <div id="map-container-google-1" class=" rounded z-depth-1-half map-container">
           <!--<iframe frameborder="0" style="border: 0;" src="https://maps.googleapis.com/maps/api/staticmap?key=AIzaSyDRIG7EyuooxjDO8fz7IygRR2EJ22qeGtc&center=47.64919455026912,-122.34805830535075&zoom=12&format=png&maptype=roadmap&size=480x360" allowfullscreen></iframe> -->
-          <iframe frameborder="0" style="border:0" src="https://maps.google.com/maps?q=almeria&t=&z=13&ie=UTF8&iwloc=&output=embed" allowfullscreen></iframe>
+          <iframe frameborder="0" style="border:0" src="https://maps.google.com/maps?q=gieraltow&t=&z=17&ie=UTF8&iwloc=&output=embed" allowfullscreen></iframe>
         </div>
   </section>
 
