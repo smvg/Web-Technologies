@@ -31,6 +31,9 @@
     $email = $_POST['email'];
     $password = $_POST['psswd'];
 
+    # Security measures to avoid MySQL injections
+    $email = bin2hex($email);
+
     # Are variables empty
     if (empty($email) || empty($password)) go_back_to_login();
 
@@ -43,7 +46,9 @@
     }
 
     $query_string = "SELECT * FROM Administrators
-                    where email = '" . $email . "';";
+                    where email = UNHEX('" . $email . "');";
+    
+    error_log($email);
 
     $result = $connection->query($query_string);
 
