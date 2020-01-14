@@ -1,6 +1,7 @@
 <?php
 
-    include("../include/constants.php");
+    include_once("../include/constants.php");
+    include("../include/content.php");
 
     $connection = new mysqli($mysql_host, $mysql_user, $mysql_password, $mysql_db);
 
@@ -57,63 +58,12 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Noclegi Mudrak - Rooms</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
-    <meta name="author" content="" />
-
-
-    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=|Roboto+Sans:400,700|Playfair+Display:400,700">
-
-    <link rel="stylesheet" href="../shared/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../shared/css/animate.css">
-    <link rel="stylesheet" href="../shared/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="../shared/css/aos.css">
-    <link rel="stylesheet" href="../shared/css/bootstrap-datepicker.css">
-    <link rel="stylesheet" href="../shared/css/jquery.timepicker.css">
-    <link rel="stylesheet" href="../shared/css/fancybox.min.css">
     
-    <link rel="stylesheet" href="../shared/fonts/ionicons/css/ionicons.min.css">
-    <link rel="stylesheet" href="../shared/fonts/fontawesome/css/font-awesome.min.css">
-
-    <link rel="stylesheet" href="../shared/css/index-rooms.css">
-
-    <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"
-   integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
-   crossorigin=""></script>
-  
-    <!-- Theme Style -->
-    <link rel="stylesheet" href="../shared/css/style.css">
+    <?php echo $include_headers_main ?>
+    
       </head>
       <body>
-      <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
-        <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top">Noclegi Mudrak</a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        Menu
-        <i class="fas fa-bars"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav text-uppercase ml-auto">
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="index.php">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#">Our Rooms</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="index.php#information">Information</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
-            </li>
-           <li class="nav-item">
-             <a class="nav-link js-scroll-trigger" href="#contact"><i class="fa fa-globe"></i></a>
-          </li>
-        </ul>
-      </div>
-    </div>
-    </nav>
+      <?php echo $navbar_pl; ?>
   
     <!-- END head -->
           
@@ -121,18 +71,19 @@
 
   <!-- The slideshow -->
   <div id="photos" class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="../shared/images/outside10.jpg" class="carousel-image" alt="Room 1">
-    </div>
-    <div class="carousel-item">
-      <img src="../shared/images/room2.3.jpeg" class="carousel-image" alt="Room 2">
-    </div>
-    <div class="carousel-item">
-      <img src="../shared/images/room3.3.jpeg" class="carousel-image" alt="Room 3">
-    </div>
-      <div class="carousel-item">
-      <img src="../shared/images/outside1.jpg" class="carousel-image" alt="Room 4">
-    </div>
+    <?php
+
+    for ($index = 0; $index < 3; $index++) {
+      for ($x = 0; $x < count($photos[$index]); $x++) {
+        echo "
+        <div class='carousel-item " . (($index+$x == 0) ? "active" : "") . "'>
+          <img src='../shared/images/" . $photos[$index][$x] . "' class='carousel-image' >
+        </div>
+      ";
+      }
+      }
+
+    ?> 
   </div>
 
   <!-- Left and right controls -->
@@ -204,14 +155,14 @@
                 <span class="text-uppercase letter-spacing-1">Capacity: <?php echo $capacity[0] ?> guest</span>
          </div>
 
-         <div class='row'>
+         <div class='row room-gallery'>
          <?php
 
             for ($index = 0; $index < count($photos[0]); $index++) {
                 echo "
                 <div class='col-md-6 col-lg-4 mb-5' data-aos='fade-up'>
                   <figure class='img-wrap'>
-                   <a href='#'> <img src='../shared/images/" . $photos[0][$index] . "' class='img-fluid mb-3 hover-shadow cursor' style='width: 100%' onclick='openModal();currentSlide(1)' class='hover-shadow' ></a>
+                   <a href='#'> <img src='../shared/images/" . $photos[0][$index] . "' class='img-fluid mb-3 hover-shadow cursor' style='width: 25rem; height: 20rem; object-fit: cover;' onclick='openModal();currentSlide(1)' class='hover-shadow' ></a>
                   </figure>
                        </div>
                      
@@ -230,14 +181,14 @@
            <span class="text-uppercase letter-spacing-1" style="display: block"><?php echo $prices[1]?> zl / per night</span>
            <span class="text-uppercase letter-spacing-1">Capacity: <?php echo $capacity[1] ?> guests</span>
         </div>
-        <div class="row">
+        <div class="row room-gallery">
           <?php
 
             for ($index = 0; $index < count($photos[1]); $index++) {
                 echo "
                 <div class='col-md-6 col-lg-4 mb-5' data-aos='fade-up'>
                   <figure class='img-wrap'>
-                   <a href='#'> <img src='../shared/images/" . $photos[1][$index] . "' class='img-fluid mb-3 hover-shadow cursor' style='width: 100%' onclick='openModal();currentSlide(1)' class='hover-shadow' ></a>
+                   <a href='#'> <img src='../shared/images/" . $photos[1][$index] . "' class='img-fluid mb-3 hover-shadow cursor' style='width: 25rem; height: 20rem; object-fit: cover;' onclick='openModal();currentSlide(1)' class='hover-shadow' ></a>
                   </figure>
                        </div>";
             }
@@ -258,7 +209,7 @@
 
 
 
-        <div class="row">
+        <div class="row room-gallery">
 
 
         <?php
@@ -267,7 +218,7 @@
                 echo "
                 <div class='col-md-6 col-lg-4 mb-5' data-aos='fade-up'>
                   <figure class='img-wrap'>
-                   <a href='#'> <img src='../shared/images/" . $photos[2][$index] . "' class='img-fluid mb-3 hover-shadow cursor' style='width: 100%' onclick='openModal();currentSlide(1)' class='hover-shadow' ></a>
+                   <a href='#'> <img src='../shared/images/" . $photos[2][$index] . "' class='img-fluid mb-3 hover-shadow cursor' style='width: 25rem; height: 20rem; object-fit: cover;' onclick='openModal();currentSlide(1)' class='hover-shadow' ></a>
                   </figure>
                        </div>";
             }
@@ -280,31 +231,7 @@
 
     
     
-    <footer id="contact" class="section footer-section">
-      <div class="container">
-        <div class="row mb-4">
-           <div class="col-md-3 mb-5">
-            <ul class="list-unstyled link">
-              <li><a href="rooms.html">The Rooms</a></li>
-              <li><a href="#">Contact Us</a></li>
-            </ul>
-          </div>
-          <div class="col-md-3 mb-5 pr-md-5 contact-info">
-            <p><span class="d-block"><span class="ion-ios-location h5 mr-3 text-primary"></span>Address:</span> <span> <br> <?php echo $address ?></span></p>
-            <p><span class="d-block"><span class="ion-ios-telephone h5 mr-3 text-primary"></span>Phone:</span> <span><?php echo $phone ?></span></p>
-            <p><span class="d-block"><span class="ion-ios-email h5 mr-3 text-primary"></span>Email:</span> <span><?php echo $email ?></span></p>
-			      <p><span class="d-block"><span class="fa-fa-facebook h5 mr-3 text-primary"></span>Facebook:</span> <span> <?php echo $flink ?></span></p>
-			      <p><span class="d-block"><span class="fa-fa-tripadvisor h5 mr-3 text-primary"></span>Booking:</span> <span> <?php echo $blink ?></span></p>
-          </div>
-          <form class="col-md-5 mb-5 pr-md-5 contact-info" action="../include/send_mail.php" method="post">
-            <input name="name" type="text" style="margin: 0.5rem; width: 100%; padding: 1rem;" placeholder="Name">
-            <input name="email" type="email" style="margin: 0.5rem; width: 100%; padding: 1rem;" placeholder="Email">
-            <textarea name="text" class="rounded" style="margin: 0.5rem; width: 100%; padding: 1rem;" placeholder="Type here"></textarea>
-            <input type="submit" value="send" class="btn btn-primary btn-block text-white" style="margin: 0.5rem;">
-          </form>
-        </div>
-      </div>
-    </footer>
+    <?php get_footer_pl($address, $phone, $email, $flink, $blink); ?>
     
     <!-- lightbox gallery -->
 
@@ -313,49 +240,19 @@
   <span class="close cursor" onclick="closeModal()">&times;</span>
   <div class="modal-content">
 
-    <div class="mySlides">
-      <img src="../shared/images/room1.1.jpeg" style="width:100%">
-    </div>
+  <?php
 
-    <div class="mySlides">
-      <img src="../shared/images/room2.1.jpeg" style="width:100%; transform:rotate(90deg); min-height: 80vh; object-fit: cover">
-    </div>
+    for ($index = 0; $index < 3; $index++) {
+      for ($x = 0; $x < count($photos[$index]); $x++) {
+        echo "
+          <div class='mySlides'>
+            <img src='../shared/images/" . $photos[$index][$x] . "' style='width:100%; object-fit: cover;'>
+          </div>
+        ";
+      }
+    }
 
-    <div class="mySlides">
-      <img src="../shared/images/room2.2.jpeg" style="width:100%">
-    </div>
-
-    <div class="mySlides">
-      <img src="../shared/images/room2.3.jpeg" style="width:100%; min-height: 80vh; object-fit: cover">
-    </div>
-
-    <div class="mySlides">
-      <img src="../shared/images/room3.1.jpg" style="width:100%;  ">
-    </div>
-
-    <div class="mySlides">
-      <img src="../shared/images/room3.2.jpeg" style="width:100%">
-    </div>
-
-    <div class="mySlides">
-      <img src="../shared/images/room3.3.jpeg" style="width:100%; min-height: 80vh; object-fit: cover">
-    </div>
-   
-   <div class="mySlides">
-      <img src="../shared/images/room3.4.jpeg" style="width:100%; ">
-    </div>
-
-    <div class="mySlides">
-      <img src="../shared/images/room3.5.jpeg" style="width:auto; max-height: 80vh; margin-left: 50%; transform: translate(-50%,0%);">
-    </div>
-
-    <div class="mySlides">
-      <img src="../shared/images/room3.6.jpeg" style="width:100%; ">
-    </div>
-
-    <div class="mySlides">
-      <img src="../shared/images/room3.7.jpg" style="width:100%; ">
-    </div>
+  ?>
 
 
     <a class="prev" onclick="plusSlides(-1)">&#10094;</a>

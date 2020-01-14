@@ -26,6 +26,11 @@
     background-image: url('https://www.vajenti.it/wp-content/uploads/2018/03/camera-1800x1200.jpg');
 }
 
+#copyright {
+    width: 100%;
+    text-align: center;
+}
+
 .image-expand-content {
     visibility: hidden;
     position: relative; 

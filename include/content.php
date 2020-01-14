@@ -1,5 +1,64 @@
 <?php
 
+    function get_footer_en($address, $phone, $email, $flink, $blink) {
+      echo "<footer id=\"contact\" class=\"section footer-section\">
+      <div class=\"container\">
+        <div class=\"row mb-4\">
+           <div class=\"col-md-3 mb-5\">
+            <ul class=\"list-unstyled link\">
+              <li><a href=\"rooms.html\">The Rooms</a></li>
+              <li><a href=\"#\">Contact Us</a></li>
+            </ul>
+          </div>
+          <div class=\"col-md-3 mb-5 pr-md-5 contact-info\">
+            <p><span class=\"d-block\"><span class=\"ion-ios-location h5 mr-3 text-primary\"></span>Address:</span> <span>" . $address . "</span></p>
+            <p><span class=\"d-block\"><span class=\"ion-ios-telephone h5 mr-3 text-primary\"></span>Phone:</span> <span>" . $phone . "</span></p>
+            <p><span class=\"d-block\"><span class=\"ion-ios-email h5 mr-3 text-primary\"></span>Email:</span> <span>" . $email . "</span></p>
+                  <p><span class=\"d-block\"><span class=\"fa-fa-facebook h5 mr-3 text-primary\"></span>Facebook:</span> <span>" . $flink . "</span></p>
+                  <p><span class=\"d-block\"><span class=\"fa-fa-tripadvisor h5 mr-3 text-primary\"></span>Booking:</span> <span>" . $blink . "</span></p>
+          </div>
+          <form class=\"col-md-5 mb-5 pr-md-5 contact-info\" action=\"../include/send_mail.php\" method=\"post\">
+            <input name=\"name\" type=\"text\" style=\"margin: 0.5rem; width: 100%; padding: 1rem;\" placeholder=\"Name\">
+            <input name=\"email\" type=\"email\" style=\"margin: 0.5rem; width: 100%; padding: 1rem;\" placeholder=\"Email\">
+            <textarea name=\"text\" class=\"rounded\" style=\"margin: 0.5rem; width: 100%; padding: 1rem;\" placeholder=\"Type here\"></textarea>
+            <input type=\"submit\" value=\"Send\" class=\"btn btn-primary btn-block text-white\" style=\"margin: 0.5rem;\">
+          </form>
+        </div>
+      </div>
+    </footer>";
+    }
+
+    function get_footer_pl($address, $phone, $email, $flink, $blink) {
+      echo "<footer id=\"contact\" class=\"section footer-section\">
+      <div class=\"container\">
+        <div class=\"row mb-4\">
+           <div class=\"col-md-3 mb-5\">
+            <ul class=\"list-unstyled link\">
+              <li><a href=\"rooms.html\">The Rooms</a></li>
+              <li><a href=\"#\">Contact Us</a></li>
+            </ul>
+          </div>
+          <div class=\"col-md-3 mb-5 pr-md-5 contact-info\">
+            <p><span class=\"d-block\"><span class=\"ion-ios-location h5 mr-3 text-primary\"></span>Adres:</span> <span>" . $address . "</span></p>
+            <p><span class=\"d-block\"><span class=\"ion-ios-telephone h5 mr-3 text-primary\"></span>Tel:</span> <span>" . $phone . "</span></p>
+            <p><span class=\"d-block\"><span class=\"ion-ios-email h5 mr-3 text-primary\"></span>Email:</span> <span>" . $email . "</span></p>
+			      <p><span class=\"d-block\"><span class=\"fa fa-facebook h5 mr-3 text-primary\"></span>Facebook:</span> <span>" . $flink . "</span></p>
+			      <p><span class=\"d-block\"><span class=\"fa fa-link h5 mr-3 text-primary\"></span>Booking:</span> <span>" . $blink . "</span></p>
+          </div>
+          <form class=\"col-md-5 mb-5 pr-md-5 contact-info\" action=\"../include/send_mail.php\" method=\"post\">
+            <input name=\"name\" type=\"text\" style=\"margin: 0.5rem; width: 100%; padding: 1rem;\" placeholder=\"Imię\">
+            <input name=\"email\" type=\"email\" style=\"margin: 0.5rem; width: 100%; padding: 1rem;\" placeholder=\"Email\">
+            <textarea name=\"text\" class=\"rounded\" style=\"margin: 0.5rem; width: 100%; padding: 1rem;\" placeholder=\"Wiadomość\"></textarea>
+            <input type=\"submit\" value=\"Wyślij\" class=\"btn btn-primary btn-block text-white\" style=\"margin: 0.5rem;\">
+          </form>
+        </div>
+        <div id='copyright'>
+          Copyright © 1996–2020 Martyna Mudrak. All rights reserved.
+        </div>
+      </div>
+    
+    </footer>";
+    }
 
     function get_dashboard() {
         echo "<div id='dashboard' class='content'>
@@ -30,6 +89,9 @@
                   <a href=\"javascript:change_view('location')\" class='btn btn-primary'>Edit Info & Links</a>
                 </div>
             </div>
+          </div>
+          <div id='copyright'>
+            Copyright © 1996–2020 Martyna Mudrak. All rights reserved.
           </div>
       </div>";
     }

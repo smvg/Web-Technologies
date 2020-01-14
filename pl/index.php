@@ -1,5 +1,6 @@
 <?php
-    include("../include/constants.php");
+    include_once("../include/constants.php");
+    include("../include/content.php");
 
     $connection = new mysqli($mysql_host, $mysql_user, $mysql_password, $mysql_db);
 
@@ -52,64 +53,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Noclegi Mudrak</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
-    <meta name="author" content="" />
-    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=|Roboto+Sans:400,700|Playfair+Display:400,700">
-
-    <link rel="stylesheet" href="../shared/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../shared/css/animate.css">
-    <link rel="stylesheet" href="../shared/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="../shared/css/aos.css">
-    <link rel="stylesheet" href="../shared/css/bootstrap-datepicker.css">
-    <link rel="stylesheet" href="../shared/css/jquery.timepicker.css">
-    <link rel="stylesheet" href="../shared/css/fancybox.min.css">
-    <link rel="stylesheet" href="../shared/css/_custom.css">
-    <link rel="stylesheet" href="../shared/fonts/ionicons/css/ionicons.min.css">
-    <link rel="stylesheet" href="../shared/fonts/fontawesome/css/font-awesome.min.css">
-
-    <!-- Make sure you put this AFTER Leaflet's CSS -->
-    <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js" integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA==" crossorigin=""></script>
-
-    <!-- Flags -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/0.8.2/css/flag-icon.min.css">
-  
-    <!-- Theme Style -->
-    <link rel="stylesheet" href="../shared/css/style.css">
+    <?php echo $include_headers_main; ?>
   </head>
   <body>
-	  <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
-    <div class="container">
-      <a class="navbar-brand js-scroll-trigger" href="#page-top">Noclegi Mudrak</a>
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        Menu
-        <i class="fas fa-bars"></i>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav text-uppercase ml-auto">
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#rooms">Pokoje</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#information">Lokalizacja</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#contact">Kontakt</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#" id="select-en"><i class="flag-icon flag-icon-us"></i></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#" id="select-pl"><i class="flag-icon flag-icon-pl"></i></a>
-          </li>
-        </ul>
-      </div>
-    </div>
-	  </nav>  
+  <?php echo $navbar_pl; ?> 
     <!-- END head -->
  
           
@@ -318,31 +265,7 @@
             </div>
     </section>
 
-    <footer id="contact" class="section footer-section">
-      <div class="container">
-        <div class="row mb-4">
-           <div class="col-md-3 mb-5">
-            <ul class="list-unstyled link">
-              <li><a href="rooms.html">The Rooms</a></li>
-              <li><a href="#">Contact Us</a></li>
-            </ul>
-          </div>
-          <div class="col-md-3 mb-5 pr-md-5 contact-info">
-            <p><span class="d-block"><span class="ion-ios-location h5 mr-3 text-primary"></span>Adres:</span> <span> <br> <?php echo $address ?></span></p>
-            <p><span class="d-block"><span class="ion-ios-telephone h5 mr-3 text-primary"></span>Tel:</span> <span><?php echo $phone ?></span></p>
-            <p><span class="d-block"><span class="ion-ios-email h5 mr-3 text-primary"></span>Email:</span> <span><?php echo $email ?></span></p>
-			      <p><span class="d-block"><span class="fa-fa-facebook h5 mr-3 text-primary"></span>Facebook:</span> <span> <?php echo $flink ?></span></p>
-			      <p><span class="d-block"><span class="fa-fa-tripadvisor h5 mr-3 text-primary"></span>Booking:</span> <span> <?php echo $blink ?></span></p>
-          </div>
-          <form class="col-md-5 mb-5 pr-md-5 contact-info" action="../include/send_mail.php" method="post">
-            <input name="name" type="text" style="margin: 0.5rem; width: 100%; padding: 1rem;" placeholder="Imię">
-            <input name="email" type="email" style="margin: 0.5rem; width: 100%; padding: 1rem;" placeholder="Email">
-            <textarea name="text" class="rounded" style="margin: 0.5rem; width: 100%; padding: 1rem;" placeholder="Wiadomość"></textarea>
-            <input type="submit" value="Wyślij" class="btn btn-primary btn-block text-white" style="margin: 0.5rem;">
-          </form>
-        </div>
-      </div>
-    </footer>
+    <?php get_footer_pl($address, $phone, $email, $flink, $blink); ?>
     
     <script src="../shared/js/jquery-3.3.1.min.js"></script>
     <script src="../shared/js/jquery-migrate-3.0.1.min.js"></script>

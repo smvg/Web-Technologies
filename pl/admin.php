@@ -3,7 +3,7 @@
 
   include("../include/content.php");
   include("../include/actions.php");
-  include("../include/constants.php");
+  require_once("../include/constants.php");
 
   session_start();
 
@@ -81,46 +81,7 @@
 <html lang="en">
   <head>
     <title>Administrator's Website</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- External CSS -->
-    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=|Roboto+Sans:400,700|Playfair+Display:400,700">
-
-    <link rel="stylesheet" href="../shared/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../shared/css/animate.css">
-    <link rel="stylesheet" href="../shared/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="../shared/css/aos.css">
-    <link rel="stylesheet" href="../shared/css/bootstrap-datepicker.css">
-    <link rel="stylesheet" href="../shared/css/jquery.timepicker.css">
-    <link rel="stylesheet" href="../shared/css/fancybox.min.css">
-    <link rel="stylesheet" href="../shared/css/_custom.css">
-    <link rel="stylesheet" href="../shared/fonts/ionicons/css/ionicons.min.css">
-    <link rel="stylesheet" href="../shared/fonts/fontawesome/css/font-awesome.min.css">
-
-    <!-- Make sure you put this AFTER Leaflet's CSS -->
-    <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js" integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA==" crossorigin=""></script>
-  
-    <!-- Theme Style -->
-    <link rel="stylesheet" href="../shared/css/style.css">
-
-    <link rel="stylesheet" href="../shared/css/admin.css">
-    <link rel="stylesheet" href="../shared/css/table.css">
-    <link rel="stylesheet" href="../shared/css/accounts.css">
-    <link rel="stylesheet" href="../shared/css/rooms.css">
-    <link rel='stylesheet' href="../shared/css/forms.css">
-
-    <script src="../shared/js/jquery-3.3.1.min.js"></script>
-    
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
-    <script src="../shared/js/jquery-redirect.js"></script>
-
-    <script src="../shared/js/hammer.js"></script>
-
-    <script src="../shared/js/admin.js"></script>
-
+    <?php echo $include_headers_admin; ?>
   </head>
   <body>
       <div id="collapse" class="rounded">
