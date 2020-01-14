@@ -69,6 +69,19 @@
         }
     }
 
+    function resize_photo($dir, $file, $imageFileType) {
+        $filename = $file . "." . $imageFileType;
+        $tmp_image = ($imageFileType == "png") ? imagecreatefrompng($dir . $filename) : imagecreatefromjpeg($dir . $filename);
+        $resized_image = imagescale($tmp_image, 50, 50);
+
+        if ($imageFileType == "png") {
+            imagepng($resized_image, $dir . "50x50/" . $filename);
+        }
+        else {
+            imagejpeg($resized_image, $dir . "50x50/" . $filename);
+        }
+    }
+
     function upload_photos($connection, $photos, $id, $table) {
         $target_dir = "../shared/images/";
         $query_string = "";
@@ -134,6 +147,7 @@
                     } else {
                         if (move_uploaded_file($_FILES["pics"]["tmp_name"][$key], $target_file)) {
                             $query_string .= "insert into Photos values('" . $random_name . "." . $imageFileType . "', 'something', '" . $md5_hash_new_file . "'); insert into " . $table . "_Photo values(" . $id . ", '" . $random_name . "." . $imageFileType . "');";
+                            resize_photo($target_dir, $random_name, $imageFileType);
                         } else {
                             $error = 1;
                         }
@@ -142,7 +156,7 @@
             }
 
             if ($error) {
-                echo "<script>alert('There was an error uploading your files :(\nMake sure the files dont have a size that exceed 10MB.')</script>";
+                echo "<script>alert(\"There was an error uploading your files! Make sure the image type is supported (png, jpg & jpeg) and that the files don't exceed 10MB.\")</script>";
             }
 
             $result = $connection->multi_query($query_string);
@@ -165,6 +179,7 @@
             while ($row = $result->fetch_assoc()) {
                 $query_string .= "DELETE FROM Photos where name = '" . $row['name'] . "';";
                 unlink("../shared/images/" . $row['name']);
+                unlink("../shared/images/50x50/" . $row['name']);
             }
         }
 
