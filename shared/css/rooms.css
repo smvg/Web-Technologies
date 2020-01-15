@@ -8,6 +8,7 @@
 
 .row-data-description, .row-header-description {
     width: 60%; text-align: center;
+    overflow-x: auto;
 }
 
 .go-back-rooms {

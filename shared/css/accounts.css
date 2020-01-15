@@ -8,6 +8,7 @@
 
 .row-data-email, .row-header-email, .row-data-password, .row-header-password, .row-data-operation, .row-header-operation {
     min-width: 30%; text-align: center;
+    overflow-x: auto;
 }
 
 #account-table {
