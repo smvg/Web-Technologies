@@ -18,9 +18,9 @@
                   <p><span class=\"d-block\"><span class=\"fa fa-link h5 mr-3 text-primary\"></span>Booking:</span> <span>" . $blink . "</span></p>
           </div>
           <form class=\"col-md-5 mb-5 pr-md-5 contact-info\" action=\"../include/send_mail.php\" method=\"post\">
-            <input name=\"name\" type=\"text\" style=\"margin: 0.5rem; width: 100%; padding: 1rem;\" placeholder=\"Name\">
-            <input name=\"email\" type=\"email\" style=\"margin: 0.5rem; width: 100%; padding: 1rem;\" placeholder=\"Email\">
-            <textarea name=\"text\" class=\"rounded\" style=\"margin: 0.5rem; width: 100%; padding: 1rem;\" placeholder=\"Type here\"></textarea>
+            <input label=\"Your Name\" name=\"name\" type=\"text\" style=\"margin: 0.5rem; width: 100%; padding: 1rem;\" placeholder=\"Name\">
+            <input label=\"Your Email\" name=\"email\" type=\"email\" style=\"margin: 0.5rem; width: 100%; padding: 1rem;\" placeholder=\"Email\">
+            <textarea label=\"Your Message\" name=\"text\" class=\"rounded\" style=\"margin: 0.5rem; width: 100%; padding: 1rem;\" placeholder=\"Type here\"></textarea>
             <input type=\"submit\" value=\"Send\" class=\"btn btn-primary btn-block text-white\" style=\"margin: 0.5rem;\">
           </form>
         </div>
@@ -49,9 +49,9 @@
 			      <p><span class=\"d-block\"><span class=\"fa fa-link h5 mr-3 text-primary\"></span>Booking:</span> <span>" . $blink . "</span></p>
           </div>
           <form class=\"col-md-5 mb-5 pr-md-5 contact-info\" action=\"../include/send_mail.php\" method=\"post\">
-            <input name=\"name\" type=\"text\" style=\"margin: 0.5rem; width: 100%; padding: 1rem;\" placeholder=\"Imię\">
-            <input name=\"email\" type=\"email\" style=\"margin: 0.5rem; width: 100%; padding: 1rem;\" placeholder=\"Email\">
-            <textarea name=\"text\" class=\"rounded\" style=\"margin: 0.5rem; width: 100%; padding: 1rem;\" placeholder=\"Wiadomość\"></textarea>
+            <input label=\"Your Name\" name=\"name\" type=\"text\" style=\"margin: 0.5rem; width: 100%; padding: 1rem;\" placeholder=\"Imię\">
+            <input label=\"Your Email\" name=\"email\" type=\"email\" style=\"margin: 0.5rem; width: 100%; padding: 1rem;\" placeholder=\"Email\">
+            <textarea label=\"Your Message\" name=\"text\" class=\"rounded\" style=\"margin: 0.5rem; width: 100%; padding: 1rem;\" placeholder=\"Wiadomość\"></textarea>
             <input type=\"submit\" value=\"Wyślij\" class=\"btn btn-primary btn-block text-white\" style=\"margin: 0.5rem;\">
           </form>
         </div>
@@ -68,6 +68,7 @@
           <h1>Dashboard</h1>
           <hr style='width:100%'>
           <div class='content-div animated fadeInUp'>
+            <div style='margin: 1rem'>
             <div class='card' style='width: 15rem;'>
                 <img src='../shared/images/accounts.png' style=\"object-fit: cover; height: 30vh\" class='card-img-top' alt='...'>
                 <div class='card-body'>
@@ -76,6 +77,8 @@
                   <a href=\"javascript:change_view('accounts')\" class='btn btn-primary'>Edit Accounts</a>
                 </div>
             </div>
+            </div>
+            <div style='margin: 1rem'>
             <div class='card' style='width: 15rem;'>
                 <img src='../shared/images/outside-default.jpg' style=\"object-fit: cover; height: 30vh\" class='card-img-top' alt='...'>
                 <div class='card-body'>
@@ -84,6 +87,8 @@
                   <a href=\"javascript:change_view('rooms')\" class='btn btn-primary'>Edit Rooms</a>
                 </div>
             </div>
+            </div>
+            <div style='margin: 1rem'>
             <div class='card' style='width: 15rem;'>
                 <img src='https://www.vertical-leap.uk/wp-content/uploads/2017/11/map-1400x800.jpg' style=\"object-fit: cover; height: 30vh\" class='card-img-top' alt='...'>
                 <div class='card-body'>
@@ -92,9 +97,10 @@
                   <a href=\"javascript:change_view('location')\" class='btn btn-primary'>Edit Info & Links</a>
                 </div>
             </div>
+            </div>
           </div>
           <div id='copyright'>
-            Copyright © 1996–2020 Martyna Mudrak. All rights reserved.
+            Copyright © 1996–2020 Noclegi Mudrak. All rights reserved.
           </div>
       </div>";
     }

@@ -48,7 +48,7 @@ $connection->close();
 ?>
 
 <!DOCTYPE HTML>
-<html>
+<html lang="en">
 
 <head>
   <meta charset="utf-8">
@@ -169,7 +169,7 @@ $connection->close();
         <div class="col-md-6 col-lg-4" data-aos="fade-up">
           <a href="rooms.php" class="room">
             <figure class="img-wrap">
-              <img src="../shared/images/room1.1.jpeg" alt="Free website template" class="img-fluid mb-3">
+              <img src="../shared/images/room1.1.jpeg" alt="" class="img-fluid mb-3">
             </figure>
             <div class="p-3 text-center room-info">
               <h2>Room 1</h2>
@@ -181,7 +181,7 @@ $connection->close();
         <div class="col-md-6 col-lg-4" data-aos="fade-up">
           <a href="rooms.php" class="room">
             <figure class="img-wrap">
-              <img src="../shared/images/room2.2.jpeg" alt="Free website template" class="img-fluid mb-3">
+              <img src="../shared/images/room2.2.jpeg" alt="" class="img-fluid mb-3">
             </figure>
             <div class="p-3 text-center room-info">
               <h2>Room 2</h2>
@@ -193,7 +193,7 @@ $connection->close();
         <div class="col-md-6 col-lg-4" data-aos="fade-up">
           <a href="rooms.php" class="room">
             <figure class="img-wrap">
-              <img src="../shared/images/room3.1.jpg" alt="Free website template" class="img-fluid mb-3">
+              <img src="../shared/images/room3.1.jpg" alt="" class="img-fluid mb-3">
             </figure>
             <div class="p-3 text-center room-info">
               <h2>Room 3</h2>

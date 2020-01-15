@@ -48,7 +48,7 @@
 ?>
 
 <!DOCTYPE HTML>
-<html>
+<html lang="pl">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -70,7 +70,7 @@
       for ($index = 0; $index < count($photos); $index++) {
         echo "
           <div class='carousel-item " . (($index == 0) ? "active" : "") . "'>
-            <img src='../shared/images/" . $photos[$index] . "' class='carousel-image' >
+            <img src='../shared/images/" . $photos[$index] . "' alt='Photo from the Location' class='carousel-image' >
           </div>
         ";
       }
@@ -103,14 +103,14 @@
                   <label for="checkin_date" class="font-weight-bold text-black">Zameldowanie</label>
                   <div class="field-icon-wrap">
                     <div class="icon"><span class="icon-calendar"></span></div>
-                    <input type="text" id="checkin_date" class="form-control">
+                    <input label="Checkin Date" type="text" id="checkin_date" class="form-control">
                   </div>
                 </div>
                 <div class="col-md-6 mb-3 mb-lg-0 col-lg-3">
                   <label for="checkout_date" class="font-weight-bold text-black">Wymeldowanie</label>
                   <div class="field-icon-wrap">
                     <div class="icon"><span class="icon-calendar"></span></div>
-                    <input type="text" id="checkout_date" class="form-control">
+                    <input label="Checkout Date" type="text" id="checkout_date" class="form-control">
                   </div>
                 </div>
                 <div class="col-md-6 mb-3 mb-md-0 col-lg-3">
@@ -146,7 +146,7 @@
         <div class="row align-items-center">
           <div class="col-md-12 col-lg-7 ml-auto order-lg-2 position-relative mb-5" data-aos="fade-up">
             
-            <img src="../shared/images/outside4.jpeg" alt="Image" class="img-fluid rounded">
+            <img src="../shared/images/outside4.jpeg" alt="Outside Image" class="img-fluid rounded">
           </div>
           <div class="col-md-12 col-lg-4 order-lg-1" data-aos="fade-up">
             <h2 class="heading">Witamy!</h2>
@@ -169,7 +169,7 @@
           <div class="col-md-6 col-lg-4" data-aos="fade-up">
             <a href="rooms.php" class="room">
               <figure class="img-wrap">
-                <img src="../shared/images/room1.1.jpeg" alt="Free website template" class="img-fluid mb-3">
+                <img src="../shared/images/room1.1.jpeg" alt="Photo from Room 1" class="img-fluid mb-3">
               </figure>
               <div class="p-3 text-center room-info">
                 <h2>Pokój 1</h2>
@@ -181,7 +181,7 @@
           <div class="col-md-6 col-lg-4" data-aos="fade-up">
             <a href="rooms.php" class="room">
               <figure class="img-wrap">
-                <img src="../shared/images/room2.2.jpeg" alt="Free website template" class="img-fluid mb-3">
+                <img src="../shared/images/room2.2.jpeg" alt="Photo from Room 2" class="img-fluid mb-3">
               </figure>
               <div class="p-3 text-center room-info">
                 <h2>Pokój 2</h2>
@@ -193,7 +193,7 @@
           <div class="col-md-6 col-lg-4" data-aos="fade-up">
 		    <a href="rooms.php" class="room">
               <figure class="img-wrap">
-                <img src="../shared/images/room3.1.jpg" alt="Free website template" class="img-fluid mb-3">
+                <img src="../shared/images/room3.1.jpg" alt="Photo from Room 3" class="img-fluid mb-3">
               </figure>
               <div class="p-3 text-center room-info">
                 <h2>Pokój 3</h2>
@@ -220,7 +220,7 @@
 			 <div class="card mb-3" style="height: auto;">
                     <div class="row no-gutters">
                         <div class="col-md-4">
-                            <img style="object-fit: cover; height: 100%" src="../shared/images/atr1.jpg" class="card-img">
+                            <img style="object-fit: cover; height: 100%" src="../shared/images/atr1.jpg" alt="Culture" class="card-img">
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
@@ -233,7 +233,7 @@
 				<div class="card mb-3" style="height: auto;">
                     <div class="row no-gutters">
                         <div class="col-md-4">
-                            <img style="object-fit: cover; height: 100%" src="../shared/images/atr2.jpg" class="card-img">
+                            <img style="object-fit: cover; height: 100%" src="../shared/images/atr2.jpg" alt="Nature" class="card-img">
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
@@ -246,7 +246,7 @@
                 <div class="card mb-3" style="height: auto;">
                         <div class="row no-gutters">
                             <div class="col-md-4">
-                                <img style="object-fit: cover; height: 100%" src="../shared/images/atr3.jpg" class="card-img">
+                                <img style="object-fit: cover; height: 100%" src="../shared/images/atr3.jpg" alt="Near by" class="card-img">
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
