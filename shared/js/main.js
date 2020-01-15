@@ -20,6 +20,13 @@ $("#check-availabilty-btn").click(function() {
   
 });
 
+$("#home-anchor").click(function() {
+  var current_path = window.location.pathname;
+  if (current_path !== "/en/index.php" && current_path !== "/pl/index.php") {
+    window.location.href = "index.php"
+  }
+});
+
 $("#select-en").click(function() {
   document.cookie="language=en;path=/";
   window.location.href = "../index.php";

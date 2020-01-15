@@ -25,15 +25,17 @@
     $blink = $row['booking_link'];
 
 
-    $query_string = "SELECT price, capacity FROM Rooms;";
+    $query_string = "SELECT price, capacity, description_en FROM Rooms;";
 
     $result = $connection->query($query_string);
     $prices = [];
     $capacity = [];
+    $descriptions = [];
     $index = 0;
 
     while ($row = $result->fetch_assoc()) {
         $prices[$index] = $row['price'];
+        $descriptions[$index] = $row['description_en'];
         $capacity[$index++] = $row['capacity'];
     }
 
@@ -93,63 +95,14 @@
     <span class="carousel-control-next-icon"></span>
   </a>
     </div>
-    <!-- END section -->
-
-    <section class="section bg-light pb-0"  >
-      <div class="container">
-       
-        <div class="row check-availabilty" id="next">
-          <div class="block-32" data-aos="fade-up" data-aos-offset="-200">
-
-            <form action="#">
-              <div class="row">
-                <div class="col-md-6 mb-3 mb-lg-0 col-lg-3">
-                  <label for="checkin_date" class="font-weight-bold text-black">Check In</label>
-                  <div class="field-icon-wrap">
-                    <div class="icon"><span class="icon-calendar"></span></div>
-                    <input type="text" id="checkin_date" class="form-control">
-                  </div>
-                </div>
-                <div class="col-md-6 mb-3 mb-lg-0 col-lg-3">
-                  <label for="checkout_date" class="font-weight-bold text-black">Check Out</label>
-                  <div class="field-icon-wrap">
-                    <div class="icon"><span class="icon-calendar"></span></div>
-                    <input type="text" id="checkout_date" class="form-control">
-                  </div>
-                </div>
-                <div class="col-md-6 mb-3 mb-md-0 col-lg-3">
-                  <div class="row">
-                    <div class="col-md-6 mb-3 mb-md-0">
-                      <label for="adults" class="font-weight-bold text-black">Persons</label>
-                      <div class="field-icon-wrap">
-                        <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                        <select name="" id="adults" class="form-control">
-                          <option value="">1</option>
-                          <option value="">2</option>
-                          <option value="">3</option>
-                          <option value="">4</option>
-                        </select>
-                      </div>
-            </div>
-                  </div>
-                </div>
-                <div class="col-md-6 col-lg-3 align-self-end">
-                  <button class="btn btn-primary btn-block text-white">Check Availabilty</button>
-                </div>
-              </div>
-            </form>
-          </div>
-
-
-        </div>
-      </div>
-    </section>
+    <?php echo $booking_search_en; ?>
 
 		 <!-- room1-->
     <section class="section">
       <div class="container">
          <div class="p-3 text-center room-info">
                 <h2>Single Room</h2>
+                <span class="text-uppercase letter-spacing-1" style="display: block"><?php echo $descriptions[0]; ?></span>
                 <span class="text-uppercase letter-spacing-1" style="display: block"><?php echo $prices[0]; ?> zl / per night</span>
                 <span class="text-uppercase letter-spacing-1">Capacity: <?php echo $capacity[0] ?> guest</span>
          </div>
@@ -177,6 +130,7 @@
       <div class="container">
          <div class="p-3 text-center room-info">
            <h2>3 Beds Room</h2>
+           <span class="text-uppercase letter-spacing-1" style="display: block"><?php echo $descriptions[1]; ?></span>
            <span class="text-uppercase letter-spacing-1" style="display: block"><?php echo $prices[1]?> zl / per night</span>
            <span class="text-uppercase letter-spacing-1">Capacity: <?php echo $capacity[1] ?> guests</span>
         </div>
@@ -202,6 +156,7 @@
      <div class="container">
          <div class="p-3 text-center room-info">
                 <h2>Family Room</h2>
+                <span class="text-uppercase letter-spacing-1" style="display: block"><?php echo $descriptions[2]; ?></span>
                 <span class="text-uppercase letter-spacing-1" style="display: block;"><?php echo $prices[2]?> zl / per night</span>
                 <span class="text-uppercase letter-spacing-1">Capacity: <?php echo $capacity[2] ?> guests</span>
               </div>

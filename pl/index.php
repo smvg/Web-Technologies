@@ -56,8 +56,7 @@
     <?php echo $include_headers_main; ?>
   </head>
   <body>
-  <?php echo $navbar_pl; ?> 
-    <!-- END head -->
+  <?php echo $navbar_pl; ?>
  
           
 <!-- The slideshow -->
@@ -91,55 +90,7 @@
 
     <!-- END section -->
 
-    <section class="section bg-light pb-0"  >
-      <div class="container">
-       
-        <div class="row check-availabilty" id="next">
-          <div class="block-32" data-aos="fade-up" data-aos-offset="-200">
-
-            <form action="#">
-              <div class="row">
-                <div class="col-md-6 mb-3 mb-lg-0 col-lg-3">
-                  <label for="checkin_date" class="font-weight-bold text-black">Zameldowanie</label>
-                  <div class="field-icon-wrap">
-                    <div class="icon"><span class="icon-calendar"></span></div>
-                    <input label="Checkin Date" type="text" id="checkin_date" class="form-control">
-                  </div>
-                </div>
-                <div class="col-md-6 mb-3 mb-lg-0 col-lg-3">
-                  <label for="checkout_date" class="font-weight-bold text-black">Wymeldowanie</label>
-                  <div class="field-icon-wrap">
-                    <div class="icon"><span class="icon-calendar"></span></div>
-                    <input label="Checkout Date" type="text" id="checkout_date" class="form-control">
-                  </div>
-                </div>
-                <div class="col-md-6 mb-3 mb-md-0 col-lg-3">
-                  <div class="row">
-                    <div class="col-md-6 mb-3 mb-md-0">
-                      <label for="adults" class="font-weight-bold text-black">Osoby</label>
-                      <div class="field-icon-wrap">
-                        <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                        <select name="" id="adults" class="form-control">
-                          <option value="">1</option>
-                          <option value="">2</option>
-                          <option value="">3</option>
-                          <option value="">4</option>
-                        </select>
-                      </div>
-					  </div>
-                  </div>
-                </div>
-                <div class="col-md-6 col-lg-3 align-self-end">
-                  <button id="check-availabilty-btn" class="btn btn-primary btn-block text-white">Sprawdź dostępność</button>
-                </div>
-              </div>
-            </form>
-          </div>
-
-
-        </div>
-      </div>
-    </section>
+    <?php echo $booking_search_pl; ?>
 
     <section class="py-5 bg-light">
       <div class="container">
@@ -224,7 +175,7 @@
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
-                                <a href="culture.html" class="mb-4 d-block"><h5 class="card-title">Kultura</h5>
+                                <a href="culture.php" class="mb-4 d-block"><h5 class="card-title">Kultura</h5>
                                 <p class="loc">There are a couple of cultural activities close by</p></a>
                             </div>
                         </div>
@@ -237,7 +188,7 @@
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
-                                <a href="nature.html" class="mb-4 d-block"><h5 class="card-title">Natura</h5>
+                                <a href="nature.php" class="mb-4 d-block"><h5 class="card-title">Natura</h5>
                                 <p class="loc">See here the beautiful nature close by</p></a>
                             </div>
                         </div>
@@ -250,7 +201,7 @@
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
-                                    <a href="shops.html" class="mb-4 d-block"><h5 class="card-title">Sklepy</h5>
+                                    <a href="shops.php" class="mb-4 d-block"><h5 class="card-title">Sklepy</h5>
                                     <p class="loc">Meet local handicrafts</p></a>
                                     <!--<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>-->
                                 </div>

@@ -10,6 +10,107 @@
 
     $available_languages = array('en', 'pl');
 
+    $booking_search_en = "<section class=\"section bg-light pb-0\">
+    <div class=\"container\">
+
+      <div class=\"row check-availabilty\" id=\"next\">
+        <div class=\"block-32\" data-aos=\"fade-up\" data-aos-offset=\"-200\">
+
+          <form action=\"#\">
+            <div class=\"row\">
+              <div class=\"col-md-6 mb-3 mb-lg-0 col-lg-3\">
+                <label for=\"checkin_date\" class=\"font-weight-bold text-black\">Check In</label>
+                <div class=\"field-icon-wrap\">
+                  <div class=\"icon\"><span class=\"icon-calendar\"></span></div>
+                  <input type=\"text\" id=\"checkin_date\" class=\"form-control\">
+                </div>
+              </div>
+              <div class=\"col-md-6 mb-3 mb-lg-0 col-lg-3\">
+                <label for=\"checkout_date\" class=\"font-weight-bold text-black\">Check Out</label>
+                <div class=\"field-icon-wrap\">
+                  <div class=\"icon\"><span class=\"icon-calendar\"></span></div>
+                  <input type=\"text\" id=\"checkout_date\" class=\"form-control\">
+                </div>
+              </div>
+              <div class=\"col-md-6 mb-3 mb-md-0 col-lg-3\">
+                <div class=\"row\">
+                  <div class=\"col-md-6 mb-3 mb-md-0\">
+                    <label for=\"adults\" class=\"font-weight-bold text-black\">Persons</label>
+                    <div class=\"field-icon-wrap\">
+                      <div class=\"icon\"><span class=\"ion-ios-arrow-down\"></span></div>
+                      <select name=\"\" id=\"adults\" class=\"form-control\">
+                        <option value=\"\">1</option>
+                        <option value=\"\">2</option>
+                        <option value=\"\">3</option>
+                        <option value=\"\">4</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class=\"col-md-6 col-lg-3 align-self-end\">
+                <button id=\"check-availabilty-btn\" class=\"btn btn-primary btn-block text-white\">Check Availabilty</button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+
+      </div>
+    </div>
+  </section>";
+
+
+    $booking_search_pl = "<section class=\"section bg-light pb-0\" >
+    <div class=\"container\">
+     
+      <div class=\"row check-availabilty\" id=\"next\">
+        <div class=\"block-32\" data-aos=\"fade-up\" data-aos-offset=\"-200\">
+
+          <form action=\"#\">
+            <div class=\"row\">
+              <div class=\"col-md-6 mb-3 mb-lg-0 col-lg-3\">
+                <label for=\"checkin_date\" class=\"font-weight-bold text-black\">Zameldowanie</label>
+                <div class=\"field-icon-wrap\">
+                  <div class=\"icon\"><span class=\"icon-calendar\"></span></div>
+                  <input label=\"Checkin Date\" type=\"text\" id=\"checkin_date\" class=\"form-control\">
+                </div>
+              </div>
+              <div class=\"col-md-6 mb-3 mb-lg-0 col-lg-3\">
+                <label for=\"checkout_date\" class=\"font-weight-bold text-black\">Wymeldowanie</label>
+                <div class=\"field-icon-wrap\">
+                  <div class=\"icon\"><span class=\"icon-calendar\"></span></div>
+                  <input label=\"Checkout Date\" type=\"text\" id=\"checkout_date\" class=\"form-control\">
+                </div>
+              </div>
+              <div class=\"col-md-6 mb-3 mb-md-0 col-lg-3\">
+                <div class=\"row\">
+                  <div class=\"col-md-6 mb-3 mb-md-0\">
+                    <label for=\"adults\" class=\"font-weight-bold text-black\">Osoby</label>
+                    <div class=\"field-icon-wrap\">
+                      <div class=\"icon\"><span class=\"ion-ios-arrow-down\"></span></div>
+                      <select name=\"\" id=\"adults\" class=\"form-control\">
+                        <option value=\"\">1</option>
+                        <option value=\"\">2</option>
+                        <option value=\"\">3</option>
+                        <option value=\"\">4</option>
+                      </select>
+                    </div>
+          </div>
+                </div>
+              </div>
+              <div class=\"col-md-6 col-lg-3 align-self-end\">
+                <button id=\"check-availabilty-btn\" class=\"btn btn-primary btn-block text-white\">Sprawdź dostępność</button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+
+      </div>
+    </div>
+  </section>";
+
     $include_headers_main = "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">
     <meta name=\"description\" content=\"\" />
     <meta name=\"keywords\" content=\"\" />
@@ -88,7 +189,7 @@
       <div class=\"collapse navbar-collapse\" id=\"navbarResponsive\">
         <ul class=\"navbar-nav text-uppercase ml-auto\">
           <li class=\"nav-item\">
-            <a class=\"nav-link js-scroll-trigger\" href=\"#\">Home</a>
+            <a id=\"home-anchor\" class=\"nav-link js-scroll-trigger\" href=\"#\">Home</a>
           </li>
           <li class=\"nav-item\">
             <a class=\"nav-link js-scroll-trigger\" href=\"#rooms\">Our Rooms</a>
@@ -120,7 +221,7 @@
         <div class=\"collapse navbar-collapse\" id=\"navbarResponsive\">
           <ul class=\"navbar-nav text-uppercase ml-auto\">
             <li class=\"nav-item\">
-              <a class=\"nav-link js-scroll-trigger\" href=\"#\">Home</a>
+              <a id=\"home-anchor\" class=\"nav-link js-scroll-trigger\" href=\"#\">Home</a>
             </li>
             <li class=\"nav-item\">
               <a class=\"nav-link js-scroll-trigger\" href=\"#rooms\">Pokoje</a>

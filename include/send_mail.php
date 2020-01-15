@@ -4,9 +4,9 @@
 
     $name = $_POST['name'];
     $email = $_POST['email'];
-    $text = $_POST['text'];
+    $text = $_POST['text'] . "\n\nSent by " . $email;
 
-    $subject = "Message from " . $name . " (" . $email . ")";
+    $subject = "Message from " . $name;
 
     $query_string = "SELECT email from Administrators;";
 
@@ -20,7 +20,7 @@
     $result = $connection->query($query_string);
 
     while ($row = $result->fetch_assoc()) {
-        mail($row['email'],$subject,$message);
+        mail($row['email'],$subject,$text);
     }
 
     $connection->close();
