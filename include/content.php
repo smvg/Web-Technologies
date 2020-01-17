@@ -99,9 +99,6 @@
             </div>
             </div>
           </div>
-          <div id='copyright'>
-            Copyright © 1996–2020 Noclegi Mudrak. All rights reserved.
-          </div>
       </div>";
     }
 
@@ -173,13 +170,16 @@
             </div>
           </div>
           <br>
-        
-        <div class='photo-div'>" . $photos_code . "</div>
-        <input type='file' name='pics[]' style=\"margin: 0.5rem; width: auto;\" accept='image/*' multiple>
         <input type='text' name='action' value='update-location' style='display:none'>
-        <div style='display: flex; width: 100%; justify-content: flex-end'>
+        <div style='display: flex; width: 100%; justify-content: space-between'>
+        <div>
+            <div class='photo-div'>" . $photos_code . "</div>
+        </div>
+        <div style='display: block; justify-content: flex-end;'>
             <input type='submit' value='Save' class=\"btn btn-primary btn-block text-white\" style=\"margin: 0.5rem; width: auto; padding-left: 1.5rem; padding-right: 1.5rem\">
         </div>
+        </div>
+        <input type='file' name='pics[]' style=\"margin: 0.5rem; width: auto;\" accept='image/*' multiple>
         </form>
         ";
       }
