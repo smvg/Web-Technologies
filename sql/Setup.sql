@@ -43,7 +43,7 @@ create Table Location(
     PRIMARY KEY(id_location)
 );
 
-insert into Location (address_location, phone_location, email_location, facebook_link, booking_link) values('This is an address', '648-73-48-75', 'email@email.com', '#', '#');
+insert into Location (address_location, phone_location, email_location, facebook_link, booking_link) values('This is an address', '648-73-48-75', 'email@email.com', 'www.facebook.com', 'wwww.booking.com');
 
 create Table Location_Photo(
     id_location int NOT NULL,
